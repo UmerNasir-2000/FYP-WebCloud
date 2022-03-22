@@ -29,8 +29,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
-    { timestamps: false, updatedAt: false }
+    { timestamps: true, updatedAt: false, createdAt: true }
   );
 
   projects.associate = (models) => {
