@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Cloud | IDE</title>
+    <style>
+      #editor * {
+        font-family: monospace !important;
+        direction: ltr !important;
+        text-align: left !important;
+      }
+      #contextMenu {
+        position: absolute;
+        display: none;
+      }
+
+      #prettier {
+        position: relative;
+      }
+      #explorer {
+        background-color: "#fff";
+        height: 605px;
+        width: auto;
+      }
+
+      .navbar-nav {
+        position: relative;
+        margin-left: auto;
+      }
+
+      .navbar-bottom {
+        white-space: nowrap;
+      }
+
+      span {
+        font-size: large;
+        background-color: transparent !important;
+      }
+
+      span:hover {
+        font-size: larger;
+        color: black;
+      }
+      span.fancytree-title {
+        color: white !important;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif !important;
+      }
+      .fancytree-custom-icon {
+        color: white !important;
+      }
+
+      .fancytree-title::after {
+        color: white !important;
+      }
+      ul.fancytree-container {
+        background-color: rgb(15, 23, 36) !important;
+        border: none !important;
+      }
+
+      #prettier:hover,
+      #terminal-btn:hover,
+      #dropdownMenuButton1:hover,
+      #save-file-btn:hover,
+      #create-file:hover,
+      #refresh-explorer:hover {
+        font-size: larger;
+      }
+    </style>
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <link
+      href="//cdn.jsdelivr.net/npm/jquery.fancytree@2.27/dist/skin-win8/ui.fancytree.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <script src="//cdn.jsdelivr.net/npm/jquery.fancytree@2.27/dist/jquery.fancytree-all-deps.min.js"></script>
+
+    <script
+      type="text/javascript"
+      src="/bootstrap/js/bootstrap.min.js"
+    ></script>
+
+    <script src="src-min/ace.js"></script>
+    <script src="src-min/mode-javascript.js"></script>
+    <script src="src-min/ext-language_tools.js"></script>
+
+    <script
+      src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="http://www.openjs.com/scripts/events/keyboard_shortcuts/shortcut.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
+      integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var fileName = "";
+        var fileData = "";
+        var editor = ace.edit("editor");
+        var fontSizeValue = 16;
+        var currentTheme = "ace/theme/cobalt";
+        $("#mybody").hide();
+        if (localStorage.getItem("token")) {
+          $("#mybody").show();
+        } else if (!localStorage.getItem("token")) {
+          window.location.href = "index.html";
+          alert("User Need to Login First");
+        }
+
+        function renderTree() {
+          $("#tree").fancytree({
+            source: {
+              url: "/api/files/",
+            },
+            icon: function (event, data) {
+              let file = data.node.title;
+              let iconObject = {
+                js: "fab fa-js",
+                php: "fab fa-php",
+                json: "fas fa-file",
+                sql: "fa fa-database",
+                html: "fab fa-html5",
+                docker: "fab fa-docker",
+                css: "fab fa-css3",
+                java: "fab fa-java",
+              };
+              var extension = file.substr(file.lastIndexOf(".") + 1);
+              console.log(extension);
+              if (iconObject[extension]) return iconObject[extension];
+              else return "far fa-file-code";
+            },
+            activate: function (event, data) {
+              var node = data.node;
+              console.log("This is data.node object  = " + data.node);
+              fileName = node.title;
+              console.log(fileName);
+              document.title = fileName;
+              $.ajax({
+                url: `/api/files/file`,
+                method: "POST",
+                data: {
+                  fileName,
+                },
+                success: function (result, status, xhr) {
+                  fileData = xhr.responseJSON;
+                  configureAceEditor(fileData);
+                  console.log(xhr.responseJSON);
+                },
+                error: function (xhr, status, error) {
+                  console.log(xhr.responseText);
+                },
+              });
+            },
+          });
+        }
+
+        $(function () {
+          var $contextMenu = $("#contextMenu");
+
+          $("body").on("contextmenu", "#prettier", function (e) {
+            $contextMenu.css({
+              display: "block",
+              left: e.pageX,
+              top: e.pageY,
+            });
+            debugger;
+            return false;
+          });
+
+          $("html").click(function () {
+            $contextMenu.hide();
+          });
+
+          $("#contextMenu li a").click(function (e) {
+            var f = $(this);
+            debugger;
+          });
+        });
+
+        renderTree();
+
+        $.ajax({
+          url: `/api/auth/users`,
+          method: "GET",
+        }).then(function (res) {
+          console.log(res);
+        });
+
+        $(document).on(
+          "click.bs.dropdown.data-api",
+          ".dropdown.keep-inside-clicks-open",
+          function (e) {
+            e.stopPropagation();
+          }
+        );
+
+        $("#create-file").click(function () {
+          let createdFileName = prompt("Enter file name", "");
+          let createdFileExtension = prompt("Enter file extension", "");
+
+          $.ajax({
+            url: "/api/files/create-file",
+            method: "POST",
+            data: {
+              newFileName: createdFileName,
+              newFileNameExtension: createdFileExtension,
+            },
+          }).then((res) => console.log(res));
+        });
+
+        $("#refresh-explorer").click(function () {
+          renderTree();
+        });
+
+        $("#save-file-btn").click(function () {
+          let currentFileContent = editor.getValue();
+          let currentFileName = fileName;
+
+          if (currentFileName === "") {
+            alert("No file opened yet.");
+            return;
+          }
+
+          $.ajax({
+            url: "/api/files/save-code",
+            method: "PUT",
+            data: {
+              fileName: currentFileName,
+              fileContent: currentFileContent,
+            },
+          }).then(function (res) {
+            alert(`${currentFileName} saved.`);
+          });
+        });
+
+        shortcut.add("Ctrl+q", function () {
+          let fontValueMax = fontSizeValue++;
+          editor.setOptions({ fontSize: `${fontValueMax}px` });
+          $("#editor").css("font-size", `${fontValueMax}px`);
+        });
+
+        shortcut.add("Ctrl+2", function () {
+          let fontValueMin = fontSizeValue--;
+          editor.setOptions({ fontSize: `${fontValueMin}px` });
+          $("#editor").css("font-size", `${fontValueMin}px`);
+        });
+
+        shortcut.add("Ctrl+3", function () {
+          editor.setOptions({ fontSize: `16px` });
+          $("#editor").css("font-size", `16px`);
+        });
+
+        function configureAceEditor(value) {
+          var langTools = ace.require("ace/ext/language_tools");
+          editor.getSession().setUseWorker(false);
+          editor.setTheme(currentTheme);
+          editor.getSession().setMode("ace/mode/javascript");
+          editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true,
+            enableSnippets: true,
+            showLineNumbers: true,
+            tabSize: 4,
+            fontSize: 16,
+          });
+          editor.setValue(value);
+          editor.session.setUseWrapMode(true);
+          editor.setHighlightActiveLine(false);
+
+          $("#editor").css("font-size", "20px");
+
+          $("#prettier").click(function () {
+            var val = editor.session.getValue();
+            var array = val.split(/\n\n\n/);
+            array[0] = array[0].trim();
+            val = array.join("\n");
+            val = js_beautify(val);
+            editor.session.setValue(val);
+          });
+
+          $("#theme").click(function () {
+            currentTheme = "ace/theme/twilight";
+            editor.setTheme(currentTheme);
+          });
+
+          $("#cascadia-code").click(function () {
+            currentTheme = "ace/theme/cobalt";
+            editor.setTheme(currentTheme);
+          });
+          $("#twilight").click(function () {
+            currentTheme = "ace/theme/twilight";
+            editor.setTheme(currentTheme);
+          });
+          $("#xcode").click(function () {
+            currentTheme = "ace/theme/xcode";
+            editor.setTheme(currentTheme);
+          });
+          $("#monokai").click(function () {
+            currentTheme = "ace/theme/monokai";
+            editor.setTheme(currentTheme);
+          });
+          $("#eclipse").click(function () {
+            currentTheme = "ace/theme/eclipse";
+            editor.setTheme(currentTheme);
+          });
+        }
+
+        configureAceEditor("#Write Your Code To Get Started");
+
+        $("#signup").click(function () {
+          console.log("WORKING");
+          window.location.replace("/signup");
+        });
+
+        document.getElementById("run").onclick = function () {
+          window.open(`http://localhost:8000/${fileName}`, `_blank`);
+        };
+      });
+    </script>
+  </head>
+  <body id="mybody">
+    <nav
+      class="navbar navbar-expand navbar-light navbar-bottom"
+      style="
+        background-color: rgb(15, 23, 36);
+        align-content: space-between;
+        padding: 2px;
+      "
+    >
+      <h1
+        class="display-6"
+        style="font-size: 40px; color: white; font-weight: bolder"
+      >
+        <a href="landing.html" style="text-decoration: none; color: white">
+          &lt;/&gt;WebCloud
+        </a>
+      </h1>
+      <ul class="navbar-nav mr-auto pl-2" style="flex-direction: row">
+        <li>
+          <button
+            class="btn btn-success"
+            style="
+              background-color: rgb(15, 23, 36);
+              border-color: white;
+              border-width: 2px;
+            "
+            id="save-file-btn"
+          >
+            <i style="font-size: large" class="bi bi-save"></i>
+
+            Save File
+          </button>
+        </li>
+        <li>
+          <button
+            class="btn btn-success"
+            style="
+              background-color: rgb(15, 23, 36);
+              margin-left: 5px;
+              border-color: white;
+              border-width: 2px;
+            "
+            id="terminal-btn"
+          >
+            <i style="font-size: large" class="bi bi-terminal"></i>
+
+            <a
+              href="/terminal.html"
+              style="color: white; text-decoration: none"
+              target="_blank"
+              >Get Terminal</a
+            >
+          </button>
+        </li>
+
+        <li>
+          <button
+            style="
+              margin-left: 5px;
+              background-color: rgb(15, 23, 36);
+              border-color: white;
+              border-width: 2px;
+            "
+            class="btn btn-primary"
+            type="submit"
+            id="prettier"
+          >
+            <i style="font-size: large" class="bi bi-check-all"></i>
+
+            Prettier
+          </button>
+        </li>
+        <li class="nav-item dropdown">
+          <button
+            style="
+              margin-left: 5px;
+              background-color: rgb(15, 23, 36);
+              border-color: white;
+              border-width: 2px;
+              margin-top: 2.5px;
+            "
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Select Themes
+          </button>
+          <form class="dropdown-menu">
+            <ul class="list-group text-black" style="cursor: pointer">
+              <li id="cascadia-code" class="dropdown-item">Cobalt Blue</li>
+              <li id="twilight" class="dropdown-item">Twilight</li>
+              <li id="xcode" class="dropdown-item">XCode</li>
+              <li id="monokai" class="dropdown-item">Monokai Pro</li>
+              <li id="eclipse" class="dropdown-item">Eclipse</li>
+            </ul>
+          </form>
+        </li>
+      </ul>
+    </nav>
+    <div
+      style="
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 0%;
+        flex-direction: row;
+        display: grid;
+        border: 1px solid black;
+        grid-template-columns: 87% 13%;
+      "
+    >
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="editor">#Write Your Code To Get Started</div>
+      <div
+        id="explorer"
+        class="grid3"
+        style="
+          background-color: rgb(15, 23, 36);
+          border-color: white;
+          border-width: 10px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          "
+        >
+          <div style="padding: 8px">
+            <button
+              id="run"
+              class="btn btn-primary"
+              title="Run Project"
+              style="
+                background-color: rgb(15, 23, 36);
+                border-color: rgb(33, 248, 33);
+                border-width: 1px;
+                margin-top: 2px;
+              "
+            >
+              <i
+                style="font-size: large; color: rgb(33, 248, 33)"
+                class="bi bi-play"
+              ></i>
+              <!-- </a> -->
+            </button>
+            <button
+              class="btn btn-primary"
+              title="Create New File"
+              style="
+                background-color: rgb(15, 23, 36);
+                border-color: white;
+                border-width: 1px;
+                margin-top: 2px;
+              "
+              id="create-file"
+            >
+              <i style="font-size: large" class="bi bi-file-earmark-plus"></i>
+            </button>
+            <button
+              title="Refresh Explorer"
+              class="btn btn-primary"
+              style="
+                background-color: rgb(15, 23, 36);
+                border-color: white;
+                border-width: 1px;
+                margin-top: 2px;
+              "
+              id="refresh-explorer"
+            >
+              <i style="font-size: large" class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+        <div id="tree" style="font-size: large; text-align: end"></div>
+      </div>
+    </div>
+    <div id="contextMenu" class="dropdown clearfix">
+      <ul
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="dropdownMenu"
+        style="display: block; position: static; margin-bottom: 5px"
+      >
+        <li><a tabindex="-1" href="#">Action 1</a></li>
+        <li><a tabindex="-1" href="#">Action 2</a></li>
+        <li><a tabindex="-1" href="#">Some More Actions</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1" href="#">Final Action</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Cloud</title>
+    <style>
+      #editor {
+        position: absolute; /*Relative*/
+        height: 90%;
+        width: 70%;
+      }
+
+      .navbar-nav {
+        margin-left: auto;
+      }
+
+      #prettier:hover,
+      #terminal-btn:hover,
+      #dropdownMenuButton1:hover {
+        font-size: larger;
+      }
+    </style>
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="landingstyle.css" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/bootstrap/js/bootstrap.min.js"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
+      integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#tbl").hide();
+        $("#tbl2").hide();
+
+        var user = localStorage.getItem("name");
+        var pic = localStorage.getItem("url");
+
+        $("#mybody").hide();
+        if (localStorage.getItem("token")) {
+          $("#mybody").show();
+        } else if (!localStorage.getItem("token")) {
+          window.location.href = "index.html";
+          alert("User Need to Login First");
+        }
+
+        $("#uname").text(user);
+        $("#mypic").text(pic);
+
+        $("#mypic").empty();
+
+        let tr = `
+  <img id="mypic" src=${pic} class='avatar'  alt="Avatar">
+  `;
+        $("#mypic").append(tr);
+
+        $("#logout").click(function () {
+          localStorage.removeItem("token");
+          localStorage.removeItem("name");
+          localStorage.removeItem("url");
+
+          window.location.href = "index.html";
+        });
+
+        $("#registerb").click(function (e) {
+          e.preventDefault();
+
+          $.ajax({
+            url: `/api/auth/projects`,
+            method: "GET",
+          }).then(function (res) {
+            const [db, web, project] = res;
+            $("#tblReg > table > tbody").empty();
+            $.each(project, function (r1, reg) {
+              // alert(JSON.stringify(reg))
+              let tr = `
+<tr>
+    <td>${reg.id}</td>
+    <td>${reg.project_name}</td>
+    <td>
+   PHP
+      </td>  
+        <td>
+         MySQL
+          </td>
+          <td>${reg.createdAt}</td>
+          <td>${reg.updatedAt}</td>
+</tr>                    
+`;
+              $("#tblReg > table > tbody").append(tr);
+              $("#tbl2").show();
+              $("#tbl").hide();
+            });
+          });
+        });
+
+        $("#register").click(function (e) {
+          e.preventDefault();
+          var email = $("#email").val();
+          var password = $("#password").val();
+          console.log(email, password);
+          $.ajax({
+            url: `/api/auth/users`,
+            method: "GET",
+          }).then(function (res) {
+            // let [regs] = res
+            $("#tblReg > table > tbody").empty();
+            $.each(res, function (ri, reg) {
+              let tr = `
+<tr>
+    <td>${reg.id}</td>
+    <td>${reg.first_name}</td>
+    <td>${reg.last_name}</td>
+    <td>${reg.email}</td>
+    <td>${reg.project_count}</td>
+    <td>${reg.has_subscription}</td>
+</tr>                    
+`;
+              $("#tblReg > table > tbody").append(tr);
+              $("#tbl").show();
+              $("#tbl2").hide();
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+  <body id="mybody">
+    <nav
+      class="navbar navbar-light"
+      style="
+        background-color: rgb(15, 23, 36);
+        align-content: space-between;
+        padding: 10px;
+      "
+    >
+      <h1
+        class="display-6"
+        style="font-size: 40px; color: white; font-weight: bolder"
+      >
+        &lt;/&gt;WebCloud (ADMIN PANEL)
+      </h1>
+      <ul class="navbar-nav" style="flex-direction: row">
+        <li>
+          <a id="mypic" href=""></a>
+
+          <button
+            id="uname"
+            class="btn btn-success"
+            style="
+              background-color: rgb(15, 23, 36);
+              border-width: 2px;
+              pointer-events: none;
+            "
+          ></button>
+
+          <button
+            class="btn"
+            style="background-color: rgb(15, 23, 36); border-width: 2px"
+          >
+            <a id="logout" style="color: rgba(255, 0, 0, 0.733)" target="_blank"
+              >LOGOUT</a
+            >
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <div id="outer-grid">
+        <div id="inner-grid">
+          <div style="justify-self: center">
+            <button
+              id="register"
+              class="btn"
+              style="
+                background-color: rgb(15, 23, 36);
+                border-width: 2px;
+                font-size: 20pt;
+              "
+            >
+              Track User
+            </button>
+          </div>
+          <div style="justify-self: center">
+            <button
+              id="registerb"
+              class="btn"
+              style="
+                background-color: rgb(15, 23, 36);
+                border-width: 2px;
+                font-size: 20pt;
+              "
+            >
+              Track Projects
+            </button>
+          </div>
+        </div>
+        <!-- <div class="card">
+                    <h5 class="card-header">User Details</h5>
+                    <div class="card-body">
+                        <span class="hdr        if(!localStorage.getItem("token")){
+      
+      window.location.href="index.html" 
+    } text-info">First Name : </span>
+                        <span class="card-text" id="studentname"></span><br>
+                        <span class="hdr text-info">Last Name : </span>
+                        <span class="card-text" id="fathername"></span>
+
+                    </div>
+                </div> -->
+        <div class="col-md-6" id="tbl">
+          <div id="tblReg">
+            <h4 style="font-size: 20pt; color: rgb(17, 236, 229)">
+              USERS REGISTRATION
+            </h4>
+            <table class="styled-table">
+              <thead>
+                <tr style="color: rgb(17, 236, 229); font-size: 15pt">
+                  <th>ID</th>
+                  <th>Project Name</th>
+                  <th>Last Update</th>
+                  <th>Email</th>
+                  <th>Projects</th>
+                  <th>Subscription</th>
+                </tr>
+              </thead>
+              <tbody style="color: aliceblue; font-size: 15pt"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-md-6" id="tbl2">
+          <div id="tblReg">
+            <h4 style="font-size: 20pt; color: rgb(17, 236, 229)">
+              PROJECTS REGISTRATION
+            </h4>
+            <table class="styled-table">
+              <thead>
+                <tr style="color: rgb(17, 236, 229); font-size: 15pt">
+                  <th>ID</th>
+                  <th>Project Name</th>
+                  <th>Web Framework</th>
+                  <th>DB Engine</th>
+                  <th>Last Update</th>
+                  <th>Created At</th>
+                </tr>
+              </thead>
+              <tbody style="color: aliceblue; font-size: 15pt"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Why choose us?</h3>
+          <p>You can code any where any time without environmental setup</p>
+        </div>
+
+        <div class="box">
+          <h3>Quick Links</h3>
+          <a style="text-decoration: none" href="landing.html">home</a>
+          <a style="text-decoration: none" href="userguide.html">about</a>
+          <a style="text-decoration: none" href="#">contact</a>
+          <a style="text-decoration: none" href="userguide.html">FAQ</a>
+        </div>
+
+        <div class="box">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i>SZABIST 100</p>
+          <p><i class="fas fa-globe"></i> www.webcloud.com</p>
+          <p><i class="fas fa-phone"></i> +123-456-7890.</p>
+        </div>
+      </div>
+
+      <h1 class="credit">
+        created by
+        <a style="text-decoration: none" href="#">Umer And Wahaj</a> | all
+        rights reserved.
+      </h1>
+    </section>
+
+    <!-- custom js file link  -->
+    <script src="landingjs.js"></script>
+  </body>
+</html>

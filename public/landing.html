@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Cloud</title>
+    <style>
+      #editor {
+        position: absolute; /*Relative*/
+        height: 90%;
+        width: 70%;
+      }
+
+      .navbar-nav {
+        margin-left: auto;
+      }
+
+      #prettier:hover,
+      #terminal-btn:hover,
+      #dropdownMenuButton1:hover {
+        font-size: larger;
+      }
+
+      #outer-grid {
+        display: grid;
+        grid-template-columns: minmax(50vw, 1fr);
+        grid-template-rows: minmax(50vh, 1fr);
+        align-items: center;
+        justify-content: center;
+        border: 2px solid blue;
+      }
+      #outer-grid > div {
+        background-color: rgb(15, 23, 36);
+        color: white;
+        padding: 8px;
+      }
+      #inner-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+        margin: 20px;
+      }
+      #inner-grid > div {
+        margin: 15px;
+        border-radius: 20px;
+        background: rgb(15, 23, 36);
+        padding: 8px;
+      }
+      .avatar {
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    </style>
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="landingstyle.css" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/bootstrap/js/bootstrap.min.js"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
+      integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var user = localStorage.getItem("name");
+        var pic = localStorage.getItem("url");
+        $("#uname").text(user);
+        $("#mypic").text(pic);
+        $("#mybody").hide();
+        $("#mybody").show();
+        if (localStorage.getItem("token")) {
+          $("#mybody").show();
+        } else if (!localStorage.getItem("token")) {
+          window.location.href = "index.html";
+          alert("User Need to Login First");
+        }
+
+        $("#mypic").empty();
+
+        let tr = `
+  <img id="mypic" src=${pic} class='avatar' alt="Avatar">
+  `;
+        $("#mypic").append(tr);
+
+        $("#logout").click(function () {
+          localStorage.removeItem("token");
+          localStorage.removeItem("name");
+          localStorage.removeItem("url");
+          localStorage.removeItem("project_name");
+          //window.location.host = "localhost:5001";
+          window.location.href = "http://localhost:5001/index.html";
+          const wholeURL = `${window.location.protocol}//${window.location.host}/index.html`;
+
+          //window.location.href = "index.html";
+        });
+      });
+    </script>
+  </head>
+  <body id="mybody">
+    <nav
+      class="navbar navbar-light"
+      style="
+        background-color: rgb(15, 23, 36);
+        align-content: space-between;
+        padding: 10px;
+      "
+    >
+      <h1
+        class="display-6"
+        style="font-size: 40px; color: white; font-weight: bolder"
+      >
+        &lt;/&gt;WebCloud
+      </h1>
+      <ul class="navbar-nav" style="flex-direction: row">
+        <li>
+          <a id="mypic" href=""></a>
+
+          <button
+            id="uname"
+            class="btn btn-success"
+            style="
+              background-color: rgb(15, 23, 36);
+              border-width: 2px;
+              pointer-events: none;
+            "
+          ></button>
+
+          <button
+            class="btn"
+            style="background-color: rgb(15, 23, 36); border-width: 2px"
+            id="logout"
+          >
+            <a style="color: rgba(255, 0, 0, 0.671)" target="_blank">LOGOUT</a>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <div id="outer-grid">
+        <div style="display: flex; justify-content: space-evenly">
+          <h2
+            style="color: rgb(17, 236, 229); display: inline; font-size: 25pt"
+          >
+            Previous Projects
+          </h2>
+          <h2
+            style="color: rgb(17, 236, 229); display: inline; font-size: 25pt"
+          >
+            |
+          </h2>
+          <h2
+            style="color: rgb(17, 236, 229); display: inline; font-size: 25pt"
+          >
+            Web Cloud Application
+          </h2>
+        </div>
+
+        <div id="inner-grid">
+          <div style="justify-self: center">
+            <a href="pone.html">
+              <button
+                class="btn"
+                style="
+                  background-color: rgb(15, 23, 36);
+                  border-width: 2px;
+                  font-size: 20pt;
+                "
+              >
+                1. Recapsheet
+              </button>
+            </a>
+          </div>
+          <div style="justify-self: center">
+            <button
+              id="registerb"
+              class="btn"
+              style="
+                background-color: rgb(15, 23, 36);
+
+                border-width: 2px;
+                font-size: 20pt;
+              "
+              div
+            >
+              Browse Public Repo
+            </button>
+          </div>
+          <div style="justify-self: center">
+            <a href="ptwo.html">
+              <button
+                class="btn"
+                style="
+                  background-color: rgb(15, 23, 36);
+                  border-width: 2px;
+                  font-size: 20pt;
+                "
+              >
+                2. Demo Project
+              </button>
+            </a>
+          </div>
+          <div style="justify-self: center">
+            <a href="template.html">
+              <button
+                id="register"
+                class="btn"
+                style="
+                  background-color: rgb(15, 23, 36);
+
+                  border-width: 2px;
+                  font-size: 20pt;
+                "
+              >
+                Create New Project
+              </button>
+            </a>
+          </div>
+          <div style="justify-self: center">
+            <a href="pthree.html">
+              <button
+                class="btn"
+                style="
+                  background-color: rgb(15, 23, 36);
+                  border-width: 2px;
+                  font-size: 20pt;
+                "
+              >
+                3. Datasheet
+              </button>
+            </a>
+          </div>
+          <div style="justify-self: center">
+            <a href="userguide.html">
+              <button
+                id="register"
+                class="btn"
+                style="
+                  background-color: rgb(15, 23, 36);
+                  border-width: 2px;
+                  font-size: 20pt;
+                "
+              >
+                User Guide
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Why choose us?</h3>
+          <p>You can code any where any time without environmental setup</p>
+        </div>
+
+        <div class="box">
+          <h3>Quick Links</h3>
+          <a style="text-decoration: none" href="landing.html">home</a>
+          <a style="text-decoration: none" href="userguide.html">about</a>
+          <a style="text-decoration: none" href="#">contact</a>
+          <a style="text-decoration: none" href="userguide.html">FAQ</a>
+        </div>
+
+        <div class="box">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i>SZABIST 100</p>
+          <p><i class="fas fa-globe"></i> www.webcloud.com</p>
+          <p><i class="fas fa-phone"></i> +123-456-7890.</p>
+        </div>
+      </div>
+
+      <h1 class="credit">
+        Created By
+        <a style="text-decoration: none" href="#">Umer And Wahaj</a> | &#169;
+        All Rights Reserved.
+      </h1>
+    </section>
+
+    <script src="landingjs.js"></script>
+  </body>
+</html>
