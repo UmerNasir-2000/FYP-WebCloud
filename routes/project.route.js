@@ -5,7 +5,10 @@ const validateToken = require("../middlewares/validateToken");
 const createProjectSchema = require("../schemas/project/create-project-template.schema");
 const {
   createUserProjectTemplate,
+  getUserProjects,
 } = require("../controllers/project.controller");
+
+router.route("/user").get(validateToken, getUserProjects);
 
 router
   .route("/create-template")

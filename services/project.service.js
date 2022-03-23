@@ -60,4 +60,23 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     .json({ message: "Project Successfully Created", createdProjectResponse });
 });
 
-module.exports = { createProjectTemplate };
+const getUserProjectsService = asyncHandler(async (req, res) => {
+  const userProjects = await projects.findAll({
+    where: {
+      user_id: req.user.id,
+    },
+    attributes: {
+      exclude: ["user_id"],
+    },
+  });
+
+  if (userProjects.length === 0)
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: "No projects for logged in user." });
+  res
+    .status(StatusCodes.OK)
+    .json({ message: "User's Own Projects", userProjects });
+});
+
+module.exports = { createProjectTemplate, getUserProjectsService };

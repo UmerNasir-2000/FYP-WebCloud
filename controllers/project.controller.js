@@ -1,4 +1,7 @@
-const { createProjectTemplate } = require("../services/project.service");
+const {
+  createProjectTemplate,
+  getUserProjectsService,
+} = require("../services/project.service");
 
 /**
  *   @desc    POST Register User on Web Cloud
@@ -11,4 +14,15 @@ const createUserProjectTemplate = async (req, res) => {
   await createProjectTemplate(req, res);
 };
 
-module.exports = { createUserProjectTemplate };
+/**
+ *   @desc    GET Fetch User's Own Projects
+ *   @route   GET /api/project/user/
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const getUserProjects = async (req, res) => {
+  await getUserProjectsService(req, res);
+};
+
+module.exports = { createUserProjectTemplate, getUserProjects };
