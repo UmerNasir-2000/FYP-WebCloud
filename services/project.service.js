@@ -1,25 +1,63 @@
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
-const { users, projects } = require("../models");
+const {
+  projects,
+  configurations,
+  repositories,
+  requests,
+} = require("../models");
 
 const createProjectTemplate = asyncHandler(async (req, res) => {
-  const { project_name, project_description, is_public } = req.body;
+  const {
+    project_name,
+    project_description,
+    is_public,
+    web_framework,
+    database,
+  } = req.body;
 
-  try {
-    const project = await projects.create({
-      project_name: project_name,
-      path: "users/web/project/",
-      description: project_description,
-      is_public: is_public,
-      user_id: req.user.id,
-    });
+  const ifExists = await projects.findOne({
+    where: {
+      project_name,
+    },
+  });
 
-    console.log(project);
-  } catch (error) {
-    console.log(error);
-  }
+  if (ifExists)
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Project Name Already Exists" });
 
-  res.status(StatusCodes.CREATED).json({ message: "Working", user_id: 1 });
+  const project = await projects.create({
+    project_name: project_name,
+    path: "users/web/project/",
+    description: project_description,
+    is_public: is_public,
+    user_id: req.user.id,
+  });
+
+  const projectConfig = await configurations.create({
+    db_port: 3306,
+    web_port: 3000,
+    database,
+    web_framework,
+    project_id: project.id,
+  });
+
+  const projectRequest = await requests.create({ project_id: project.id });
+
+  const repo = await repositories.create({
+    userId: req.user.id,
+    projectId: project.id,
+  });
+
+  let createdProjectResponse = {
+    project_name,
+    project_status: projectRequest.status,
+  };
+
+  res
+    .status(StatusCodes.CREATED)
+    .json({ message: "Project Successfully Created", createdProjectResponse });
 });
 
 module.exports = { createProjectTemplate };

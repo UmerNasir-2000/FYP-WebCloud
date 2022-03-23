@@ -30,8 +30,12 @@ module.exports = (sequelize, DataTypes) => {
         ),
         allowNull: false,
       },
+      project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
-    { timestamps: false, updatedAt: false }
+    { timestamps: true, updatedAt: false, createdAt: true }
   );
 
   return configurations;

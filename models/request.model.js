@@ -11,14 +11,16 @@ module.exports = (sequelize, DataTypes) => {
       acknowledged_by: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "ADMIN",
       },
       status: {
         type: DataTypes.ENUM("Pending", "Approved", "Rejected"),
         allowNull: false,
         defaultValue: "Pending",
       },
+      project_id: { type: DataTypes.INTEGER, allowNull: false },
     },
-    { timestamps: false, updatedAt: false }
+    { timestamps: true }
   );
 
   return requests;

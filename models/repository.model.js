@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
     },
-    { timestamps: false, updatedAt: false }
+    { timestamps: true }
   );
 
   return repositories;
