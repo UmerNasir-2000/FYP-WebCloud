@@ -29,7 +29,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
-
+      likes: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+        allowNull: false,
+      },
       user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -40,6 +44,12 @@ module.exports = (sequelize, DataTypes) => {
 
   projects.associate = (models) => {
     projects.hasMany(models.requests, {
+      onDelete: "Cascade",
+      onUpdate: "Cascade",
+      foreignKey: "project_id",
+    });
+
+    projects.hasMany(models.project_history, {
       onDelete: "Cascade",
       onUpdate: "Cascade",
       foreignKey: "project_id",
