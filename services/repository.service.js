@@ -29,4 +29,25 @@ const getPublicRepositoriesService = asyncHandler(async (req, res) => {
     .json({ message: "Fetch All Public Repositories", publicRepos });
 });
 
-module.exports = { getPublicRepositoriesService };
+const getAllRepositoriesService = asyncHandler(async (req, res) => {
+  const repos = await projects.findAll({
+    include: {
+      model: users,
+      required: true,
+      where: {
+        status: "Enable",
+      },
+      attributes: {
+        exclude: ["password", "is_admin", "status", "has_subscription"],
+      },
+    },
+
+    attributes: {
+      exclude: ["path", "user_id"],
+    },
+  });
+
+  res.status(StatusCodes.OK).json({ message: "Fetch All Repositories", repos });
+});
+
+module.exports = { getPublicRepositoriesService, getAllRepositoriesService };
