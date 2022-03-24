@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "fadc7724-5bc9-45d2-beb8-8722173a513d",
+		"name": "Web Cloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Umer\",\n    \"lastName\": \"Nasir\",\n    \"email\": \"umer.nasir@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/auth/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"umer.nasir@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "Create Project Template",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MTI2NTIyLCJleHAiOjE2NDg3MzEzMjJ9.LLh8bBl1mhP9tANKZMtqmTPdWR4birJ0C3y--4zZzTk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/project/create-template",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"project",
+								"create-template"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User's Own Projects",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MTI2NTIyLCJleHAiOjE2NDg3MzEzMjJ9.LLh8bBl1mhP9tANKZMtqmTPdWR4birJ0C3y--4zZzTk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/project/user",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"project",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "View All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MDM3MzE5LCJleHAiOjE2NDg2NDIxMTl9.YduD1K3g54tivkiHONofd2E7wX3ESXJRDrQ0D-oQCKc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/user/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Repositories",
+			"item": [
+				{
+					"name": "Fetch Public Repositories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MDM3MzE5LCJleHAiOjE2NDg2NDIxMTl9.YduD1K3g54tivkiHONofd2E7wX3ESXJRDrQ0D-oQCKc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/repo/public",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"repo",
+								"public"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch All Repositories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MDM3MzE5LCJleHAiOjE2NDg2NDIxMTl9.YduD1K3g54tivkiHONofd2E7wX3ESXJRDrQ0D-oQCKc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/repo/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"repo",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Update Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MTI2NTIyLCJleHAiOjE2NDg3MzEzMjJ9.LLh8bBl1mhP9tANKZMtqmTPdWR4birJ0C3y--4zZzTk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_status\": \"Approved\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/admin/request/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"request",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Dashboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MTI2NTIyLCJleHAiOjE2NDg3MzEzMjJ9.LLh8bBl1mhP9tANKZMtqmTPdWR4birJ0C3y--4zZzTk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/dashboard",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
