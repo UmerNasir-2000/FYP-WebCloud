@@ -31,4 +31,16 @@ const dashboardService = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { dashboardService };
+const updateProjectStatusService = asyncHandler(async (req, res) => {
+  const updatedRequest = await requests.update(
+    { status: req.body.project_status },
+    {
+      where: {
+        project_id: req.params.id,
+      },
+    }
+  );
+  res.status(StatusCodes.ACCEPTED).json({ message: "Update Project Status" });
+});
+
+module.exports = { dashboardService, updateProjectStatusService };
