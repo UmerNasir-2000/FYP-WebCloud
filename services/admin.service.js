@@ -1,6 +1,12 @@
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
-const { users, projects, requests, Sequelize } = require("../models");
+const {
+  users,
+  projects,
+  requests,
+  configurations,
+  Sequelize,
+} = require("../models");
 const db = require("../models");
 const sequelize = require("sequelize");
 
@@ -43,4 +49,24 @@ const updateProjectStatusService = asyncHandler(async (req, res) => {
   res.status(StatusCodes.ACCEPTED).json({ message: "Update Project Status" });
 });
 
-module.exports = { dashboardService, updateProjectStatusService };
+const chartsService = asyncHandler(async (req, res) => {
+  const { entity } = req.body;
+
+  const configuration = await configurations.findAll({
+    attributes: [
+      entity,
+      [Sequelize.fn("COUNT", Sequelize.col(entity)), `total_${entity}`],
+    ],
+    group: [entity],
+  });
+
+  res
+    .status(StatusCodes.OK)
+    .json({ message: "Admin Dashboard Charts", configuration });
+});
+
+module.exports = {
+  dashboardService,
+  updateProjectStatusService,
+  chartsService,
+};

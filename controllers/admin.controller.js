@@ -1,6 +1,7 @@
 const {
   dashboardService,
   updateProjectStatusService,
+  chartsService,
 } = require("../services/admin.service");
 
 /**
@@ -15,6 +16,17 @@ const dashboard = async (req, res) => {
 };
 
 /**
+ *   @desc    GET Dashboard Parameter for Admin
+ *   @route   GET /api/admin/charts
+ *   @access  PRIVATE [Admin]
+ *   @author  UMER NASIR
+ **/
+
+const charts = async (req, res) => {
+  await chartsService(req, res);
+};
+
+/**
  *   @desc    PUT Update Project Status
  *   @route   PUT /api/admin/dashboard
  *   @access  PRIVATE [Admin]
@@ -25,4 +37,4 @@ const updateProjectStatus = async (req, res) => {
   await updateProjectStatusService(req, res);
 };
 
-module.exports = { dashboard, updateProjectStatus };
+module.exports = { dashboard, updateProjectStatus, charts };
