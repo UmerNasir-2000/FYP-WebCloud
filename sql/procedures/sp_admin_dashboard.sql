@@ -1,8 +1,9 @@
-DROP PROCEDURE IF EXISTS sql_web_cloud.admin_dashboard;
+USE `sql_web_cloud`;
+DROP procedure IF EXISTS `admin_dashboard`;
 
 DELIMITER $$
-$$
-CREATE PROCEDURE sql_web_cloud.admin_dashboard()
+USE `sql_web_cloud`$$
+CREATE PROCEDURE `admin_dashboard` ()
 BEGIN
 	SELECT
 		req.id, 
@@ -20,8 +21,11 @@ BEGIN
 	INNER JOIN projects prj 
 	ON req.project_id  = prj.id 
 	INNER JOIN users usr 
-	ON usr.id = prj.user_id;
+	ON usr.id = prj.user_id
+    ORDER BY req.createdAt
+    LIMIT 5;
 END$$
+
 DELIMITER ;
 
 
