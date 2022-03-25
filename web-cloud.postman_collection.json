@@ -77,7 +77,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MTI2NTIyLCJleHAiOjE2NDg3MzEzMjJ9.LLh8bBl1mhP9tANKZMtqmTPdWR4birJ0C3y--4zZzTk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MjI1NzkzLCJleHAiOjE2NDg4MzA1OTN9.znCfQDbZEG3a846hzi4cJfjcG6Mrq6KizmaVavrYP7c",
 									"type": "string"
 								}
 							]
@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
+							"raw": "{\n    \"project_name\": \"Fourth Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Node.js\",\n    \"database\": \"MongoDB\",\n    \"is_public\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -290,6 +290,88 @@
 					"response": []
 				},
 				{
+					"name": "Admin Dashboard Charts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MjI1NzkzLCJleHAiOjE2NDg4MzA1OTN9.znCfQDbZEG3a846hzi4cJfjcG6Mrq6KizmaVavrYP7c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entity\": \"web_framework\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/admin/charts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"charts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Admin Requests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MjI1NzkzLCJleHAiOjE2NDg4MzA1OTN9.znCfQDbZEG3a846hzi4cJfjcG6Mrq6KizmaVavrYP7c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entity\": \"web_framework\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/admin/requests",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Admin Dashboard",
 					"request": {
 						"auth": {
@@ -313,6 +395,28 @@
 								"api",
 								"admin",
 								"dashboard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Miscellaneous",
+			"item": [
+				{
+					"name": "Healthcheck",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/test",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"test"
 							]
 						}
 					},
