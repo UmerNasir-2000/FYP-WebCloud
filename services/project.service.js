@@ -45,10 +45,10 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
 
   const projectRequest = await requests.create({ project_id: project.id });
 
-  const repo = await repositories.create({
-    userId: req.user.id,
-    projectId: project.id,
-  });
+  // const repo = await repositories.create({
+  //   userId: req.user.id,
+  //   projectId: project.id,
+  // });
 
   let createdProjectResponse = {
     project_name,

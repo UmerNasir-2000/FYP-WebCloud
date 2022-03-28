@@ -1,6 +1,7 @@
 const {
   getPublicRepositoriesService,
   getAllRepositoriesService,
+  forkRepositoryService,
 } = require("../services/repository.service");
 
 /**
@@ -25,4 +26,15 @@ const getAllRepositories = async (req, res) => {
   await getAllRepositoriesService(req, res);
 };
 
-module.exports = { getPublicRepositories, getAllRepositories };
+/**
+ *   @desc    POST Fork Repositories
+ *   @route   GET /api/repository/fork
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const forkRepository = async (req, res) => {
+  await forkRepositoryService(req, res);
+};
+
+module.exports = { getPublicRepositories, getAllRepositories, forkRepository };
