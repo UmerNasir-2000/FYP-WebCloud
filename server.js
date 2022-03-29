@@ -1,5 +1,5 @@
 const express = require("express");
-const pty = require("pty.js");
+const pty = require("node-pty");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -29,12 +29,13 @@ expressWs.app.ws("/terminals/:pid", function (ws, req) {
 app.post("/terminals", function (req, res) {
   var cols = parseInt(req.query.cols),
     rows = parseInt(req.query.rows),
-    term = pty.spawn("docker", ["exec", "-it", "db", "/bin/sh"], {
-      name: "xterm-color",
+    term = pty.spawn(process.platform === "win32" ? "cmd.exe" : "bash", [], {
+      name: "xterm-256color",
       cols: cols || 80,
       rows: rows || 24,
-      cwd: process.env.PWD,
-      env: process.env,
+      cwd: process.platform === "win32" ? undefined : env.PWD,
+      env: env,
+      encoding: USE_BINARY ? null : "utf8",
     });
 
   console.log("Created terminal with PID: " + term.pid);
