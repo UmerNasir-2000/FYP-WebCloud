@@ -7,6 +7,7 @@ const {
   getPublicRepositories,
   getAllRepositories,
   forkRepository,
+  getUsersForProject,
 } = require("../controllers/repository.controller");
 
 router.route("/").get(validateToken, getAllRepositories);
@@ -14,5 +15,6 @@ router.route("/public").get(validateToken, getPublicRepositories);
 router
   .route("/fork")
   .post(validateToken, validateResource(forkRepositorySchema), forkRepository);
+router.route("/project/:id").get(validateToken, getUsersForProject);
 
 module.exports = router;

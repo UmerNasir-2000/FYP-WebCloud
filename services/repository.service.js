@@ -2,6 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
 const _ = require("lodash");
 const { projects, users, repositories, Sequelize } = require("../models");
+const db = require("../models");
 
 const getPublicRepositoriesService = asyncHandler(async (req, res) => {
   let publicRepos = await projects.findAll({
@@ -83,12 +84,10 @@ const forkRepositoryService = asyncHandler(async (req, res) => {
     group: ["userId"],
   });
 
-  if (repoCount[0].dataValues.total_repositories > 3) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({
-        message: "Can't fork more than 3 repositories. Require Subscription",
-      });
+  if (repoCount && repoCount[0].dataValues.total_repositories > 3) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      message: "Can't fork more than 3 repositories. Require Subscription",
+    });
   }
 
   if (project) {
@@ -105,8 +104,31 @@ const forkRepositoryService = asyncHandler(async (req, res) => {
   res.status(StatusCodes.BAD_REQUEST).json({ message: "Invalid Project Id" });
 });
 
+const getUsersForRepoService = asyncHandler(async (req, res) => {
+  const project = await projects.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  if (!project) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Invalid Project Id" });
+  }
+
+  const users = await db.sequelize.query(
+    `CALL sql_web_cloud.users_forked_repo(${req.params.id});`
+  );
+
+  res
+    .status(StatusCodes.OK)
+    .json({ message: "Get List of Users Who Forked A Project", users });
+});
+
 module.exports = {
   getPublicRepositoriesService,
   getAllRepositoriesService,
   forkRepositoryService,
+  getUsersForRepoService,
 };

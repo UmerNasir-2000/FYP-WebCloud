@@ -2,6 +2,7 @@ const {
   getPublicRepositoriesService,
   getAllRepositoriesService,
   forkRepositoryService,
+  getUsersForRepoService,
 } = require("../services/repository.service");
 
 /**
@@ -28,7 +29,7 @@ const getAllRepositories = async (req, res) => {
 
 /**
  *   @desc    POST Fork Repositories
- *   @route   GET /api/repository/fork
+ *   @route   POST /api/repository/fork
  *   @access  PRIVATE
  *   @author  UMER NASIR
  **/
@@ -37,4 +38,20 @@ const forkRepository = async (req, res) => {
   await forkRepositoryService(req, res);
 };
 
-module.exports = { getPublicRepositories, getAllRepositories, forkRepository };
+/**
+ *   @desc    GET Fork Repositories
+ *   @route   GET /api/repository/projects/{id}
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const getUsersForProject = async (req, res) => {
+  await getUsersForRepoService(req, res);
+};
+
+module.exports = {
+  getPublicRepositories,
+  getAllRepositories,
+  forkRepository,
+  getUsersForProject,
+};
