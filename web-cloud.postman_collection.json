@@ -217,6 +217,44 @@
 					"response": []
 				},
 				{
+					"name": "Fork Repository",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MDM3MzE5LCJleHAiOjE2NDg2NDIxMTl9.YduD1K3g54tivkiHONofd2E7wX3ESXJRDrQ0D-oQCKc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_id\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/repo/fork",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"repo",
+								"fork"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Fetch All Repositories",
 					"request": {
 						"auth": {
