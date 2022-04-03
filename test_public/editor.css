@@ -1,0 +1,106 @@
+body {
+  background-color: black !important;
+}
+#editor * {
+  font-family: monospace !important;
+  direction: ltr !important;
+  text-align: left !important;
+}
+#contextMenu {
+  position: absolute;
+  display: none;
+}
+
+#prettier {
+  position: relative;
+}
+.container__left {
+  /* Initially, the left takes 3/4 width */
+  flex: 1;
+  /* Misc */
+  display: flex;
+}
+.container__right {
+  /* Take the remaining width */
+
+  width: 18%;
+  /* Misc */
+  display: flex !important;
+}
+.resizer {
+  background-color: #cbd5e0;
+  cursor: ew-resize;
+  height: 100%;
+  width: 2px;
+}
+#explorer {
+  background-color: "#fff";
+  height: 605px;
+}
+
+.navbar-nav {
+  position: relative;
+  margin-left: auto;
+}
+
+.navbar-bottom {
+  white-space: nowrap;
+}
+.basic-btn {
+  background-color: transparent;
+  color: white !important;
+  border: 0px;
+  padding-top: 5px;
+}
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.btn-section {
+  flex-direction: row;
+  position: static;
+  width: min-content;
+  text-align: start;
+  border: 1px solid #cbd5e0;
+  border-bottom: 0;
+  border-left: 0;
+  border-top: 0;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+span {
+  font-size: large;
+  background-color: transparent !important;
+}
+
+span:hover {
+  font-size: larger;
+  color: black;
+}
+span.fancytree-title {
+  color: white !important;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif !important;
+}
+.fancytree-custom-icon {
+  color: white !important;
+}
+
+.fancytree-title::after {
+  color: white !important;
+}
+ul.fancytree-container {
+  background-color: rgb(15, 23, 36) !important;
+  border: none !important;
+}
+
+#prettier:hover,
+#terminal-btn:hover,
+#dropdownMenuButton1:hover,
+#save-file-btn:hover,
+#create-file:hover,
+#refresh-explorer:hover {
+  font-size: larger;
+}

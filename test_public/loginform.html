@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <link rel="stylesheet" href="form.css" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Fontawesome CDN Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav
+      style="background-color: black !important"
+      class="navbar navbar-expand-lg navbar-dark bg-dark"
+    >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#">WebCloud</a>
+      </div>
+    </nav>
+    <div class="myform">
+      <div class="container">
+        <div class="cover">
+          <div class="front">
+            <img src="images/signin1.svg" alt="" />
+          </div>
+        </div>
+        <div class="forms">
+          <div class="form-content">
+            <div class="login-form">
+              <div class="title">Login</div>
+              <form action="#">
+                <div class="input-boxes">
+                  <div class="input-box">
+                    <i class="fas fa-envelope"></i>
+                    <input
+                      type="text"
+                      id="email"
+                      placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+                  <div class="input-box">
+                    <i class="fas fa-lock"></i>
+                    <input
+                      type="password"
+                      id="password"
+                      placeholder="Enter your password"
+                      required
+                    />
+                  </div>
+                  <div class="text">
+                    <a href="#">Forgot password?</a>
+                  </div>
+
+                  <button class="btn" type="button" id="register">Login</button>
+
+                  <p class="text">
+                    Doesn't have account ? <a href="signupform.html">SignUP</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="loginform.js"></script>
+  </body>
+</html>

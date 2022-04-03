@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <link rel="stylesheet" href="form.css" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Fontawesome CDN Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark"
+      style="background-color: black !important"
+    >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#">
+          <img src="images/two.svg" height="50px" width="50px" alt="" />
+        </a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="myform">
+      <div class="container">
+        <div class="cover" style="padding-right: 5px">
+          <img src="images/signin2.svg" alt="" />
+        </div>
+        <div class="forms">
+          <div class="form-content">
+            <div class="login-form">
+              <div class="title">Signup</div>
+              <form action="#">
+                <div class="input-boxes">
+                  <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input
+                      type="text"
+                      id="firstName"
+                      placeholder="Enter your First Name"
+                      required
+                    />
+                  </div>
+                  <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input
+                      type="text"
+                      id="lastName"
+                      placeholder="Enter your Last Name"
+                      required
+                    />
+                  </div>
+                  <div class="input-box">
+                    <i class="fas fa-envelope"></i>
+                    <input
+                      type="text"
+                      id="email"
+                      placeholder="Enter your Email"
+                      required
+                    />
+                  </div>
+                  <div class="input-box">
+                    <i class="fas fa-lock"></i>
+                    <input
+                      type="password"
+                      id="password"
+                      placeholder="Enter your Password"
+                      required
+                    />
+                  </div>
+                  <div class="text">
+                    <a href="loginform.html">Have an account ?</a>
+                  </div>
+                  <button class="btn" type="button" id="register">
+                    Submit
+                  </button>
+
+                  <!-- <div class="text sign-up-text">
+                  Don't have an account? <label for="flip">Sigup now</label>
+                </div> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="signupform.js"></script>
+  </body>
+</html>

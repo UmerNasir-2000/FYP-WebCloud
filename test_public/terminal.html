@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Cloud | Terminal</title>
+    <link rel="stylesheet" href="/node_modules/xterm/dist/xterm.css" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="./landingstyle.css" />
+
+    <link
+      rel="stylesheet"
+      href="/node_modules/xterm/dist/addons/fullscreen/fullscreen.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+    <script src="/node_modules/xterm/dist/xterm.js"></script>
+    <script src="/node_modules/xterm/dist/addons/fit/fit.js"></script>
+    <script src="/node_modules/xterm/dist/addons/attach/attach.js"></script>
+    <script src="/node_modules/xterm/dist/addons/winptyCompat/winptyCompat.js"></script>
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#mybody").hide();
+        if (localStorage.getItem("token")) {
+          $("#mybody").show();
+        } else if (!localStorage.getItem("token")) {
+          window.location.href = "login.html";
+          alert("User Need to Login First");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-light"
+      style="
+        background-color: rgb(15, 23, 36);
+        align-content: space-between;
+        padding: 10px;
+      "
+    >
+      <h1
+        class="display-6"
+        style="font-size: 40px; color: white; font-weight: bolder"
+      >
+        &lt;/&gt;WebCloud
+      </h1>
+    </nav>
+    <br />
+    <div style="border: 1px solid aqua; margin: 10px; padding: 2px">
+      <div id="terminal-container"></div>
+    </div>
+
+    <section class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Why choose us?</h3>
+          <p>You can code any where any time without environmental setup</p>
+        </div>
+
+        <div class="box">
+          <h3>Quick Links</h3>
+          <a style="text-decoration: none" href="landing.html">home</a>
+          <a style="text-decoration: none" href="userguide.html">about</a>
+          <a style="text-decoration: none" href="#">contact</a>
+          <a style="text-decoration: none" href="userguide.html">FAQ</a>
+        </div>
+
+        <div class="box">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i>SZABIST 100</p>
+          <p><i class="fas fa-globe"></i> www.webcloud.com</p>
+          <p><i class="fas fa-phone"></i> +123-456-7890.</p>
+        </div>
+      </div>
+
+      <h1 class="credit">
+        created by
+        <a style="text-decoration: none" href="#">Umer And Wahaj</a> | all
+        rights reserved.
+      </h1>
+    </section>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <link rel="stylesheet" href="form.css" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Fontawesome CDN Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar" style="padding: 0px 15px; background-color: black">
+      <a class="navbar-brand" href="#">
+        <img src="images/four.svg" height="50px" width="50px" alt="" />
+      </a>
+      <div style="justify-content: end !important">
+        <ul
+          class="navbar-nav"
+          style="flex-direction: row; justify-content: flex-end !important"
+        >
+          <li>
+            <a id="mypic" href=""></a>
+
+            <button id="uname" class="btn-mini"></button>
+
+            <button id="logout" class="btn-mini">
+              <a style="color: rgba(255, 0, 0, 0.671)" target="_blank"
+                >LOGOUT</a
+              >
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="myform">
+      <div class="container">
+        <div class="cover" style="padding-right: 5px">
+          <img src="images/signin.svg" alt="" />
+        </div>
+        <div class="forms">
+          <div class="form-content">
+            <div class="login-form">
+              <div class="title">Template Selection</div>
+              <form action="#">
+                <div class="input-boxes">
+                  <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input
+                      type="text"
+                      name="project_name"
+                      placeholder="Project Name"
+                      id="project_name"
+                      required
+                    />
+                  </div>
+                  <div class="input-box">
+                    <i class="fas fa-book"></i>
+                    <textarea
+                      type="text"
+                      name="project_description"
+                      placeholder="Project Description"
+                      id="project_description"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="select">
+                    <select
+                      class="standard-select"
+                      name="web_framework"
+                      id="web_framework"
+                    >
+                      <option value="Node.js">Node.js</option>
+                      <option value="PHP">PHP</option>
+                      <option value="Nest.js">Nest.js</option>
+                      <option value="Spring Boot">Spring Boot</option>
+                      <option value="Dotnet">Dotnet</option>
+                    </select>
+                  </div>
+
+                  <div class="form-check1">
+                    <form>
+                      <div>
+                        <input
+                          style="
+                            height: 15px;
+                            border-radius: 3px;
+                            margin-top: 15px !important;
+                            width: 10% !important;
+                          "
+                          type="checkbox"
+                          checked="checked"
+                          id="UnitListNew"
+                        />
+                        <label for="UnitListNew"> Enable DB </label>
+                      </div>
+                    </form>
+
+                    <dl class="fildLine mr">
+                      <dd class="custom-select">
+                        <div class="select">
+                          <select
+                            class="standard-select1"
+                            name="db_engine"
+                            id="db_engine"
+                          >
+                            <option value="MySQL">MySQL</option>
+                            <option value="NoSQL">NoSQL</option>
+                          </select>
+                          <span class="focus"></span>
+                        </div>
+                      </dd>
+                    </dl>
+                  </div>
+                  <div class="form-check1">
+                    <form>
+                      <div>
+                        <input
+                          style="
+                            height: 15px;
+                            border-radius: 3px;
+                            width: 10% !important;
+                          "
+                          type="checkbox"
+                          checked="checked"
+                          id="is_public"
+                        />
+                        <label> Private </label>
+                      </div>
+                    </form>
+                  </div>
+
+                  <button class="btn" type="button" id="register">
+                    Submit
+                  </button>
+
+                  <!-- <div class="text sign-up-text">
+                  Don't have an account? <label for="flip">Sigup now</label>
+                </div> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="templateform.js"></script>
+  </body>
+</html>
