@@ -65,6 +65,13 @@ const getUserProjectsService = asyncHandler(async (req, res) => {
     where: {
       user_id: req.user.id,
     },
+    include: {
+      model: configurations,
+      required: true,
+      attributes: {
+        exclude: ["id", "project_id", "createdAt"],
+      },
+    },
     attributes: {
       exclude: ["user_id"],
     },
@@ -74,6 +81,7 @@ const getUserProjectsService = asyncHandler(async (req, res) => {
     return res
       .status(StatusCodes.OK)
       .json({ message: "No projects for logged in user." });
+
   res
     .status(StatusCodes.OK)
     .json({ message: "User's Own Projects", userProjects });

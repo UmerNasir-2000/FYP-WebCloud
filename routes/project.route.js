@@ -9,7 +9,8 @@ const {
   getUserProjects,
 } = require("../controllers/project.controller");
 
-router.route("/user").get(validateToken, validateAdmin, getUserProjects);
+//router.route("/user").get(validateToken, validateAdmin, getUserProjects);
+router.route("/user").get(validateToken, getUserProjects);
 
 router
   .route("/create-template")
