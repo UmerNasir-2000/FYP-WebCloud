@@ -37,6 +37,17 @@ const dashboardService = asyncHandler(async (req, res) => {
   });
 });
 
+const dashboardRequestsService = asyncHandler(async (req, res) => {
+  const requests = await db.sequelize.query(
+    "CALL sql_web_cloud.admin_dashboard()"
+  );
+
+  res.status(StatusCodes.OK).json({
+    message: "Admin Requests Dashboard API",
+    requests,
+  });
+});
+
 const updateProjectStatusService = asyncHandler(async (req, res) => {
   const updatedRequest = await requests.update(
     { status: req.body.project_status },
@@ -79,4 +90,5 @@ module.exports = {
   updateProjectStatusService,
   chartsService,
   getRequestsService,
+  dashboardRequestsService,
 };

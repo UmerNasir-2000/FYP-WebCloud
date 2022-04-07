@@ -10,11 +10,16 @@ const {
   updateProjectStatus,
   charts,
   getRequests,
+  dashboardRequests,
 } = require("../controllers/admin.controller");
 
 router.route("/dashboard").get(validateToken, validateAdmin, dashboard);
 
 router.route("/requests").get(validateToken, validateAdmin, getRequests);
+
+router
+  .route("/dashboard-requests")
+  .get(validateToken, validateAdmin, dashboardRequests);
 
 router
   .route("/charts")
