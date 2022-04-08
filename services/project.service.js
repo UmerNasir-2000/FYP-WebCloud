@@ -5,6 +5,7 @@ const {
   configurations,
   repositories,
   requests,
+  project_history,
 } = require("../models");
 
 const createProjectTemplate = asyncHandler(async (req, res) => {
@@ -87,4 +88,37 @@ const getUserProjectsService = asyncHandler(async (req, res) => {
     .json({ message: "User's Own Projects", userProjects });
 });
 
-module.exports = { createProjectTemplate, getUserProjectsService };
+const getUserProjectByIdService = asyncHandler(async (req, res) => {
+  const hasProject = await projects.findOne({
+    where: {
+      user_id: req.user.id,
+      id: req.params.id,
+    },
+  });
+
+  if (hasProject == null) {
+    return res.status(StatusCodes.OK).json({
+      message: `Project Id = ${req.params.id} for User Id = ${req.params.id} does not exist.`,
+    });
+  }
+
+  const projectHistories = await project_history.findAll({
+    where: {
+      project_id: req.params.id,
+    },
+  });
+
+  res
+    .status(StatusCodes.OK)
+    .json({
+      message: `User's Own Project = ${req.params.id}`,
+      hasProject,
+      projectHistories,
+    });
+});
+
+module.exports = {
+  createProjectTemplate,
+  getUserProjectsService,
+  getUserProjectByIdService,
+};

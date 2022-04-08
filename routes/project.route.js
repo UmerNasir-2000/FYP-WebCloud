@@ -7,9 +7,11 @@ const createProjectSchema = require("../schemas/project/create-project-template.
 const {
   createUserProjectTemplate,
   getUserProjects,
+  getUserProjectById,
 } = require("../controllers/project.controller");
 
-//router.route("/user").get(validateToken, validateAdmin, getUserProjects);
+router.route("/user/:id").get(validateToken, getUserProjectById);
+
 router.route("/user").get(validateToken, getUserProjects);
 
 router

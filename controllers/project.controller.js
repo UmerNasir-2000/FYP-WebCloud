@@ -1,6 +1,7 @@
 const {
   createProjectTemplate,
   getUserProjectsService,
+  getUserProjectByIdService,
 } = require("../services/project.service");
 
 /**
@@ -25,4 +26,19 @@ const getUserProjects = async (req, res) => {
   await getUserProjectsService(req, res);
 };
 
-module.exports = { createUserProjectTemplate, getUserProjects };
+/**
+ *   @desc    GET Fetch User's Own Project By Id
+ *   @route   GET /api/project/user/{id}
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const getUserProjectById = async (req, res) => {
+  await getUserProjectByIdService(req, res);
+};
+
+module.exports = {
+  createUserProjectTemplate,
+  getUserProjects,
+  getUserProjectById,
+};
