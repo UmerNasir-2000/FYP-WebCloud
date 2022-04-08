@@ -10,6 +10,7 @@ $(document).ready(function () {
     },
     success: function (result, status, xhr) {
       console.log(result);
+      ``;
       localStorage.removeItem("projectId");
     },
     error: function (xhr, status, error) {

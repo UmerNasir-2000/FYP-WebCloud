@@ -23,7 +23,12 @@ router
 
 router
   .route("/charts")
-  .get(validateToken, validateAdmin, validateResource(parameterSchema), charts);
+  .post(
+    validateToken,
+    validateAdmin,
+    validateResource(parameterSchema),
+    charts
+  );
 
 router
   .route("/request/:id")

@@ -66,9 +66,27 @@
 
           `;
             $("#tblReg > .wrapper > .box2 > table > tbody").append(tr);
-
-            console.log(res.totalProjects);
           });
+        });
+
+        $.ajax({
+          method: "POST",
+          url: "/api/admin/charts",
+          data: {
+            entity: "web_framework",
+          },
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader(
+              "Authorization",
+              `Bearer ${localStorage.getItem("token")}`
+            );
+          },
+          success: function (result, status, xhr) {
+            console.log(result);
+          },
+          error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+          },
         });
       });
     </script>
