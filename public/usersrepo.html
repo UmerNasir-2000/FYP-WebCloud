@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="usersrepo.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/bootstrap/js/bootstrap.min.js"
+    ></script>
+    <style>
+      table,
+      tbody,
+      tr,
+      td {
+        all: unset !important;
+      }
+    </style>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
+      integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $.ajax({
+          url: `/api/project/user`,
+          method: "GET",
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }).then(function (res) {
+          $("#tblReg > table > tbody").empty();
+          $.each(res.userProjects, function (r1, reg) {
+            // console.log(reg.project_name);
+            // console.log(reg.configuration.database);
+            //  alert(JSON.stringify(reg))
+
+            let tr = `
+           
+              <tr>
+                <td>
+                  
+                  <div class="wrapper" style="border: 2px solid white; margin:10px !important">
+                  <div class="box1">
+          <div class="first-row">
+            <div class="name">Project Name : ${reg.project_name}</div>
+            <div class="download">Download Code</div>
+          </div>
+          <div class="desc">Project Description : ${reg.description}</div>
+          <div class="info">
+           <p>
+            User Info (Who Created the Project)
+            </p>
+          
+            <p>Name :  ${localStorage.getItem("name")}</p>  
+            
+         <p>
+          Email : ${localStorage.getItem("email")}
+          </p>  
+            </div>
+        </div>
+        <div class="box2">
+          <div>
+            <i class="fas fa-bars"></i>
+
+            Project Web Framwork : ${reg.configuration.web_framework}</div>
+          <div>Project Database : ${reg.configuration.database}</div>
+          <div>
+            ${reg.createdAt} <br />
+            History Of Change In Project
+          </div>
+          <div>Upvote Repository (Like)</div>
+        </div>
+        </div>
+  </td>
+    </tr>
+         
+                        
+`;
+            $("#tblReg > table > tbody").append(tr);
+          });
+        });
+      });
+    </script>
+    <title style="color: aliceblue">Document</title>
+  </head>
+  <body>
+    <nav class="navbar" style="padding: 0px 15px; background-color: black">
+      <a class="navbar-brand" href="#">
+        <img src="images/four.svg" height="50px" width="50px" alt="" />
+      </a>
+      <div style="justify-content: end !important">
+        <ul
+          class="navbar-nav"
+          style="flex-direction: row; justify-content: flex-end !important"
+        >
+          <div class="section">
+            <div class="top_navbar">
+              <div class="bars">
+                <a href="#">
+                  <i class="fas fa-bars"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </nav>
+    <div class="sidebar-parent">
+      <div class="sidebar-child">
+        <div class="sidebar-pic">
+          <a id="mypic" href=""></a>
+        </div>
+
+        <li>
+          <button id="uname" class="btn-mini-side"></button>
+        </li>
+        <li>
+          <button id="logout" class="btn-mini-side">
+            <a style="color: rgba(255, 0, 0, 0.671)" target="_blank">LOGOUT</a>
+          </button>
+        </li>
+      </div>
+    </div>
+    <div class="outer-grid" style="border: 0" id="tblReg">
+      <h3 style="color: white; text-align: center">User's Own Repository</h3>
+      <table>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>

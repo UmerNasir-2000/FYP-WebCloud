@@ -1,0 +1,59 @@
+.footer {
+  background: black;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.footer .box-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.footer .box-container .box {
+  flex: 1;
+  padding-bottom: 50px;
+}
+
+.footer .box-container .box h3 {
+  font-size: 2rem;
+  color: var(--blue);
+}
+
+.footer .box-container .box p {
+  font-size: 1rem;
+  color: white;
+}
+
+.footer .box-container .box p i {
+  padding: 0.5rem;
+  color: white;
+}
+
+.footer .box-container .box:nth-child(2) {
+  text-align: center;
+}
+
+.footer .box-container .box a {
+  font-size: 1rem;
+  display: block;
+  color: white;
+  padding: 0.5rem 0;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer .credit {
+  padding: 1rem;
+  text-align: center;
+  background: rgb(0, 0, 75);
+  color: #eee;
+  font-size: 1rem;
+}
+
+.footer .credit a {
+  color: #fff;
+}

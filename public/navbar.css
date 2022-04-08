@@ -1,0 +1,95 @@
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.btn-mini {
+  text-decoration: none;
+  border-radius: 10px !important;
+  border: 1px solid rgb(0, 0, 75) !important;
+  background-color: rgb(0, 0, 75);
+  color: white !important;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  width: 100px;
+  height: 30px;
+}
+
+.btn-mini:hover {
+  background-color: white !important;
+  color: rgb(0, 0, 75) !important;
+}
+.navbar {
+  border-bottom: 2px solid rgb(0, 0, 75);
+}
+
+#mypic {
+  text-decoration: none;
+}
+.sidebar-pic {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.sidebar-pic a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin: 0 auto;
+  background-color: #f1f1f1;
+}
+.sidebar-parent .sidebar-child {
+  background-color: rgb(0, 0, 75);
+  position: fixed;
+  top: 0;
+  right: -225px;
+  width: 225px;
+  height: 100%;
+  padding: 25px 0;
+  transition: all 0.5s ease;
+  border: 1px solid white;
+}
+.section {
+  width: calc(100% - 225px);
+  margin-right: 3%;
+  padding-right: 20px;
+  transition: all 0.5% ease;
+  color: aliceblue;
+}
+body.active .sidebar-parent .sidebar-child {
+  right: 0;
+}
+
+body.active .section {
+  margin-right: 225px;
+  transition: all 0.5% ease;
+  margin-bottom: 0 auto;
+}
+.sidebar-parent .sidebar-child ul li {
+  display: block;
+  padding: 30px !important;
+  color: white;
+  width: 100% !important;
+}
+.btn-mini-side {
+  background-color: transparent;
+  width: 100%;
+  border: 1px solid white;
+  margin: 0 auto;
+  display: block;
+  padding: 13px 30px !important;
+  color: white;
+  transition: all 0.5s ease;
+}
+.btn-mini-side:hover {
+  background-color: white !important;
+  color: rgb(0, 0, 75) !important;
+  width: fit-content;
+  border-radius: 5px;
+}
+.bars i {
+  color: aliceblue;
+  font-size: 2rem;
+}

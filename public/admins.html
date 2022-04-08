@@ -4,18 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Cloud</title>
     <link rel="icon" type="image/png" href="./favicon-32x32.png" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="footer.css" />
-    <link rel="stylesheet" href="userguide.css" />
+    <link rel="stylesheet" href="admins.css" />
     <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <script
       type="text/javascript"
       src="/bootstrap/js/bootstrap.min.js"
@@ -27,6 +26,53 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
+      integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $.ajax({
+          url: `/api/admin/dashboard`,
+          method: "GET",
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }).then(function (res) {
+          $("#tblReg  > .wrapper > .box1").empty();
+          let tc = ` 
+          <div class="infotxt">Total Users : ${res.totalUsers}</div>
+          <div class="infotxt">Total Project Templates : ${res.projectTemplates}</div>
+          <div class="infotxt">Total Projects : ${res.totalProjects}</div>
+          <div class="infotxt">Forked Projects</div>`;
+          $("#tblReg  > .wrapper > .box1").append(tc);
+          $("#tblReg  > .wrapper > .box2 > table > tbody").empty();
+          $.each(res.requests, function (r1, reg) {
+            console.log(reg);
+            let tr = `
+          <tr>
+                <td>${reg.id}</td>
+                <td>${reg.project_name}</td>
+                <td>
+                  <select class="standard-select">
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="DisApproved">DisApproved</option>
+                  </select>
+                </td>
+                <td>${reg.first_name}</td>
+                <td>${reg.createdAt}</td>
+              </tr>
+
+          `;
+            $("#tblReg > .wrapper > .box2 > table > tbody").append(tr);
+
+            console.log(res.totalProjects);
+          });
+        });
+      });
+    </script>
+    <title style="color: aliceblue">Document</title>
   </head>
   <body>
     <nav class="navbar" style="padding: 0px 15px; background-color: black">
@@ -66,41 +112,35 @@
         </li>
       </div>
     </div>
-    <section class="home" id="home">
-      <div class="content">
-        <h1>Welcome WebCloud let you make any app & Run it everywhere</h1>
+    <div class="outer-grid" id="tblReg">
+      <h4 style="font-size: 30pt; color: white; text-align: center">
+        ADMIN DASHBOARD
+      </h4>
 
-        <p>
-          We are providing a cloud-based web development environment which is
-          accessible through the medium of internet browsers.
-        </p>
+      <div class="wrapper">
+        <div class="box1"></div>
+        <div class="box2">
+          <h4 style="font-size: 20pt; color: white">PROJECTS REQUESTS</h4>
+          <table class="styled-table" style="table-layout: fixed; width: 90%">
+            <thead>
+              <tr style="color: white; font-size: 15pt">
+                <th>Project ID</th>
+                <th>Project Name</th>
+                <th>Project Status</th>
+                <th>Created By</th>
+                <th>Created At</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="box3">
+          <h3>
+            <div>Template</div>
+          </h3>
+        </div>
       </div>
-
-      <div class="image" style="background-color: black">
-        <img src="images/five.jpeg" alt="" />
-      </div>
-    </section>
-
-    <!-- home section ends -->
-
-    <!-- about section starts  -->
-
-    <section class="about" id="about">
-      <div class="image">
-        <img src="images/four.svg" alt="" />
-      </div>
-
-      <div class="content">
-        <h3>EASY SETUP</h3>
-        <p>Super fast and simple onboarding process</p>
-
-        <p>
-          Get everything set up and ready in under 5 minutes. All you need to do
-          is add your information and you're ready to go.
-        </p>
-      </div>
-    </section>
-
+    </div>
     <section class="footer">
       <div class="box-container">
         <div class="box">
@@ -130,7 +170,7 @@
         rights reserved.
       </h1>
     </section>
+
     <script src="navbar.js"></script>
-    <script src="landingjs.js"></script>
   </body>
 </html>

@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Cloud</title>
     <link rel="icon" type="image/png" href="./favicon-32x32.png" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="footer.css" />
-    <link rel="stylesheet" href="userguide.css" />
+    <link rel="stylesheet" href="userprofile.css" />
     <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -27,6 +26,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <title style="color: aliceblue">Document</title>
   </head>
   <body>
     <nav class="navbar" style="padding: 0px 15px; background-color: black">
@@ -66,41 +66,57 @@
         </li>
       </div>
     </div>
-    <section class="home" id="home">
-      <div class="content">
-        <h1>Welcome WebCloud let you make any app & Run it everywhere</h1>
-
-        <p>
-          We are providing a cloud-based web development environment which is
-          accessible through the medium of internet browsers.
-        </p>
+    <div class="outer-grid">
+      <div class="wrapper">
+        <div class="box6">
+          <div>
+            <button
+              style="
+                background-color: transparent;
+                text-decoration: none;
+                border: 0;
+              "
+            >
+              <a
+                style="text-decoration: none; color: white"
+                href="usersrepo.html"
+                >View Previous Project</a
+              >
+            </button>
+          </div>
+          <div>Explore Repositories</div>
+          <div>
+            <button
+              style="
+                background-color: transparent;
+                text-decoration: none;
+                border: 0;
+              "
+            >
+              <a
+                style="text-decoration: none; color: white"
+                href="userguide.html"
+                >About Template</a
+              >
+            </button>
+          </div>
+        </div>
+        <div class="box7">
+          <div class="intro">
+            <div class="img">
+              <img src="./images/four.svg" alt="" />
+            </div>
+          </div>
+          <div class="mybtn">
+            <button class="btn">
+              <a style="text-decoration: none" href="templateform.html"
+                >START PROJECT</a
+              >
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div class="image" style="background-color: black">
-        <img src="images/five.jpeg" alt="" />
-      </div>
-    </section>
-
-    <!-- home section ends -->
-
-    <!-- about section starts  -->
-
-    <section class="about" id="about">
-      <div class="image">
-        <img src="images/four.svg" alt="" />
-      </div>
-
-      <div class="content">
-        <h3>EASY SETUP</h3>
-        <p>Super fast and simple onboarding process</p>
-
-        <p>
-          Get everything set up and ready in under 5 minutes. All you need to do
-          is add your information and you're ready to go.
-        </p>
-      </div>
-    </section>
-
+    </div>
     <section class="footer">
       <div class="box-container">
         <div class="box">
@@ -131,6 +147,5 @@
       </h1>
     </section>
     <script src="navbar.js"></script>
-    <script src="landingjs.js"></script>
   </body>
 </html>
