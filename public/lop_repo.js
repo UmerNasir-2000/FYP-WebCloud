@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     method: "GET",
-    url: "/api/repo/project/1",
+    url: `/api/repo/project/${localStorage.getItem("projectId")}`,
     beforeSend: function (xhr) {
       xhr.setRequestHeader(
         "Authorization",
@@ -10,6 +10,7 @@ $(document).ready(function () {
     },
     success: function (result, status, xhr) {
       console.log(result);
+      localStorage.removeItem("projectId");
     },
     error: function (xhr, status, error) {
       alert(xhr.responseText);
