@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Umer\",\n    \"lastName\": \"Nasir\",\n    \"email\": \"umer.nasir@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
+							"raw": "{\n    \"firstName\": \"Shawn\",\n    \"lastName\": \"Michaels\",\n    \"email\": \"shawn.michaels@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"umer.nasir@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
+							"raw": "{\n    \"email\": \"shawn.michaels@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -77,7 +77,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MjI1NzkzLCJleHAiOjE2NDg4MzA1OTN9.znCfQDbZEG3a846hzi4cJfjcG6Mrq6KizmaVavrYP7c",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ4NTIwMDU5LCJleHAiOjE2NDkxMjQ4NTl9.zZC1fAIYN7ir8uHfLkkaTymYWGrfDlf99Ivk_UTk95w",
 									"type": "string"
 								}
 							]
@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"project_name\": \"Fourth Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Node.js\",\n    \"database\": \"MongoDB\",\n    \"is_public\": true\n}",
+							"raw": "{\n    \"project_name\": \"HBK Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Node.js\",\n    \"database\": \"MongoDB\",\n    \"is_public\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -118,7 +118,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MTI2NTIyLCJleHAiOjE2NDg3MzEzMjJ9.LLh8bBl1mhP9tANKZMtqmTPdWR4birJ0C3y--4zZzTk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
 									"type": "string"
 								}
 							]
@@ -143,6 +143,48 @@
 								"api",
 								"project",
 								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User's Own Project By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/project/user/6",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"project",
+								"user",
+								"6"
 							]
 						}
 					},
@@ -195,7 +237,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MDM3MzE5LCJleHAiOjE2NDg2NDIxMTl9.YduD1K3g54tivkiHONofd2E7wX3ESXJRDrQ0D-oQCKc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
 									"type": "string"
 								}
 							]
@@ -217,6 +259,36 @@
 					"response": []
 				},
 				{
+					"name": "Get Users For A Specific Forked Repository",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MzU1MjU0LCJleHAiOjE2NDk5NjAwNTR9.pDVbadm4yyZ65sE5j-p5a_PD0LaSx7NNQqx5CfXbrn4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/repo/project/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"repo",
+								"project",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Fork Repository",
 					"request": {
 						"auth": {
@@ -224,7 +296,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MDM3MzE5LCJleHAiOjE2NDg2NDIxMTl9.YduD1K3g54tivkiHONofd2E7wX3ESXJRDrQ0D-oQCKc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ4NTIwMDU5LCJleHAiOjE2NDkxMjQ4NTl9.zZC1fAIYN7ir8uHfLkkaTymYWGrfDlf99Ivk_UTk95w",
 									"type": "string"
 								}
 							]
@@ -233,7 +305,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"project_id\": 4\n}",
+							"raw": "{\n    \"project_id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -249,6 +321,45 @@
 								"api",
 								"repo",
 								"fork"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Repository",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/repo/like/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"repo",
+								"like",
+								"1"
 							]
 						}
 					},
@@ -437,6 +548,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Admin Dashboard Requests",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MzU1MjU0LCJleHAiOjE2NDk5NjAwNTR9.pDVbadm4yyZ65sE5j-p5a_PD0LaSx7NNQqx5CfXbrn4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/dashboard-requests",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"dashboard-requests"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -461,6 +601,36 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
