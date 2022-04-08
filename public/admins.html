@@ -48,13 +48,14 @@
           $("#tblReg  > .wrapper > .box1").append(tc);
           $("#tblReg  > .wrapper > .box2 > table > tbody").empty();
           $.each(res.requests, function (r1, reg) {
-            console.log(reg);
+            //console.log(reg);
             let tr = `
           <tr>
-                <td>${reg.id}</td>
+                <td id="projectId">${reg.id}</td>
                 <td>${reg.project_name}</td>
                 <td>
-                  <select class="standard-select">
+                  <select id="ddlRequestStatus" class="standard-select">
+                    <option selected>${reg.status}</option>
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
                     <option value="DisApproved">DisApproved</option>
@@ -82,11 +83,35 @@
             );
           },
           success: function (result, status, xhr) {
-            console.log(result);
+            //console.log(result);
           },
           error: function (xhr, status, error) {
             console.log(xhr.responseText);
           },
+        });
+
+        $(document).on("change", "#ddlRequestStatus", function () {
+          alert("I am working");
+          $.ajax({
+            method: "PUT",
+            url: "/api/admin/request/1",
+            data: {
+              project_status: "Approved",
+            },
+
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader(
+                "Authorization",
+                `Bearer ${localStorage.getItem("token")}`
+              );
+            },
+            success: function (result, status, xhr) {
+              console.log(result);
+            },
+            error: function (xhr, status, error) {
+              alert(xhr.responseText);
+            },
+          });
         });
       });
     </script>
