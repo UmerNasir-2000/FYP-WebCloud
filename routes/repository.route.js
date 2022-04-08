@@ -10,9 +10,11 @@ const {
   forkRepository,
   getUsersForProject,
   likeRepo,
+  getPublicRepositoryById,
 } = require("../controllers/repository.controller");
 
 router.route("/").get(validateToken, getAllRepositories);
+router.route("/:id").get(validateToken, getPublicRepositoryById);
 
 router.route("/public").get(validateToken, getPublicRepositories);
 router

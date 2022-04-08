@@ -147,10 +147,39 @@ const likeRepoService = asyncHandler(async (req, res) => {
     .json({ message: `Like for Repo = ${req.params.id}`, currentLikes });
 });
 
+const getPublicRepositoryByIdService = asyncHandler(async (req, res) => {
+  let publicRepo = await projects.findOne({
+    where: {
+      is_public: true,
+      id: req.params.id,
+    },
+    include: {
+      model: users,
+      required: true,
+      where: {
+        status: "Enable",
+      },
+      attributes: {
+        exclude: ["password", "is_admin", "status", "has_subscription"],
+      },
+    },
+
+    attributes: {
+      exclude: ["path", "user_id", "is_public"],
+    },
+  });
+
+  res.status(StatusCodes.OK).json({
+    message: `Fetch Public Repository Id = ${req.params.id}`,
+    publicRepo,
+  });
+});
+
 module.exports = {
   getPublicRepositoriesService,
   getAllRepositoriesService,
   forkRepositoryService,
   getUsersForRepoService,
   likeRepoService,
+  getPublicRepositoryByIdService,
 };
