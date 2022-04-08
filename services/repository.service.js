@@ -126,9 +126,31 @@ const getUsersForRepoService = asyncHandler(async (req, res) => {
     .json({ message: "Get List of Users Who Forked A Project", users });
 });
 
+const likeRepoService = asyncHandler(async (req, res) => {
+  const updatedProject = await projects.update(
+    { likes: db.sequelize.literal(`likes + 1`) },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  );
+  const currentLikes = await projects.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["likes"],
+  });
+
+  res
+    .status(StatusCodes.OK)
+    .json({ message: `Like for Repo = ${req.params.id}`, currentLikes });
+});
+
 module.exports = {
   getPublicRepositoriesService,
   getAllRepositoriesService,
   forkRepositoryService,
   getUsersForRepoService,
+  likeRepoService,
 };

@@ -3,6 +3,7 @@ const {
   getAllRepositoriesService,
   forkRepositoryService,
   getUsersForRepoService,
+  likeRepoService,
 } = require("../services/repository.service");
 
 /**
@@ -49,9 +50,21 @@ const getUsersForProject = async (req, res) => {
   await getUsersForRepoService(req, res);
 };
 
+/**
+ *   @desc    POST Like Repository
+ *   @route   GET /api/repository/like/{id}
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const likeRepo = async (req, res) => {
+  await likeRepoService(req, res);
+};
+
 module.exports = {
   getPublicRepositories,
   getAllRepositories,
   forkRepository,
   getUsersForProject,
+  likeRepo,
 };
