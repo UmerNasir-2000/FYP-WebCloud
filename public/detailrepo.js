@@ -1,7 +1,8 @@
 $(document).ready(function () {
+  /**${localStorage.getItem("publicRepoId")} */
   $.ajax({
     method: "GET",
-    url: "/api/admin/requests",
+    url: `/api/repo/1`,
     beforeSend: function (xhr) {
       xhr.setRequestHeader(
         "Authorization",
@@ -10,6 +11,7 @@ $(document).ready(function () {
     },
     success: function (result, status, xhr) {
       console.log(result);
+      localStorage.removeItem("publicRepoId");
     },
     error: function (xhr, status, error) {
       alert(xhr.responseText);
