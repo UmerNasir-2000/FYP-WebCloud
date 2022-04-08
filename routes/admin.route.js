@@ -12,8 +12,11 @@ const {
   getRequests,
   dashboardRequests,
 } = require("../controllers/admin.controller");
+const logDatabase = require("../middlewares/logDatabase");
 
-router.route("/dashboard").get(validateToken, validateAdmin, dashboard);
+router
+  .route("/dashboard")
+  .get(validateToken, validateAdmin, logDatabase, dashboard);
 
 router.route("/requests").get(validateToken, validateAdmin, getRequests);
 
