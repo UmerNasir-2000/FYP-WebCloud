@@ -28,36 +28,24 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 
 .inner-grid {
   display: grid;
+
   grid-template-columns: 1fr;
   grid-gap: 5px;
   margin: 20px;
 }
-
-td {
+.inner-grid > div {
   border: 2px solid rgb(0, 0, 75);
-
+  position: relative !important;
   height: 200px;
   margin: 15px;
-  height: min-content !important;
   border-radius: 20px;
   background: black;
   padding: 18px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  text-align: center;
 }
 
-.datah-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 10px 50px;
-  text-align: center;
-}
 .data-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .box1 {

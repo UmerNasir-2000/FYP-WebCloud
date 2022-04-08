@@ -16,7 +16,7 @@ $("#register").click(function (e) {
     headers: { Authorization: localStorage.getItem("token") },
     success: function (result, status, xhr) {
       if (xhr.responseJSON.msg == "ADMIN USER IDENTIFIED") {
-        localStorage.setItem("name", xhr.responseJSON.user.first_name); 
+        localStorage.setItem("name", xhr.responseJSON.user.name);
         localStorage.setItem("email", xhr.responseJSON.user.email);
         localStorage.setItem("url", xhr.responseJSON.user.profile_picture_url);
         localStorage.setItem("token", xhr.responseJSON.accessToken);
@@ -28,7 +28,7 @@ $("#register").click(function (e) {
         // alert(wholeURL);
         // window.location.href = `http://${xhr.responseJSON.user.firstName.toLowerCase()}.localhost:5000/landing.html`;
         localStorage.setItem("token", xhr.responseJSON.accessToken);
-        localStorage.setItem("name", xhr.responseJSON.user.first_name); 
+        localStorage.setItem("name", xhr.responseJSON.user.name);
         localStorage.setItem("email", xhr.responseJSON.user.email);
         localStorage.setItem("url", xhr.responseJSON.user.profile_picture_url);
         window.location.href = "landing.html";

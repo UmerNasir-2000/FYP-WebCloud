@@ -30,8 +30,8 @@ $(document).ready(function () {
 
     //window.location.href = "index.html";
   });
-  var bars = document.querySelector(".bars");
-  bars.addEventListener("click", function () {
-    document.querySelector("body").classList.toggle("active");
-  });
+  // var bars = document.querySelector(".bars");
+  // bars.addEventListener("click", function () {
+  //   document.querySelector("body").classList.toggle("active");
+  // });
 });
