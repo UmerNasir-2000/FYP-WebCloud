@@ -25,6 +25,8 @@ const registerUserService = asyncHandler(async (req, res) => {
     password: hash,
   });
 
+  console.log(user);
+
   const transformedResponse = {
     id: user.id,
     name: `${user.first_name} ${user.last_name}`,

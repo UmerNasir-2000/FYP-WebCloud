@@ -9,16 +9,18 @@ const {
   getUserProjects,
   getUserProjectById,
 } = require("../controllers/project.controller");
+const logDatabase = require("../middlewares/logDatabase");
 
-router.route("/user/:id").get(validateToken, getUserProjectById);
+router.route("/user/:id").get(validateToken, logDatabase, getUserProjectById);
 
-router.route("/user").get(validateToken, getUserProjects);
+router.route("/user").get(validateToken, logDatabase, getUserProjects);
 
 router
   .route("/create-template")
   .post(
     validateToken,
     validateResource(createProjectSchema),
+    logDatabase,
     createUserProjectTemplate
   );
 

@@ -6,6 +6,7 @@ const logDatabase = async (req, res, next) => {
     request_url: req.originalUrl,
     request_body: JSON.stringify(req.body),
     request_method: req.method,
+    user_id: req.user ? req.user.id : 0,
   });
 
   next();

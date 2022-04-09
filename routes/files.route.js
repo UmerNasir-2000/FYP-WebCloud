@@ -7,11 +7,12 @@ const {
   saveNewFileContent,
   createNewFile,
 } = require("../controllers/files.controller");
+const logDatabase = require("../middlewares/logDatabase");
 
 //router.route("/").get(getFilesList);
-router.route("/").get(getFancyFilesList);
-router.route("/file").post(getFileContent);
-router.route("/save-code").put(saveNewFileContent);
-router.route("/create-file").post(createNewFile);
+router.route("/").get(logDatabase, getFancyFilesList);
+router.route("/file").post(logDatabase, getFileContent);
+router.route("/save-code").put(logDatabase, saveNewFileContent);
+router.route("/create-file").post(logDatabase, createNewFile);
 
 module.exports = router;

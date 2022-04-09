@@ -12,17 +12,25 @@ const {
   likeRepo,
   getPublicRepositoryById,
 } = require("../controllers/repository.controller");
+const logDatabase = require("../middlewares/logDatabase");
 
-router.route("/").get(validateToken, getAllRepositories);
-router.route("/:id").get(validateToken, getPublicRepositoryById);
+router.route("/").get(validateToken, logDatabase, getAllRepositories);
+router.route("/:id").get(validateToken, logDatabase, getPublicRepositoryById);
 
-router.route("/public").get(validateToken, getPublicRepositories);
+router.route("/public").get(validateToken, logDatabase, getPublicRepositories);
 router
   .route("/fork")
-  .post(validateToken, validateResource(forkRepositorySchema), forkRepository);
+  .post(
+    validateToken,
+    validateResource(forkRepositorySchema),
+    logDatabase,
+    forkRepository
+  );
 
-router.route("/like/:id").post(validateToken, likeRepo);
+router.route("/like/:id").post(validateToken, logDatabase, likeRepo);
 
-router.route("/project/:id").get(validateToken, getUsersForProject);
+router
+  .route("/project/:id")
+  .get(validateToken, logDatabase, getUsersForProject);
 
 module.exports = router;

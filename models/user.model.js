@@ -52,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       is_admin: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+        defaultValue: 0,
       },
     },
     { timestamps: false, updatedAt: false }
@@ -64,11 +65,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "user_id",
     });
 
-    users.hasMany(models.logs, {
-      onDelete: "Cascade",
-      onUpdate: "Cascade",
-      foreignKey: "user_id",
-    });
+    // users.hasMany(models.logs, {
+    //   onDelete: "Cascade",
+    //   onUpdate: "Cascade",
+    //   foreignKey: "user_id",
+    // });
 
     users.belongsToMany(models.projects, { through: "repositories" });
   };

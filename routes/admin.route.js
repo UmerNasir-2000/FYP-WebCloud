@@ -18,11 +18,13 @@ router
   .route("/dashboard")
   .get(validateToken, validateAdmin, logDatabase, dashboard);
 
-router.route("/requests").get(validateToken, validateAdmin, getRequests);
+router
+  .route("/requests")
+  .get(validateToken, validateAdmin, logDatabase, getRequests);
 
 router
   .route("/dashboard-requests")
-  .get(validateToken, validateAdmin, dashboardRequests);
+  .get(validateToken, validateAdmin, logDatabase, dashboardRequests);
 
 router
   .route("/charts")
@@ -30,6 +32,7 @@ router
     validateToken,
     validateAdmin,
     validateResource(parameterSchema),
+    logDatabase,
     charts
   );
 
@@ -39,6 +42,7 @@ router
     validateToken,
     validateAdmin,
     validateResource(updateProjectStatusSchema),
+    logDatabase,
     updateProjectStatus
   );
 

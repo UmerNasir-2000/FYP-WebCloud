@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM("GET", "POST", "PUT", "PATCH", "DELETE"),
         allowNull: false,
       },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     { timestamps: false, updatedAt: false }
   );
