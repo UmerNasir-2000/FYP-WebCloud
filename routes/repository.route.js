@@ -3,7 +3,6 @@ const router = express.Router();
 const validateToken = require("../middlewares/validateToken");
 const validateResource = require("../middlewares/validateRequest");
 const forkRepositorySchema = require("../schemas/repository/fork-repository.schema");
-const likeRepositorySchema = require("../schemas/repository/like-repository.schema");
 const {
   getPublicRepositories,
   getAllRepositories,
@@ -11,8 +10,13 @@ const {
   getUsersForProject,
   likeRepo,
   getPublicRepositoryById,
+  getUserForkedProjects,
 } = require("../controllers/repository.controller");
 const logDatabase = require("../middlewares/logDatabase");
+
+router
+  .route("/projects")
+  .get(validateToken, logDatabase, getUserForkedProjects);
 
 router.route("/").get(validateToken, logDatabase, getAllRepositories);
 router.route("/:id").get(validateToken, logDatabase, getPublicRepositoryById);

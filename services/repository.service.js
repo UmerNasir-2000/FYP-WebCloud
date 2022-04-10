@@ -175,6 +175,12 @@ const getPublicRepositoryByIdService = asyncHandler(async (req, res) => {
   });
 });
 
+const getUserForkedProjectsService = asyncHandler(async (req, res) => {
+  res.status(StatusCodes.OK).json({
+    message: `Fetch Current User's Forked Project`,
+  });
+});
+
 module.exports = {
   getPublicRepositoriesService,
   getAllRepositoriesService,
@@ -182,4 +188,5 @@ module.exports = {
   getUsersForRepoService,
   likeRepoService,
   getPublicRepositoryByIdService,
+  getUserForkedProjectsService,
 };

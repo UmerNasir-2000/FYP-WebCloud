@@ -12,7 +12,7 @@ services:
     ports:
       - "3308:3306"
     volumes:
-      - webcloud-database:/var/lib/mysql
+      - webcloud-db:/var/lib/mysql
 
 volumes:
-  webcloud-database:
+  webcloud-db:

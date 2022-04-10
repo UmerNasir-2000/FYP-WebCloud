@@ -5,6 +5,7 @@ const {
   getUsersForRepoService,
   likeRepoService,
   getPublicRepositoryByIdService,
+  getUserForkedProjectsService,
 } = require("../services/repository.service");
 
 /**
@@ -73,6 +74,17 @@ const getPublicRepositoryById = async (req, res) => {
   await getPublicRepositoryByIdService(req, res);
 };
 
+/**
+ *   @desc    GET Fetch Logged In User's Current Project
+ *   @route   GET /api/repository/projects
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const getUserForkedProjects = async (req, res) => {
+  await getUserForkedProjectsService(req, res);
+};
+
 module.exports = {
   getPublicRepositories,
   getAllRepositories,
@@ -80,4 +92,5 @@ module.exports = {
   getUsersForProject,
   likeRepo,
   getPublicRepositoryById,
+  getUserForkedProjects,
 };
