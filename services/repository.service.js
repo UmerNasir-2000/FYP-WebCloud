@@ -3,11 +3,15 @@ const asyncHandler = require("express-async-handler");
 const _ = require("lodash");
 const { projects, users, repositories, Sequelize } = require("../models");
 const db = require("../models");
+const { Op } = require("sequelize");
 
 const getPublicRepositoriesService = asyncHandler(async (req, res) => {
   let publicRepos = await projects.findAll({
     where: {
       is_public: true,
+      id: {
+        [Op.ne]: req.user.id,
+      },
     },
     include: {
       model: users,
