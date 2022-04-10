@@ -118,7 +118,10 @@ const getUsersForRepoService = asyncHandler(async (req, res) => {
   }
 
   const users = await db.sequelize.query(
-    `CALL sql_web_cloud.users_forked_repo(${req.params.id});`
+    `CALL sql_web_cloud.users_forked_repo($projectId);`,
+    {
+      bind: { projectId: req.params.id },
+    }
   );
 
   res
@@ -176,8 +179,15 @@ const getPublicRepositoryByIdService = asyncHandler(async (req, res) => {
 });
 
 const getUserForkedProjectsService = asyncHandler(async (req, res) => {
+  const forkedProjects = await db.sequelize.query(
+    `CALL sql_web_cloud.users_forked_repos($userId);`,
+    {
+      bind: { userId: req.user.id },
+    }
+  );
   res.status(StatusCodes.OK).json({
     message: `Fetch Current User's Forked Project`,
+    forkedProjects,
   });
 });
 
