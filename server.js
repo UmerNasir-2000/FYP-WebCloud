@@ -7,6 +7,7 @@ const path = require("path");
 const db = require("./models");
 const app = express();
 const expressWs = require("express-ws")(app);
+const logger = require("./utils/logger");
 
 dotenv.config();
 
@@ -88,11 +89,11 @@ db.sequelize
   .sync()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(
+      logger.info(
         `SERVER RUNNING IN ${ENVIRONMENT} MODE ON http://localhost:${PORT}`
       );
     });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => log.error(err));
 
 module.exports = app;
