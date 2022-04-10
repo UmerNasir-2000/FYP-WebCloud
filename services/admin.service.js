@@ -85,10 +85,38 @@ const getRequestsService = asyncHandler(async (req, res) => {
     .json({ message: "Admin Requests API", allRequests });
 });
 
+const updateUserStatusService = asyncHandler(async (req, res) => {
+  const ifUser = await users.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "email", "status"],
+  });
+
+  if (!ifUser) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      message: `User with id = ${req.params.id} does not exist`,
+    });
+  }
+  const updatedUser = await users.update(
+    { status: req.body.user_status },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  );
+  res.status(StatusCodes.OK).json({
+    message: `Update User Status API = ${req.params.id}`,
+    ifUser,
+  });
+});
+
 module.exports = {
   dashboardService,
   updateProjectStatusService,
   chartsService,
   getRequestsService,
   dashboardRequestsService,
+  updateUserStatusService,
 };

@@ -4,6 +4,7 @@ const {
   chartsService,
   getRequestsService,
   dashboardRequestsService,
+  updateUserStatusService,
 } = require("../services/admin.service");
 
 /**
@@ -61,10 +62,22 @@ const getRequests = async (req, res) => {
   await getRequestsService(req, res);
 };
 
+/**
+ *   @desc    PUT Update User Status Requests
+ *   @route   PUT /api/admin/user-status/${id}
+ *   @access  PRIVATE [Admin]
+ *   @author  UMER NASIR
+ **/
+
+const updateUserStatus = async (req, res) => {
+  await updateUserStatusService(req, res);
+};
+
 module.exports = {
   dashboard,
   updateProjectStatus,
   charts,
   getRequests,
   dashboardRequests,
+  updateUserStatus,
 };

@@ -4,6 +4,7 @@ const validateToken = require("../middlewares/validateToken");
 const validateAdmin = require("../middlewares/validateAdmin");
 const validateResource = require("../middlewares/validateRequest");
 const parameterSchema = require("../schemas/admin/admin-chart.schema");
+const updateUserStatusSchema = require("../schemas/admin/update-user-status.schema");
 const updateProjectStatusSchema = require("../schemas/request/update-project-status.schema");
 const {
   dashboard,
@@ -11,6 +12,7 @@ const {
   charts,
   getRequests,
   dashboardRequests,
+  updateUserStatus,
 } = require("../controllers/admin.controller");
 const logDatabase = require("../middlewares/logDatabase");
 
@@ -34,6 +36,16 @@ router
     validateResource(parameterSchema),
     logDatabase,
     charts
+  );
+
+router
+  .route("/user-status/:id")
+  .put(
+    validateToken,
+    validateAdmin,
+    validateResource(updateUserStatusSchema),
+    logDatabase,
+    updateUserStatus
   );
 
 router
