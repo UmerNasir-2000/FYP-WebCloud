@@ -22,17 +22,19 @@
     "fs-extended": "^0.2.1",
     "http-status-codes": "^2.2.0",
     "jquery": "^3.6.0",
-    "node-pty": "^0.10.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mysql2": "^2.3.3",
+    "node-pty": "^0.10.1",
     "nodemailer": "^6.7.3",
+    "pino": "^7.10.0",
+    "pino-pretty": "^7.6.1",
     "sequelize": "^6.6.2",
     "socket.io": "^2.1.1",
     "vash": "^0.13.0",
+    "ws": "^8.2.3",
     "xterm": "^3.8.0",
-    "yup": "^0.32.11",
-    "ws": "^8.2.3"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
