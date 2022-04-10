@@ -11,9 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       ip_address: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          len: [3, 50],
-        },
       },
       request_url: {
         type: DataTypes.STRING,
@@ -33,8 +30,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      user_agent: {
+        type: DataTypes.STRING,
+      },
     },
-    { timestamps: false, updatedAt: false }
+    { timestamps: true, updatedAt: false }
   );
 
   return logs;

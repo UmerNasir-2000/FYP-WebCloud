@@ -1,12 +1,16 @@
 const { logs } = require("../models");
 
 const logDatabase = async (req, res, next) => {
+  const tempBody = req.body;
+
+  tempBody.password ? (tempBody.password = "") : "";
   await logs.create({
-    ip_address: req.socket.remoteAddress,
+    ip_address: req.socket.remoteAddress.split("::")[1],
     request_url: req.originalUrl,
-    request_body: JSON.stringify(req.body),
+    request_body: JSON.stringify(tempBody),
     request_method: req.method,
     user_id: req.user ? req.user.id : 0,
+    user_agent: req.headers["user-agent"],
   });
 
   next();
