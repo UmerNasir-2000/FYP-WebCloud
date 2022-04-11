@@ -9,6 +9,7 @@ const db = require("./models");
 const app = express();
 const expressWs = require("express-ws")(app);
 const logger = require("./utils/logger");
+const swaggerDocs = require("./utils/swagger");
 
 const USE_BINARY = os.platform() !== "win32";
 
@@ -148,6 +149,7 @@ db.sequelize
       logger.info(
         `SERVER RUNNING IN ${ENVIRONMENT} MODE ON http://localhost:${PORT}`
       );
+      swaggerDocs(app, PORT);
     });
   })
   .catch((err) => log.error(err));
