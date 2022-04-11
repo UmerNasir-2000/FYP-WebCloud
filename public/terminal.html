@@ -23,15 +23,15 @@
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
 
     <script type="text/javascript">
-      $(document).ready(function () {
-        $("#mybody").hide();
-        if (localStorage.getItem("token")) {
-          $("#mybody").show();
-        } else if (!localStorage.getItem("token")) {
-          window.location.href = "login.html";
-          alert("User Need to Login First");
-        }
-      });
+      // $(document).ready(function () {
+      //   $("#mybody").hide();
+      //   if (localStorage.getItem("token")) {
+      //     $("#mybody").show();
+      //   } else if (!localStorage.getItem("token")) {
+      //     window.location.href = "login.html";
+      //     alert("User Need to Login First");
+      //   }
+      // });
     </script>
   </head>
   <body>
@@ -84,6 +84,6 @@
         rights reserved.
       </h1>
     </section>
-    <script src="main.js"></script>
+    <script src="client-bundle.js"></script>
   </body>
 </html>
