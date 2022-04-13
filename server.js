@@ -1,3 +1,4 @@
+const { createServer } = require("http");
 const express = require("express");
 const pty = require("node-pty");
 const os = require("os");
@@ -10,6 +11,7 @@ const app = express();
 const expressWs = require("express-ws")(app);
 const logger = require("./utils/logger");
 const swaggerDocs = require("./utils/swagger");
+const { Server } = require("socket.io");
 
 const USE_BINARY = os.platform() !== "win32";
 
@@ -17,6 +19,8 @@ dotenv.config();
 
 var terminals = {},
   logs = {};
+
+const httpServer = createServer(app);
 
 app.use(express.static(__dirname + "/public"));
 
@@ -142,16 +146,24 @@ app.use("/api/files", require("./routes/files.route"));
 const PORT = process.env.PORT || 5000;
 const ENVIRONMENT = process.env.NODE_ENV || "development";
 
+const io = new Server(httpServer);
+
+io.on("connection", (socket) => {
+  logger.info(`Client Connected Successfully with Id = ${socket.id}`);
+});
+
 db.sequelize
   .sync()
   .then(() => {
-    app.listen(PORT, () => {
+    httpServer.listen(PORT, () => {
       logger.info(
         `SERVER RUNNING IN ${ENVIRONMENT} MODE ON http://localhost:${PORT}`
       );
+
       swaggerDocs(app, PORT);
     });
   })
-  .catch((err) => log.error(err));
+  .catch((err) => logger.error(err));
 
 module.exports = app;
+module.exports = httpServer;

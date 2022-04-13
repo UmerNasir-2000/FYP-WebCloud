@@ -32,7 +32,7 @@
     "pino": "^7.10.0",
     "pino-pretty": "^7.6.1",
     "sequelize": "^6.6.2",
-    "socket.io": "^2.1.1",
+    "socket.io": "^4.2.0",
     "swagger-jsdoc": "^6.2.0",
     "swagger-ui-express": "^4.3.0",
     "vash": "^0.13.0",
