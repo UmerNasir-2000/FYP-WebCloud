@@ -42,12 +42,12 @@
         $("#mycanvas1").hide();
         $("#web").hide();
 
-        var socket = io();
-
-        socket.on("admin", (data) => {
-          console.log(data);
-          console.log("Inside Admin");
-        });
+        // var socket = io();
+        // socket.on("connection");
+        // socket.on("admin", (data) => {
+        //   console.log(data);
+        //   console.log("Inside Admin");
+        // });
 
         $(".standard-select").on("change", function () {
           if (this.value === "WebEngine") {

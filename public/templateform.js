@@ -53,7 +53,8 @@ $(document).ready(function () {
       },
 
       success: function (result, status, xhr) {
-        alert(JSON.stringify(status));
+        //alert(JSON.stringify(result));
+        console.log(result.createdProjectResponse);
         // localStorage.setItem(
         //   "project_name",
         //   xhr.responseJSON.project.project_name
@@ -63,7 +64,7 @@ $(document).ready(function () {
 
         socket.on("connection");
 
-        socket.emit("project", "Are u even working.?");
+        socket.emit("project", result.createdProjectResponse);
 
         //window.location.href = "instruction.html";
       },

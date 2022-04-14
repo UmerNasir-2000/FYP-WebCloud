@@ -154,8 +154,6 @@ io.on("connection", (socket) => {
   socket.on("project", (data) => {
     console.log(data);
     console.log("I am inside on emitter");
-
-    socket.emit("admin", data);
   });
 });
 
