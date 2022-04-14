@@ -32,85 +32,194 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script
+      src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+      integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+      crossorigin="anonymous"
+    ></script>
+    <script src="templateform.js"></script>
     <script>
       $(document).ready(function () {
-        $.ajax({
-          url: `/api/admin/dashboard`,
-          method: "GET",
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }).then(function (res) {
-          $("#tblReg  > .wrapper > .box1").empty();
-          let tc = ` 
-          <div class="infotxt">Total Users : ${res.totalUsers}</div>
-          <div class="infotxt">Total Project Templates : ${res.projectTemplates}</div>
-          <div class="infotxt">Total Projects : ${res.totalProjects}</div>
-          <div class="infotxt">Forked Projects</div>`;
-          $("#tblReg  > .wrapper > .box1").append(tc);
-          $("#tblReg  > .wrapper > .box2 > table > tbody").empty();
-          $.each(res.requests, function (r1, reg) {
-            //console.log(reg);
-            let tr = `
+        $("#mycanvas1").hide();
+        $("#web").hide();
+
+        // var socket = io();
+        // socket.on("connection");
+        socket.on("admin", (data) => {
+          console.log(data);
+          console.log("Inside Admin");
+
+          // It is working
+
+          $.ajax({
+            url: `/api/admin/dashboard`,
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }).then(function (res) {
+            $("#tblReg  > .wrapper > .box1").empty();
+            let tc = `
+          <div class="infotxt">
+
+            <img src="https://img.icons8.com/doodle/50/000000/group.png"/>
+            Total Users
+
+            <h2>
+              ${res.totalUsers}
+              </h2>
+
+            </div>
+          <div class="infotxt">
+            <img src="https://img.icons8.com/doodle/50/000000/folded-booklet.png"/>
+            Total Project Templates
+            <h2>
+
+              ${res.projectTemplates}
+              </h2>
+            </div>
+          <div class="infotxt">
+            <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/50/000000/external-project-crowdfunding-flaticons-lineal-color-flat-icons-6.png"/>
+            Total Projects
+            <h2>
+              ${res.totalProjects}
+              </h2>
+             </div>
+          <div class="infotxt">
+
+            <img src="https://img.icons8.com/stickers/50/000000/connection-status-off.png"/>  Pending Requests
+            <h2>
+            10
+              </h2>
+
+            </div>`;
+            $("#tblReg  > .wrapper > .box1").append(tc);
+            $("#tblReg  > .wrapper > .box2 > table > tbody").empty();
+            $.each(res.requests, function (r1, reg) {
+              var str = reg.createdAt;
+
+              if (str.length > 5) str = str.substring(0, 10);
+              let tryString = reg.id + " Approved";
+              console.log(tryString);
+
+              let tr = `
           <tr>
-                <td id="projectId">${reg.id}</td>
+                <td>${reg.id}</td>
                 <td>${reg.project_name}</td>
-                <td>
-                  <select id="ddlRequestStatus" class="standard-select">
-                    <option selected>${reg.status}</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Approved">Approved</option>
-                    <option value="DisApproved">DisApproved</option>
+                <td id="yes">
+                  <select class="standard-select1" id="status" >
+                    <option  value="#">${reg.status}</option>
+                    <option  value=${reg.id}>Approved</option>
+                    <option value="Rejected">Rejected</option>
                   </select>
                 </td>
                 <td>${reg.first_name}</td>
-                <td>${reg.createdAt}</td>
+                <td style="font-size:smaller">
+                  ${str}</td>
               </tr>
 
           `;
-            $("#tblReg > .wrapper > .box2 > table > tbody").append(tr);
+              $("#tblReg > .wrapper > .box2 > table > tbody").append(tr);
+            });
+            $(
+              "#tblReg > .wrapper > .box2 > table > tbody >tr > #yes > #status"
+            ).on("change", function () {
+              let a = $("#status :selected").text();
+              $.ajax({
+                url: `/api/admin/request/${this.value.split(" ")[0]}`,
+                method: "PUT",
+                data: {
+                  project_id: this.value.split(" ")[0],
+                  project_status: a,
+                },
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader(
+                    "Authorization",
+                    `Bearer ${localStorage.getItem("token")}`
+                  );
+                },
+              }).then(function (res) {});
+            });
           });
         });
 
-        $.ajax({
-          method: "POST",
-          url: "/api/admin/charts",
-          data: {
-            entity: "web_framework",
-          },
-          beforeSend: function (xhr) {
-            xhr.setRequestHeader(
-              "Authorization",
-              `Bearer ${localStorage.getItem("token")}`
-            );
-          },
-          success: function (result, status, xhr) {
-            //console.log(result);
-          },
-          error: function (xhr, status, error) {
-            console.log(xhr.responseText);
-          },
+        // console.log(socket);
+        $(".standard-select").on("change", function () {
+          if (this.value === "WebEngine") {
+            $("#mycanvas").hide();
+            $("#mycanvas1").show();
+            $("#db").hide();
+            $("#web").show();
+          } else {
+            $("#db").show();
+            $("#web").hide();
+            $("#mycanvas1").hide();
+            $("#mycanvas").show();
+          }
         });
 
-        $(document).on("change", "#ddlRequestStatus", function () {
-          alert("I am working");
-          $.ajax({
-            method: "PUT",
-            url: "/api/admin/request/1",
-            data: {
-              project_status: "Approved",
-            },
+        var ctx = $("#mycanvas").get(0).getContext("2d");
+        var ctx1 = $("#mycanvas1").get(0).getContext("2d");
 
+        //pie chart data
+        //sum of values = 360
+        // #0E1525;
+        // #2B3245;
+
+        var data1 = [
+          {
+            value: 90,
+            color: "navy",
+            highlight: "coral",
+            label: "Corn Flower Blue",
+          },
+          {
+            value: 90,
+            color: "green",
+            highlight: "yellowgreen",
+            label: "Lightgreen",
+          },
+          {
+            value: 90,
+            color: "lightgreen",
+            highlight: "coral",
+            label: "Corn Flower Blue",
+          },
+
+          {
+            value: 90,
+            color: "rgb(214, 60, 60)",
+            highlight: "coral",
+            label: "Corn Flower Blue",
+          },
+          {
+            value: 90,
+            color: "lightblue",
+            highlight: "yellowgreen",
+            label: "Lightgreen",
+          },
+        ];
+
+        //draw
+        var piechart = new Chart(ctx).Pie(data);
+        var piechart1 = new Chart(ctx1).Pie(data1);
+
+        $("#ddlEntity").on("change", function () {
+          console.log($("#ddlEntity :selected").text());
+          $.ajax({
+            url: `/api/admin/charts/`,
+            method: "POST",
+            data: {
+              entity: $("#ddlEntity :selected").val(),
+            },
             beforeSend: function (xhr) {
               xhr.setRequestHeader(
                 "Authorization",
                 `Bearer ${localStorage.getItem("token")}`
               );
             },
-            success: function (result, status, xhr) {
-              console.log(result);
-            },
-            error: function (xhr, status, error) {
-              alert(xhr.responseText);
-            },
+          }).then((res) => {
+            console.log(res.configuration[0].total_web_framework);
           });
         });
       });
@@ -118,7 +227,7 @@
     <title style="color: aliceblue">Document</title>
   </head>
   <body>
-    <nav class="navbar" style="padding: 0px 15px; background-color: black">
+    <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
       <a class="navbar-brand" href="#">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
       </a>
@@ -177,10 +286,105 @@
             <tbody></tbody>
           </table>
         </div>
-        <div class="box3">
-          <h3>
-            <div>Template</div>
-          </h3>
+        <div
+          class="box3"
+          style="
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-evenly;
+              align-items: center; ;
+            "
+          >
+            <p style="font-size: large; padding-top: 10px; font-display: bold">
+              Analysis based on :
+            </p>
+            <select class="standard-select" id="ddlEntity">
+              <option id="1" value="database">Database</option>
+              <option id="2" value="web_framework">Web Engine</option>
+            </select>
+          </div>
+          <div style="padding-top: 20px" class="b3">
+            <div>
+              <canvas
+                id="mycanvas"
+                width="256"
+                height="256"
+                style="border: 0 !important"
+              ></canvas>
+              <div
+                id="db"
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  gap: 10px;
+                  padding-left: 10px;
+                "
+              >
+                <div
+                  style="height: 20px; width: 10px; background-color: navy"
+                ></div>
+                MySQL
+                <div
+                  style="height: 20px; width: 10px; background-color: green"
+                ></div>
+                MongoDB
+              </div>
+            </div>
+            <div>
+              <canvas
+                id="mycanvas1"
+                width="256"
+                height="256"
+                style="border: 0 !important"
+              ></canvas>
+              <div
+                id="web"
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  gap: 2px;
+                  padding-left: 5px;
+                "
+              >
+                <div
+                  style="height: 20px; width: 10px; background-color: lightblue"
+                ></div>
+                PHP
+                <div
+                  style="height: 20px; width: 10px; background-color: blue"
+                ></div>
+                Dotnet
+
+                <div
+                  style="height: 20px; width: 10px; background-color: green"
+                ></div>
+                Nodejs
+                <div
+                  style="
+                    height: 20px;
+                    width: 10px;
+                    background-color: rgb(214, 60, 60);
+                  "
+                ></div>
+                Nest.js
+                <div
+                  style="
+                    height: 20px;
+                    width: 10px;
+                    background-color: lightgreen;
+                  "
+                ></div>
+                SpringBoot
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -215,5 +419,7 @@
     </section>
 
     <script src="navbar.js"></script>
+    <script src="chart.js"></script>
+    <!-- <script src="adminRequests.js"></script> -->
   </body>
 </html>

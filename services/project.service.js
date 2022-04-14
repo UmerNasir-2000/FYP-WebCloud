@@ -3,7 +3,6 @@ const asyncHandler = require("express-async-handler");
 const {
   projects,
   configurations,
-  repositories,
   requests,
   project_history,
 } = require("../models");
@@ -46,12 +45,10 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
 
   const projectRequest = await requests.create({ project_id: project.id });
 
-  // const repo = await repositories.create({
-  //   userId: req.user.id,
-  //   projectId: project.id,
-  // });
-
   let createdProjectResponse = {
+    id: project.id,
+    username: req.user.first_name,
+    time: project.createdAt,
     project_name,
     project_status: projectRequest.status,
   };
@@ -108,13 +105,11 @@ const getUserProjectByIdService = asyncHandler(async (req, res) => {
     },
   });
 
-  res
-    .status(StatusCodes.OK)
-    .json({
-      message: `User's Own Project = ${req.params.id}`,
-      hasProject,
-      projectHistories,
-    });
+  res.status(StatusCodes.OK).json({
+    message: `User's Own Project = ${req.params.id}`,
+    hasProject,
+    projectHistories,
+  });
 });
 
 module.exports = {

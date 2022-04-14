@@ -10,17 +10,18 @@ const options = {
       version: 1.0,
     },
     components: {
-      securitySchemas: {
-        bearerAuth: {
+      securitySchemes: {
+        jwt: {
           type: "http",
           scheme: "bearer",
+          in: "header",
           bearerFormat: "JWT",
         },
       },
     },
     security: [
       {
-        bearerAuth: [],
+        jwt: [],
       },
     ],
   },

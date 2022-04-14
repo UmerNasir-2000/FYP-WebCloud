@@ -1,6 +1,10 @@
+var socket = io("http://localhost:5000/");
+socket.on("connection");
+
 $(document).ready(function () {
   var user = localStorage.getItem("name");
   var usertoken = localStorage.getItem("token");
+
   var pic = localStorage.getItem("url");
   $("#uname").text(user);
   $("#mypic").text(pic);
@@ -36,13 +40,6 @@ $(document).ready(function () {
     var project_description = $("#project_description").val();
     var web_framework = $("#web_framework").val();
     var is_public = $("#is_public").val();
-    console.log(
-      project_name,
-      database,
-      web_framework,
-      project_description,
-      is_public
-    );
 
     $.ajax({
       url: `/api/project/create-template`,
@@ -60,13 +57,16 @@ $(document).ready(function () {
       },
 
       success: function (result, status, xhr) {
-        alert(JSON.stringify(status));
+        //alert(JSON.stringify(result));
+        console.log(result.createdProjectResponse);
         // localStorage.setItem(
         //   "project_name",
         //   xhr.responseJSON.project.project_name
         // );
 
-        window.location.href = "instruction.html";
+        socket.emit("project", "project is created");
+
+        //window.location.href = "instruction.html";
       },
       error: function (xhr, status, error) {
         alert(xhr.responseText);

@@ -8,7 +8,6 @@ const {
   Sequelize,
 } = require("../models");
 const db = require("../models");
-const sequelize = require("sequelize");
 
 const dashboardService = asyncHandler(async (req, res) => {
   const userCount = await users.findAll({
