@@ -37,6 +37,7 @@
       integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
       crossorigin="anonymous"
     ></script>
+    <script src="templateform.js"></script>
     <script>
       $(document).ready(function () {
         $("#mycanvas1").hide();
@@ -44,32 +45,21 @@
 
         // var socket = io();
         // socket.on("connection");
-        // socket.on("admin", (data) => {
-        //   console.log(data);
-        //   console.log("Inside Admin");
-        // });
+        socket.on("admin", (data) => {
+          console.log(data);
+          console.log("Inside Admin");
 
-        $(".standard-select").on("change", function () {
-          if (this.value === "WebEngine") {
-            $("#mycanvas").hide();
-            $("#mycanvas1").show();
-            $("#db").hide();
-            $("#web").show();
-          } else {
-            $("#db").show();
-            $("#web").hide();
-            $("#mycanvas1").hide();
-            $("#mycanvas").show();
-          }
-        });
+          // It is working
 
-        $.ajax({
-          url: `/api/admin/dashboard`,
-          method: "GET",
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }).then(function (res) {
-          $("#tblReg  > .wrapper > .box1").empty();
-          let tc = `
+          $.ajax({
+            url: `/api/admin/dashboard`,
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }).then(function (res) {
+            $("#tblReg  > .wrapper > .box1").empty();
+            let tc = `
           <div class="infotxt">
 
             <img src="https://img.icons8.com/doodle/50/000000/group.png"/>
@@ -103,18 +93,16 @@
               </h2>
 
             </div>`;
-          $("#tblReg  > .wrapper > .box1").append(tc);
-          $("#tblReg  > .wrapper > .box2 > table > tbody").empty();
-          $.each(res.requests, function (r1, reg) {
-            // console.log(reg);
-            var str = reg.createdAt;
+            $("#tblReg  > .wrapper > .box1").append(tc);
+            $("#tblReg  > .wrapper > .box2 > table > tbody").empty();
+            $.each(res.requests, function (r1, reg) {
+              var str = reg.createdAt;
 
-            if (str.length > 5) str = str.substring(0, 10);
-            // console.log(reg);
-            let tryString = reg.id + " Approved";
-            console.log(tryString);
+              if (str.length > 5) str = str.substring(0, 10);
+              let tryString = reg.id + " Approved";
+              console.log(tryString);
 
-            let tr = `
+              let tr = `
           <tr>
                 <td>${reg.id}</td>
                 <td>${reg.project_name}</td>
@@ -131,38 +119,45 @@
               </tr>
 
           `;
-            $("#tblReg > .wrapper > .box2 > table > tbody").append(tr);
-
-            // console.log(res.totalProjects);
-          });
-          $(
-            "#tblReg > .wrapper > .box2 > table > tbody >tr > #yes > #status"
-          ).on("change", function () {
-            console.log("Are u correct.?");
-            console.log(this.value);
-            let a = $("#status :selected").text();
-            console.log("I am ");
-            console.log(a);
-            $.ajax({
-              url: `/api/admin/request/${this.value.split(" ")[0]}`,
-              method: "PUT",
-              data: {
-                project_id: this.value.split(" ")[0],
-                project_status: a,
-              },
-              beforeSend: function (xhr) {
-                xhr.setRequestHeader(
-                  "Authorization",
-                  `Bearer ${localStorage.getItem("token")}`
-                );
-              },
-            }).then(function (res) {
-              alert("Updated");
-              console.log(res);
-              console.log(this.value);
+              $("#tblReg > .wrapper > .box2 > table > tbody").append(tr);
+            });
+            $(
+              "#tblReg > .wrapper > .box2 > table > tbody >tr > #yes > #status"
+            ).on("change", function () {
+              let a = $("#status :selected").text();
+              $.ajax({
+                url: `/api/admin/request/${this.value.split(" ")[0]}`,
+                method: "PUT",
+                data: {
+                  project_id: this.value.split(" ")[0],
+                  project_status: a,
+                },
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader(
+                    "Authorization",
+                    `Bearer ${localStorage.getItem("token")}`
+                  );
+                },
+              }).then(function (res) {});
             });
           });
         });
+
+        // console.log(socket);
+        $(".standard-select").on("change", function () {
+          if (this.value === "WebEngine") {
+            $("#mycanvas").hide();
+            $("#mycanvas1").show();
+            $("#db").hide();
+            $("#web").show();
+          } else {
+            $("#db").show();
+            $("#web").hide();
+            $("#mycanvas1").hide();
+            $("#mycanvas").show();
+          }
+        });
+
         var ctx = $("#mycanvas").get(0).getContext("2d");
         var ctx1 = $("#mycanvas1").get(0).getContext("2d");
 
@@ -426,6 +421,5 @@
     <script src="navbar.js"></script>
     <script src="chart.js"></script>
     <!-- <script src="adminRequests.js"></script> -->
-    <script></script>
   </body>
 </html>
