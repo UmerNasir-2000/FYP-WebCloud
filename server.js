@@ -152,6 +152,6 @@ db.sequelize
       swaggerDocs(app, PORT);
     });
   })
-  .catch((err) => log.error(err));
+  .catch((err) => logger.error(err));
 
 module.exports = app;
