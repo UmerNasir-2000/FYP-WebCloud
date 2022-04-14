@@ -44,6 +44,19 @@ const getTrendingPublicRepositoriesService = asyncHandler(async (req, res) => {
   });
 });
 
+const getUserRecentProjectService = asyncHandler(async (req, res) => {
+  let userRecentRepos = await db.sequelize.query(
+    `CALL sql_web_cloud.recent_user_projects($userId) `,
+    {
+      bind: { userId: req.user.id },
+    }
+  );
+  res.status(StatusCodes.OK).json({
+    message: "Fetch Recent User Projects",
+    userRecentRepos,
+  });
+});
+
 const getAllRepositoriesService = asyncHandler(async (req, res) => {
   const repos = await projects.findAll({
     include: {
@@ -214,4 +227,5 @@ module.exports = {
   getPublicRepositoryByIdService,
   getUserForkedProjectsService,
   getTrendingPublicRepositoriesService,
+  getUserRecentProjectService,
 };

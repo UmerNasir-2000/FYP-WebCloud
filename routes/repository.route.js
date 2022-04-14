@@ -12,6 +12,7 @@ const {
   getPublicRepositoryById,
   getUserForkedProjects,
   getTrendingPublicRepositories,
+  getUserRecentProject,
 } = require("../controllers/repository.controller");
 const logDatabase = require("../middlewares/logDatabase");
 
@@ -20,6 +21,10 @@ router.route("/public").get(validateToken, logDatabase, getPublicRepositories);
 router
   .route("/trending")
   .get(validateToken, logDatabase, getTrendingPublicRepositories);
+
+router
+  .route("/recent/projects")
+  .get(validateToken, logDatabase, getUserRecentProject);
 
 router
   .route("/projects")
