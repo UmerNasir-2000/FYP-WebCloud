@@ -34,6 +34,16 @@ const getPublicRepositoriesService = asyncHandler(async (req, res) => {
     .json({ message: "Fetch All Public Repositories", publicRepos });
 });
 
+const getTrendingPublicRepositoriesService = asyncHandler(async (req, res) => {
+  let trendingPublicRepos = await db.sequelize.query(
+    `CALL sql_web_cloud.trending_projects() `
+  );
+  res.status(StatusCodes.OK).json({
+    message: "Fetch Trending Public Repositories",
+    trendingPublicRepos,
+  });
+});
+
 const getAllRepositoriesService = asyncHandler(async (req, res) => {
   const repos = await projects.findAll({
     include: {
@@ -203,4 +213,5 @@ module.exports = {
   likeRepoService,
   getPublicRepositoryByIdService,
   getUserForkedProjectsService,
+  getTrendingPublicRepositoriesService,
 };
