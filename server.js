@@ -150,6 +150,13 @@ const io = new Server(httpServer);
 
 io.on("connection", (socket) => {
   logger.info(`Client Connected Successfully with Id = ${socket.id}`);
+
+  socket.on("project", (data) => {
+    console.log(data);
+    console.log("I am inside on emitter");
+
+    socket.emit("admin", data);
+  });
 });
 
 db.sequelize

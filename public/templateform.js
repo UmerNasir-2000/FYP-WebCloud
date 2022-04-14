@@ -36,13 +36,6 @@ $(document).ready(function () {
     var project_description = $("#project_description").val();
     var web_framework = $("#web_framework").val();
     var is_public = $("#is_public").val();
-    console.log(
-      project_name,
-      database,
-      web_framework,
-      project_description,
-      is_public
-    );
 
     $.ajax({
       url: `/api/project/create-template`,
@@ -66,7 +59,13 @@ $(document).ready(function () {
         //   xhr.responseJSON.project.project_name
         // );
 
-        window.location.href = "instruction.html";
+        let socket = io("http://localhost:5000/");
+
+        socket.on("connection");
+
+        socket.emit("project", "Are u even working.?");
+
+        //window.location.href = "instruction.html";
       },
       error: function (xhr, status, error) {
         alert(xhr.responseText);
