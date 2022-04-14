@@ -21,6 +21,12 @@ const dashboardService = asyncHandler(async (req, res) => {
     ],
   });
 
+  const pendingProjectsCount = await db.sequelize.query(
+    `CALL sql_web_cloud.total_pending_projects()`
+  );
+
+  console.log(pendingProjectsCount);
+
   const totalUsers = userCount[0].dataValues.total_users;
   const totalProjects = projectCount[0].dataValues.total_projects;
 
@@ -34,6 +40,7 @@ const dashboardService = asyncHandler(async (req, res) => {
     requests,
     totalUsers,
     totalProjects,
+    pendingProjectsCount,
   });
 });
 
