@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
 const { users } = require("../models");
+const { Op } = require("sequelize");
 
 const registerUserService = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -75,7 +76,7 @@ const loginUserService = asyncHandler(async (req, res) => {
         username: `${validUser.first_name.toLowerCase()}.${validUser.last_name.toLowerCase()}`,
         profile_picture_url: validUser.profile_picture_url,
         is_admin: validUser.is_admin,
-        status,
+        status: validUser.status,
       },
     });
   }

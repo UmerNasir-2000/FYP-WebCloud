@@ -1,6 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
 const { users } = require("../models");
+const db = require("../models");
 
 const getUsersService = asyncHandler(async (req, res) => {
   const existingUsers = await users.findAll({
@@ -28,4 +29,29 @@ const getUsersService = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { getUsersService };
+const getUserByIdService = asyncHandler(async (req, res) => {
+  let ifUser = await users.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  if (ifUser) {
+    let userDetails = await db.sequelize.query(
+      `CALL sql_web_cloud.admin_view_user_id($userId) `,
+      {
+        bind: { userId: req.user.id },
+      }
+    );
+    return res.status(StatusCodes.OK).json({
+      message: `View User With Id = ${req.params.id}`,
+      userDetails,
+    });
+  }
+
+  res.status(StatusCodes.NOT_FOUND).json({
+    message: `View User With Id = ${req.params.id} Does Not Exist`,
+  });
+});
+
+module.exports = { getUsersService, getUserByIdService };

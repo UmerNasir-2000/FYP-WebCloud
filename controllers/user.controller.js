@@ -1,4 +1,7 @@
-const { getUsersService } = require("../services/user.service");
+const {
+  getUsersService,
+  getUserByIdService,
+} = require("../services/user.service");
 
 /**
  *   @desc    View all users for Admin user.
@@ -11,4 +14,15 @@ const getUsers = async (req, res) => {
   await getUsersService(req, res);
 };
 
-module.exports = { getUsers };
+/**
+ *   @desc    View specific user for Admin user.
+ *   @route   GET /api/users/:id
+ *   @access  PRIVATE [ADMIN]
+ *   @author  UMER NASIR
+ **/
+
+const getUserById = async (req, res) => {
+  await getUserByIdService(req, res);
+};
+
+module.exports = { getUsers, getUserById };
