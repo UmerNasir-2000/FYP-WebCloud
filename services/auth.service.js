@@ -47,7 +47,14 @@ const validateUser = async (body) => {
 const loginUserService = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const validUser = await users.findOne({ where: { email: email } });
+  const validUser = await users.findOne({
+    where: {
+      email: email,
+      status: {
+        [Op.ne]: "Deleted",
+      },
+    },
+  });
 
   if (!validUser)
     return res
@@ -68,6 +75,7 @@ const loginUserService = asyncHandler(async (req, res) => {
         username: `${validUser.first_name.toLowerCase()}.${validUser.last_name.toLowerCase()}`,
         profile_picture_url: validUser.profile_picture_url,
         is_admin: validUser.is_admin,
+        status,
       },
     });
   }
