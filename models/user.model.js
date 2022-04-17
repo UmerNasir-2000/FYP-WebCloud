@@ -65,6 +65,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "user_id",
     });
 
+    users.hasMany(models.notifications, {
+      onDelete: "Cascade",
+      onUpdate: "Cascade",
+      foreignKey: "user_id",
+    });
+
     // users.hasMany(models.logs, {
     //   onDelete: "Cascade",
     //   onUpdate: "Cascade",
