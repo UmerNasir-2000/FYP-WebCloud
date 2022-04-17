@@ -1,7 +1,13 @@
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
 const _ = require("lodash");
-const { projects, users, repositories, Sequelize } = require("../models");
+const {
+  projects,
+  users,
+  repositories,
+  notifications,
+  Sequelize,
+} = require("../models");
 const db = require("../models");
 const { Op } = require("sequelize");
 
@@ -111,7 +117,7 @@ const forkRepositoryService = asyncHandler(async (req, res) => {
     group: ["userId"],
   });
 
-  if (repoCount && repoCount[0].dataValues.total_repositories > 3) {
+  if (repoCount && repoCount[0]?.dataValues.total_repositories > 3) {
     return res.status(StatusCodes.BAD_REQUEST).json({
       message: "Can't fork more than 3 repositories. Require Subscription",
     });
@@ -121,6 +127,11 @@ const forkRepositoryService = asyncHandler(async (req, res) => {
     const repo = await repositories.create({
       userId: req.user.id,
       projectId: project_id,
+    });
+
+    const notification = await notifications.create({
+      text: `User With ${req.user.email} Forked Your Project Named ${project.project_name}`,
+      user_id: project.user_id,
     });
 
     return res
