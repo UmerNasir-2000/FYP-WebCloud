@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Fahim\",\n    \"lastName\": \"Nasir\",\n    \"email\": \"fahim.nasir1993@gmail.com\",\n    \"password\": \"guest@3000\"\n}",
+							"raw": "{\n    \"firstName\": \"Umer\",\n    \"lastName\": \"Nasir\",\n    \"email\": \"umer.nas@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,21 +72,11 @@
 				{
 					"name": "Create Project Template",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTc0MzY1LCJleHAiOjE2NTAxNzkxNjV9.IacA1117aVWQx1WyPyc5cZHF1i9l0bHGVUdfu9ql-pc",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"project_name\": \"Amazon Clone\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Node.js\",\n    \"database\": \"MongoDB\",\n    \"is_public\": true\n}",
+							"raw": "{\n    \"project_name\": \"Netflix Clone\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"PHP\",\n    \"database\": \"MySQL\",\n    \"is_public\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -113,16 +103,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTkxOTM2LCJleHAiOjE2NTAxOTY3MzZ9.wtf1Qh5cshnct2VK1bZjVN1L2Sj_AcVZQ51MuoFLXms",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -154,16 +134,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -198,16 +168,6 @@
 				{
 					"name": "View All Users",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjQ5OTE0ODg4LCJleHAiOjE2NTA1MTk2ODh9.O6QllVGC4aNcxfsGY_oDIW5-ITImMYCrq_G2-RRIMsk",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -223,6 +183,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "View User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/user/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -232,16 +211,6 @@
 				{
 					"name": "Fetch Public Repositories",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTgyNjU2LCJleHAiOjE2NTAxODc0NTZ9.lot9ePWqh7WhUwo87IUKTsJzs7SB-6aAAhpnX9RYVxI",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -261,16 +230,6 @@
 				{
 					"name": "Fetch Trending Public Repositories",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTgyNjU2LCJleHAiOjE2NTAxODc0NTZ9.lot9ePWqh7WhUwo87IUKTsJzs7SB-6aAAhpnX9RYVxI",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -290,16 +249,6 @@
 				{
 					"name": "Fetch Recent User Projects",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTgyNjU2LCJleHAiOjE2NTAxODc0NTZ9.lot9ePWqh7WhUwo87IUKTsJzs7SB-6aAAhpnX9RYVxI",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -320,16 +269,6 @@
 				{
 					"name": "Fetch Public Repositories By Id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -349,16 +288,6 @@
 				{
 					"name": "Get Users For A Specific Forked Repository",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MzU1MjU0LCJleHAiOjE2NDk5NjAwNTR9.pDVbadm4yyZ65sE5j-p5a_PD0LaSx7NNQqx5CfXbrn4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -379,16 +308,6 @@
 				{
 					"name": "Fork Repository",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTc0MzY1LCJleHAiOjE2NTAxNzkxNjV9.IacA1117aVWQx1WyPyc5cZHF1i9l0bHGVUdfu9ql-pc",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -417,16 +336,6 @@
 				{
 					"name": "Like Repository",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -456,16 +365,6 @@
 				{
 					"name": "Fetch All Repositories",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5NDEzMzgxLCJleHAiOjE2NTAwMTgxODF9.ddO5BbhauxBY7DSEgo9JvNEhOeKMMPJAHW_Ib9GzWOQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -488,16 +387,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTc0MzY1LCJleHAiOjE2NTAxNzkxNjV9.IacA1117aVWQx1WyPyc5cZHF1i9l0bHGVUdfu9ql-pc",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -561,16 +450,6 @@
 				{
 					"name": "Update Request",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ4MTI2NTIyLCJleHAiOjE2NDg3MzEzMjJ9.LLh8bBl1mhP9tANKZMtqmTPdWR4birJ0C3y--4zZzTk",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -600,16 +479,6 @@
 				{
 					"name": "Update User Status",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTgxNjM0LCJleHAiOjE2NTAxODY0MzR9.6tPT-QXCykbi-K-wnXqZWiK3PAQO_AAmX6vWNUQhvZk",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -642,16 +511,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5NDEzMzgxLCJleHAiOjE2NTAwMTgxODF9.ddO5BbhauxBY7DSEgo9JvNEhOeKMMPJAHW_Ib9GzWOQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -683,16 +542,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5NDEzMzgxLCJleHAiOjE2NTAwMTgxODF9.ddO5BbhauxBY7DSEgo9JvNEhOeKMMPJAHW_Ib9GzWOQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -721,16 +570,6 @@
 				{
 					"name": "Admin Dashboard",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5OTI4MDUyLCJleHAiOjE2NTA1MzI4NTJ9.H392gZCIHmMw2hh05aeLj4w9oyHpgchB73OKq-xe_P8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -750,16 +589,6 @@
 				{
 					"name": "Admin Dashboard Requests",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MzU1MjU0LCJleHAiOjE2NDk5NjAwNTR9.pDVbadm4yyZ65sE5j-p5a_PD0LaSx7NNQqx5CfXbrn4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -806,7 +635,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjQ5MjUxMjU1LCJleHAiOjE2NDk4NTYwNTV9.xpQnXXHm1RBVI4fR5H_gKIWitTHgMUbE_mvTU9O2Kkk",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTg0MjQ1LCJleHAiOjE2NTA3ODkwNDV9.NMCuZyKGv9hhpe5UpUMy5OeSqj_-qn2XUdT62zkifKo",
 				"type": "string"
 			}
 		]
