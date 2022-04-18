@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="./favicon-32x32.png" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="admins.css" />
+    <link rel="stylesheet" href="dashboard.css" />
     <link rel="stylesheet" href="navbar.css" />
     <link rel="stylesheet" href="footer.css" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
@@ -19,7 +19,6 @@
       type="text/javascript"
       src="/bootstrap/js/bootstrap.min.js"
     ></script>
-
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
       integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
@@ -43,13 +42,25 @@
         $("#mycanvas1").hide();
         $("#web").hide();
 
-        // var socket = io();
-        // socket.on("connection");
         socket.on("admin", (data) => {
-          console.log(data);
-          console.log("Inside Admin");
+          callDashboard();
+        });
+        callDashboard();
 
-          // It is working
+        function callDashboard() {
+          $(".standard-select").on("change", function () {
+            if (this.value === "web_framework") {
+              $("#mycanvas").hide();
+              $("#mycanvas1").show();
+              $("#db").hide();
+              $("#web").show();
+            } else {
+              $("#db").show();
+              $("#web").hide();
+              $("#mycanvas1").hide();
+              $("#mycanvas").show();
+            }
+          });
 
           $.ajax({
             url: `/api/admin/dashboard`,
@@ -89,7 +100,7 @@
 
             <img src="https://img.icons8.com/stickers/50/000000/connection-status-off.png"/>  Pending Requests
             <h2>
-            10
+            ${res.pendingProjectsCount[0].total_pending_projects}
               </h2>
 
             </div>`;
@@ -99,8 +110,8 @@
               var str = reg.createdAt;
 
               if (str.length > 5) str = str.substring(0, 10);
+
               let tryString = reg.id + " Approved";
-              console.log(tryString);
 
               let tr = `
           <tr>
@@ -108,9 +119,10 @@
                 <td>${reg.project_name}</td>
                 <td id="yes">
                   <select class="standard-select1" id="status" >
-                    <option  value="#">${reg.status}</option>
-                    <option  value=${reg.id}>Approved</option>
-                    <option value="Rejected">Rejected</option>
+                    <option value=""  disabled selected hidden>${reg.status}</option>
+                    <option value=${reg.id}>Pending</option>
+                    <option value=${reg.id}>Approved</option>
+                    <option value=${reg.id}>Rejected</option>
                   </select>
                 </td>
                 <td>${reg.first_name}</td>
@@ -125,6 +137,7 @@
               "#tblReg > .wrapper > .box2 > table > tbody >tr > #yes > #status"
             ).on("change", function () {
               let a = $("#status :selected").text();
+
               $.ajax({
                 url: `/api/admin/request/${this.value.split(" ")[0]}`,
                 method: "PUT",
@@ -138,93 +151,104 @@
                     `Bearer ${localStorage.getItem("token")}`
                   );
                 },
-              }).then(function (res) {});
+              }).then(function (res) {
+                alert("Updated");
+              });
             });
           });
-        });
+          var ctx = $("#mycanvas").get(0).getContext("2d");
+          var ctx1 = $("#mycanvas1").get(0).getContext("2d");
 
-        // console.log(socket);
-        $(".standard-select").on("change", function () {
-          if (this.value === "WebEngine") {
-            $("#mycanvas").hide();
-            $("#mycanvas1").show();
-            $("#db").hide();
-            $("#web").show();
-          } else {
-            $("#db").show();
-            $("#web").hide();
-            $("#mycanvas1").hide();
-            $("#mycanvas").show();
-          }
-        });
-
-        var ctx = $("#mycanvas").get(0).getContext("2d");
-        var ctx1 = $("#mycanvas1").get(0).getContext("2d");
-
-        //pie chart data
-        //sum of values = 360
-        // #0E1525;
-        // #2B3245;
-
-        var data1 = [
-          {
-            value: 90,
-            color: "navy",
-            highlight: "coral",
-            label: "Corn Flower Blue",
-          },
-          {
-            value: 90,
-            color: "green",
-            highlight: "yellowgreen",
-            label: "Lightgreen",
-          },
-          {
-            value: 90,
-            color: "lightgreen",
-            highlight: "coral",
-            label: "Corn Flower Blue",
-          },
-
-          {
-            value: 90,
-            color: "rgb(214, 60, 60)",
-            highlight: "coral",
-            label: "Corn Flower Blue",
-          },
-          {
-            value: 90,
-            color: "lightblue",
-            highlight: "yellowgreen",
-            label: "Lightgreen",
-          },
-        ];
-
-        //draw
-        var piechart = new Chart(ctx).Pie(data);
-        var piechart1 = new Chart(ctx1).Pie(data1);
-
-        $("#ddlEntity").on("change", function () {
-          console.log($("#ddlEntity :selected").text());
-          $.ajax({
-            url: `/api/admin/charts/`,
-            method: "POST",
-            data: {
-              entity: $("#ddlEntity :selected").val(),
+          var data = [
+            {
+              value: 10,
+              color: "navy",
+              highlight: "coral",
+              label: "Corn Flower Blue",
             },
-            beforeSend: function (xhr) {
-              xhr.setRequestHeader(
-                "Authorization",
-                `Bearer ${localStorage.getItem("token")}`
-              );
+            {
+              value: 90,
+              color: "green",
+              highlight: "yellowgreen",
+              label: "Lightgreen",
             },
-          }).then((res) => {
-            console.log(res.configuration[0].total_web_framework);
+          ];
+
+          var piechart = new Chart(ctx).Pie(data);
+
+          $("#ddlEntity").on("change", function () {
+            $.ajax({
+              url: `/api/admin/charts/`,
+              method: "POST",
+              data: {
+                entity: $("#ddlEntity :selected").val(),
+              },
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader(
+                  "Authorization",
+                  `Bearer ${localStorage.getItem("token")}`
+                );
+              },
+            }).then((res) => {
+              data = [
+                {
+                  value: res.configuration[0].total_database,
+                  color: "navy",
+                  highlight: "coral",
+                  label: "Corn Flower Blue",
+                },
+                {
+                  value: res.configuration[1].total_database,
+                  color: "green",
+                  highlight: "yellowgreen",
+                  label: "Lightgreen",
+                },
+              ];
+              var piechart = new Chart(ctx).Pie(data);
+              var data1 = [
+                {
+                  value: res.configuration[0].total_web_framework,
+                  color: "navy",
+                  highlight: "coral",
+                  label: "DotNet",
+                },
+                {
+                  value: res.configuration[1].total_web_framework,
+                  color: "green",
+                  highlight: "yellowgreen",
+                  label: "Node js",
+                },
+                {
+                  value: res.configuration[2].total_web_framework,
+
+                  color: "lightgreen",
+                  highlight: "coral",
+                  label: "Spring Boot",
+                },
+
+                {
+                  value: res.configuration[2].total_web_framework,
+
+                  color: "rgb(214, 60, 60)",
+                  highlight: "coral",
+                  label: "Nest js",
+                },
+                {
+                  value: res.configuration[0].total_web_framework,
+
+                  color: "lightblue",
+                  highlight: "yellowgreen",
+                  label: "PHP",
+                },
+              ];
+
+              var piechart1 = new Chart(ctx1).Pie(data1);
+            });
           });
-        });
+        }
       });
     </script>
-    <title style="color: aliceblue">Document</title>
+    <title style="color: aliceblue">Web Cloud | Admin Dashboard</title>
   </head>
   <body>
     <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
@@ -418,8 +442,8 @@
       </h1>
     </section>
 
-    <script src="navbar.js"></script>
     <script src="chart.js"></script>
+    <script src="navbar.js"></script>
     <!-- <script src="adminRequests.js"></script> -->
   </body>
 </html>

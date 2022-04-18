@@ -21,14 +21,6 @@ router
   .get(validateToken, validateAdmin, logDatabase, dashboard);
 
 router
-  .route("/requests")
-  .get(validateToken, validateAdmin, logDatabase, getRequests);
-
-router
-  .route("/dashboard-requests")
-  .get(validateToken, validateAdmin, logDatabase, dashboardRequests);
-
-router
   .route("/charts")
   .post(
     validateToken,
@@ -37,6 +29,14 @@ router
     logDatabase,
     charts
   );
+
+router
+  .route("/requests")
+  .get(validateToken, validateAdmin, logDatabase, getRequests);
+
+router
+  .route("/dashboard-requests")
+  .get(validateToken, validateAdmin, logDatabase, dashboardRequests);
 
 router
   .route("/user-status/:id")

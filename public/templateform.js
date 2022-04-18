@@ -57,16 +57,9 @@ $(document).ready(function () {
       },
 
       success: function (result, status, xhr) {
-        //alert(JSON.stringify(result));
-        console.log(result.createdProjectResponse);
-        // localStorage.setItem(
-        //   "project_name",
-        //   xhr.responseJSON.project.project_name
-        // );
-
         socket.emit("project", "project is created");
 
-        //window.location.href = "instruction.html";
+        window.location.href = "instruction.html";
       },
       error: function (xhr, status, error) {
         alert(xhr.responseText);
