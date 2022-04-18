@@ -15,6 +15,28 @@ background: rgb(0, 0, 75) !important; */
 background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 1) 100% ); */
 }
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.nav-btn {
+  background-color: transparent;
+  width: 100%;
+  border: 1px solid blue;
+  margin: 0 auto;
+  display: block;
+  color: white;
+  transition: all 0.5s ease;
+  padding: 5px 10px;
+}
+.nav-btn:hover {
+  background-color: white !important;
+  color: rgb(0, 0, 75) !important;
+  width: fit-content;
+  border-radius: 5px;
+}
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -46,6 +68,7 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 }
 .box2 {
   padding: 20px;
+  border-radius: 20px;
   text-align: center;
   position: relative !important;
   grid-column-start: 1;
@@ -82,7 +105,7 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 }
 .box3 {
   box-shadow: 2px 2px 3px blue;
-
+  border-radius: 20px;
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 2;
