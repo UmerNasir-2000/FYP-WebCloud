@@ -12,28 +12,9 @@ const db = require("../models");
 const { Op } = require("sequelize");
 
 const getPublicRepositoriesService = asyncHandler(async (req, res) => {
-  let publicRepos = await projects.findAll({
-    where: {
-      is_public: true,
-      id: {
-        [Op.ne]: req.user.id,
-      },
-    },
-    include: {
-      model: users,
-      required: true,
-      where: {
-        status: "Enable",
-      },
-      attributes: {
-        exclude: ["password", "is_admin", "status", "has_subscription"],
-      },
-    },
-
-    attributes: {
-      exclude: ["path", "user_id", "is_public"],
-    },
-  });
+  let publicRepos = await db.sequelize.query(
+    "CALL sql_web_cloud.public_repos()"
+  );
 
   res
     .status(StatusCodes.OK)
