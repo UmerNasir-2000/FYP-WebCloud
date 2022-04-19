@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Cloud | Admin Requests</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.ajax({
+          url: `/api/admin/requests`,
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }).then((res) => {
+          $.each(res.allRequests, function (r1, reg) {
+            var str = reg.createdAt;
+
+            if (str.length > 5) str = str.substring(0, 10);
+
+            let tryString = reg.id + " Approved";
+
+            let tr = `
+            <tr>
+                <td>${reg.id}</td>
+                <td>${reg.project_name}</td>
+                <td id="yes">
+                  <select class="standard-select1" id="status" >
+                    <option value="" disabled selected hidden>${reg.status}</option>
+                    <option value=${reg.id}>Pending</option>
+                    <option value=${reg.id}>Approved</option>
+                    <option value=${reg.id}>Rejected</option>
+                  </select>
+                </td>
+                <td>${reg.first_name}</td>
+                <td style="font-size:smaller">
+                  ${str}</td>
+            </tr>`;
+
+            $(".wrapper > .box2 > table > tbody").append(tr);
+          });
+
+          //On Update API
+
+          $(".wrapper > .box2 > table > tbody > tr > #yes > #status").on(
+            "change",
+            function () {
+              alert("Triggered");
+              let a = $("#status :selected").text();
+
+              $.ajax({
+                url: `/api/admin/request/${this.value.split(" ")[0]}`,
+                method: "PUT",
+                data: {
+                  project_id: this.value.split(" ")[0],
+                  project_status: a,
+                },
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader(
+                    "Authorization",
+                    `Bearer ${localStorage.getItem("token")}`
+                  );
+                },
+              }).then(function (res) {
+                alert("Updated");
+              });
+            }
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!--NAVBAR START-->
+
+    <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
+      <a class="navbar-brand" href="#">
+        <img src="images/four.svg" height="50px" width="50px" alt="" />
+      </a>
+      <div style="justify-content: end !important">
+        <ul
+          class="navbar-nav"
+          style="flex-direction: row; justify-content: flex-end !important"
+        >
+          <div class="section">
+            <div class="top_navbar">
+              <div class="bars">
+                <a href="#">
+                  <i class="fas fa-bars"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </nav>
+
+    <!--NAVBAR END-->
+
+    <!--TABLE START-->
+
+    <div class="wrapper">
+      <div class="box1"></div>
+      <div class="box2">
+        <h4 style="font-size: 20pt; color: white">PROJECTS REQUESTS</h4>
+        <table class="styled-table" style="table-layout: fixed; width: 90%">
+          <thead>
+            <tr style="color: white; font-size: 15pt">
+              <th>Project ID</th>
+              <th>Project Name</th>
+              <th>Project Status</th>
+              <th>Created By</th>
+              <th>Created At</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--TABLE END-->
+  </body>
+</html>
