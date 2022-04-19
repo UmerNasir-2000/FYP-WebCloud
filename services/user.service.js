@@ -1,6 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
-const { users } = require("../models");
+const { users, notifications } = require("../models");
 const db = require("../models");
 
 const getUsersService = asyncHandler(async (req, res) => {
@@ -54,4 +54,20 @@ const getUserByIdService = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { getUsersService, getUserByIdService };
+const getUserNotificationsService = asyncHandler(async (req, res) => {
+  const userNotifications = await notifications.findAll({
+    where: {
+      user_id: req.user.id,
+    },
+  });
+  res.status(StatusCodes.OK).json({
+    message: `User Notifications`,
+    userNotifications,
+  });
+});
+
+module.exports = {
+  getUsersService,
+  getUserByIdService,
+  getUserNotificationsService,
+};

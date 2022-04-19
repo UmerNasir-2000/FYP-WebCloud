@@ -1,6 +1,7 @@
 const {
   getUsersService,
   getUserByIdService,
+  getUserNotificationsService,
 } = require("../services/user.service");
 
 /**
@@ -25,4 +26,15 @@ const getUserById = async (req, res) => {
   await getUserByIdService(req, res);
 };
 
-module.exports = { getUsers, getUserById };
+/**
+ *   @desc    View Logged In User Notifications
+ *   @route   GET /api/users/notifications
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const getUserNotifications = async (req, res) => {
+  await getUserNotificationsService(req, res);
+};
+
+module.exports = { getUsers, getUserById, getUserNotifications };

@@ -1,9 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const validateToken = require("../middlewares/validateToken");
-const { getUsers, getUserById } = require("../controllers/user.controller");
+const {
+  getUsers,
+  getUserById,
+  getUserNotifications,
+} = require("../controllers/user.controller");
 const validateAdmin = require("../middlewares/validateAdmin");
 const logDatabase = require("../middlewares/logDatabase");
+
+router
+  .route("/notifications")
+  .get(validateToken, logDatabase, getUserNotifications);
 
 /**
  * @openapi
