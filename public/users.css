@@ -50,3 +50,24 @@ thead {
 .success-badge {
   background-color: green;
 }
+
+.standard-select {
+  background-color: transparent !important;
+  color: white !important;
+  border-radius: 3px;
+}
+.standard-select option {
+  background-color: #0e1528 !important;
+  color: white !important;
+  border-radius: 10px !important;
+}
+.standard-select1 {
+  background-color: transparent !important;
+  color: white !important;
+  border-radius: 3px;
+}
+.standard-select1 option {
+  background-color: #0e1528 !important;
+  color: white !important;
+  border-radius: 10px !important;
+}
