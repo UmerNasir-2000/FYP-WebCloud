@@ -45,24 +45,13 @@ const getUserRecentProjectService = asyncHandler(async (req, res) => {
 });
 
 const getAllRepositoriesService = asyncHandler(async (req, res) => {
-  const repos = await projects.findAll({
-    include: {
-      model: users,
-      required: true,
-      where: {
-        status: "Enable",
-      },
-      attributes: {
-        exclude: ["password", "is_admin", "status", "has_subscription"],
-      },
-    },
+  let repositories = await db.sequelize.query(
+    `CALL sql_web_cloud.get_all_repositories() `
+  );
 
-    attributes: {
-      exclude: ["path", "user_id"],
-    },
-  });
-
-  res.status(StatusCodes.OK).json({ message: "Fetch All Repositories", repos });
+  res
+    .status(StatusCodes.OK)
+    .json({ message: "Fetch All Repositories", repositories });
 });
 
 const forkRepositoryService = asyncHandler(async (req, res) => {
