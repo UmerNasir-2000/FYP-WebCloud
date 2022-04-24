@@ -40,7 +40,7 @@ const getUserByIdService = asyncHandler(async (req, res) => {
     let userDetails = await db.sequelize.query(
       `CALL sql_web_cloud.admin_view_user_id($userId) `,
       {
-        bind: { userId: req.user.id },
+        bind: { userId: req.params.id },
       }
     );
     return res.status(StatusCodes.OK).json({

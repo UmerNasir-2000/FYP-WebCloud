@@ -4,17 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="./favicon-32x32.png" />
-    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
     <link rel="stylesheet" href="userprofile.css" />
     <link rel="stylesheet" href="navbar.css" />
-    <link rel="stylesheet" href="footer.css" />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <script
       type="text/javascript"
       src="/bootstrap/js/bootstrap.min.js"
@@ -26,10 +24,25 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <title style="color: aliceblue">Document</title>
+    <title>Web Cloud</title>
+    <style>
+      table,
+      tbody,
+      tr {
+        all: unset !important;
+      }
+      .lastline {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+        padding-top: 20px;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar" style="padding: 0px 15px; background-color: black">
+    <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
       <a class="navbar-brand" href="#">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
       </a>
@@ -50,6 +63,7 @@
         </ul>
       </div>
     </nav>
+
     <div class="sidebar-parent">
       <div class="sidebar-child">
         <div class="sidebar-pic">
@@ -66,86 +80,36 @@
         </li>
       </div>
     </div>
-    <div class="outer-grid">
+    <h4
+      style="
+        font-size: 30pt;
+        padding-top: 20px;
+        margin-bottom: -10px;
+        color: white;
+        text-align: center;
+      "
+    >
+      User Profile
+    </h4>
+    <div class="outergrid">
       <div class="wrapper">
-        <div class="box6">
-          <div>
-            <button
-              style="
-                background-color: transparent;
-                text-decoration: none;
-                border: 0;
-              "
-            >
-              <a
-                style="text-decoration: none; color: white"
-                href="usersrepo.html"
-                >View Previous Project</a
-              >
-            </button>
-          </div>
-          <div>Explore Repositories</div>
-          <div>
-            <button
-              style="
-                background-color: transparent;
-                text-decoration: none;
-                border: 0;
-              "
-            >
-              <a
-                style="text-decoration: none; color: white"
-                href="userguide.html"
-                >About Template</a
-              >
-            </button>
-          </div>
+        <div id="tblReg1">
+          <table>
+            <tbody></tbody>
+          </table>
         </div>
-        <div class="box7">
-          <div class="intro">
-            <div class="img">
-              <img src="./images/four.svg" alt="" />
-            </div>
-          </div>
-          <div class="mybtn">
-            <button class="btn">
-              <a style="text-decoration: none" href="templateform.html"
-                >START PROJECT</a
-              >
-            </button>
+        <!-- <div class="userinfo"></div> -->
+        <div class="box2">
+          <div id="tblReg" class="container">
+            <table>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-    <section class="footer">
-      <div class="box-container">
-        <div class="box">
-          <h3>Why choose us?</h3>
-          <p>You can code any where any time without environmental setup</p>
-        </div>
 
-        <div class="box">
-          <h3>Quick Links</h3>
-          <a style="text-decoration: none" href="landing.html">home</a>
-          <a style="text-decoration: none" href="userguide.html">about</a>
-          <a style="text-decoration: none" href="#">contact</a>
-          <a style="text-decoration: none" href="userguide.html">FAQ</a>
-        </div>
-
-        <div class="box">
-          <h3>Contact Us</h3>
-          <p><i class="fas fa-map-marker-alt"></i>SZABIST 100</p>
-          <p><i class="fas fa-globe"></i> www.webcloud.com</p>
-          <p><i class="fas fa-phone"></i> +123-456-7890.</p>
-        </div>
-      </div>
-
-      <h1 class="credit">
-        created by
-        <a style="text-decoration: none" href="#">Umer And Wahaj</a> | all
-        rights reserved.
-      </h1>
-    </section>
     <script src="navbar.js"></script>
+    <script src="userprofile.js"></script>
   </body>
 </html>
