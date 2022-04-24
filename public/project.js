@@ -1,18 +1,30 @@
-var socket = io("http://localhost:5000/");
-socket.on("connection");
-
 $(document).ready(function () {
   var user = localStorage.getItem("name");
   var usertoken = localStorage.getItem("token");
-
+  var profile_pic = localStorage.getItem("url");
   var pic = localStorage.getItem("url");
+  var email = localStorage.getItem("email");
   $("#uname").text(user);
   $("#mypic").text(pic);
   $("#mypic").empty();
 
+  var len = 0;
+  var maxchar = 200;
+
+  $(".my-input").keyup(function () {
+    len = this.value.length;
+    if (len > maxchar) {
+      return false;
+    } else if (len > 0) {
+      $("#remainingC").html("Remaining characters: " + (maxchar - len));
+    } else {
+      $("#remainingC").html("Remaining characters: " + maxchar);
+    }
+  });
+
   let tr = `
-  <img id="mypic" src=${pic} class='avatar'  alt="Avatar">
-  `;
+    <img id="mypic" src=${pic} class='avatar'  alt="Avatar">
+    `;
 
   $("#mypic").append(tr);
 
@@ -41,6 +53,8 @@ $(document).ready(function () {
     var web_framework = $("#web_framework").val();
     var is_public = $("#is_public").val();
 
+    console.log(is_public);
+
     $.ajax({
       url: `/api/project/create-template`,
       method: "POST",
@@ -54,24 +68,35 @@ $(document).ready(function () {
         web_framework: web_framework,
         database: database,
         is_public: is_public === "on" ? true : false,
+        email: email,
+        profile_pic: profile_pic,
       },
 
       success: function (result, status, xhr) {
-        socket.emit("project", "project is created");
+        $("input:text").val("");
+        $("#project_description").val("");
+        $("body").addClass("loading");
+        // setTimeout(function () {
+        //   //your code here
+        //   // window.location.href = "instruction.html";
+        // }, 1000);
 
-        window.location.href = "instruction.html";
+        // localStorage.setItem(
+        //   "project_name",
+        //   xhr.responseJSON.project.project_name
+        // );
       },
       error: function (xhr, status, error) {
-        alert(xhr.responseText);
+        $("#msg").html(xhr.responseJSON.error);
       },
     });
     $(".error").remove();
 
-    if (project_name.length < 1) {
-      $("#project_name").before(
-        '<span style="color: red;" class="error">This field is required</span>'
-      );
-    }
+    // if (project_name.length < 1) {
+    //   $("#project_name").before(
+    //     '<span style="color: red;" class="error">This field is required</span>'
+    //   );
+    // }
   });
   $("#UnitListNew").bind("change", function () {
     if ($(this).is(":checked")) {
@@ -81,7 +106,7 @@ $(document).ready(function () {
     } else {
       checkFlag = 0;
       $("#db_engine").hide();
-      $(".form-check-label").show();
+      $(this).attr("form-check-label", "false");
     }
   });
 });

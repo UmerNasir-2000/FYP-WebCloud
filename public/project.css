@@ -1,0 +1,390 @@
+/* Google Font Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  /* background: blue !important; */
+  /* background: #1a2238 !important; !important; */
+
+  background-color: #0e1528 !important;
+  /* background: radial-gradient(
+    circle,
+    rgba(32, 71, 179, 1) 15%,
+    rgba(13, 0, 11, 1) 100%
+  ); */
+}
+.overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: #0e1528 url("images/64X64.gif") center no-repeat;
+}
+*/ body.loading {
+  overflow: hidden;
+}
+/* Make spinner image visible when body element has the loading class */
+body.loading .overlay {
+  display: block;
+}
+
+body .myform {
+  justify-content: center !important;
+  align-items: center !important;
+  padding-top: 30px;
+}
+.container {
+  position: relative;
+  max-width: 850px;
+  width: auto;
+
+  background: #1a2238 !important;
+  box-shadow: 2px 2px 3px blue;
+  padding-top: 30px;
+  perspective: 2700px;
+  border-radius: 30px !important;
+  min-height: 80vh;
+}
+
+.container .cover {
+  position: absolute;
+  /* background-color: white; */
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+  height: 100%;
+  width: 40%;
+}
+ul {
+  list-style-type: none;
+}
+.container .cover img {
+  display: flex;
+  text-align: center;
+  gap: 5px;
+  padding: 10px;
+  height: 100px;
+  width: 100px min-content;
+  border-radius: 50px;
+}
+.forms .form-content .login-form {
+  position: absolute;
+  height: 50%;
+  width: 50%;
+  right: 0;
+  padding-left: 100px;
+}
+
+.form-content .login-form,
+.form-content .signup-form {
+  width: calc(100% / 2 - 25px);
+}
+.forms .form-content .title {
+  position: relative;
+  font-size: 24px;
+  font-weight: 500;
+  color: white;
+}
+.forms .form-content .title:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 25px;
+  background: rgb(32, 71, 179);
+}
+.forms .signup-form .title:before {
+  width: 20px;
+}
+.forms .form-content .input-boxes {
+  margin-top: 30px;
+}
+.forms .form-content .input-box {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+}
+
+textarea {
+  background-color: #1a2238 !important;
+  color: white !important;
+  border-radius: 10px;
+  width: 60% !important;
+  border: 1px solid grey;
+}
+textarea ::after {
+  background-color: #1a2238 !important;
+  color: white !important;
+}
+textarea ::selection {
+  background-color: #1a2238 !important;
+  color: white !important;
+}
+
+input {
+  background-color: #1a2238 !important;
+  color: white !important;
+  border-radius: 10px;
+  width: 60% !important;
+  border: 1px solid grey;
+}
+input ::after {
+  background-color: #1a2238 !important;
+  color: white !important;
+}
+input ::selection {
+  background-color: #1a2238 !important;
+  color: white !important;
+}
+
+.input-box textarea::placeholder {
+  text-align: start;
+  padding-top: 10px;
+}
+.input-box i {
+  margin: 10px;
+}
+.text a {
+  color: rgb(250, 250, 250);
+}
+.navbar {
+  border-bottom: 2px solid blue;
+}
+.standard-select {
+  padding: 12px;
+  font-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #1a2238 !important;
+  color: white !important;
+  border-radius: 10px;
+  width: 60% !important;
+  background-image: url("./images/down.png");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 4px) center;
+  background-size: 40px;
+}
+.standard-select1 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  content: "<>";
+  padding: 12px;
+  font-size: 15px;
+  margin-top: 10px;
+  background-color: #1a2238 !important;
+  color: white !important;
+  border-radius: 10px;
+  width: 60% !important;
+  background-image: url("./images/down.png");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 4px) center;
+  background-size: 40px;
+}
+
+.standard-select option {
+  background-color: blue !important;
+  color: white !important;
+  border-radius: 10px !important;
+  appearance: none !important;
+  font-size: larger;
+}
+
+.standard-select1 option {
+  background-color: blue !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-size: larger;
+}
+
+.form-content .input-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.form-content .input-box textarea {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.form-content .input-box input:focus,
+.form-content .input-box input:valid {
+  border-color: rgb(32, 71, 179);
+  border: 2px solid rgb(32, 71, 179);
+}
+.form-content .input-box i {
+  position: absolute;
+  color: white;
+  font-size: 17px;
+}
+.text {
+  font-size: 14px;
+  font-weight: 500;
+  color: white !important;
+}
+.forms .form-content .text a {
+  text-decoration: none;
+}
+.forms .form-content .text a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  height: 100%;
+  width: 60%;
+  border-radius: 10px !important;
+  border: 2px solid blue !important;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: blue !important;
+  /* background-color: blue !important; */
+  color: white !important;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-top: 20px !important;
+}
+.btn-mini {
+  text-decoration: none;
+  border-radius: 10px !important;
+  border: 1px solid blue !important;
+  color: blue !important;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  width: 100px;
+  height: 30px;
+  max-height: fit-content;
+}
+
+.btn-mini:hover {
+  color: white !important;
+  background-color: blue !important;
+}
+.btn:hover {
+  color: blue !important;
+  background-color: rgb(248, 248, 248) !important;
+}
+
+.forms .form-content .button input {
+  color: white !important;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.forms .form-content .button input:hover {
+  color: white !important;
+  background-color: blue !important;
+}
+.forms .form-content label {
+  color: white;
+  cursor: pointer;
+}
+.forms .form-content label:hover {
+  text-decoration: underline;
+}
+.forms .form-content .login-text {
+  text-align: center;
+  margin-top: 25px;
+}
+.form-check {
+  display: inline-table;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.checkboxes {
+  white-space: nowrap;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  word-wrap: normal;
+  margin-top: 10px;
+}
+
+.container #flip {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1a2238;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0e1528;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: blue;
+}
+@media (max-width: 730px) {
+  .myform {
+    padding-bottom: 100px;
+  }
+  .container .cover {
+    display: none;
+  }
+  .container {
+    background-color: transparent !important;
+    border: none !important;
+  }
+  body .myform {
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+  }
+  .container .form-content .login-form {
+    width: 100%;
+  }
+  .container .form-content .login-form input {
+    width: 80% !important;
+  }
+  .container .form-content .login-form textarea {
+    width: 80% !important;
+  }
+  .btn {
+    width: 80% !important;
+  }
+  .select select {
+    width: 80% !important;
+  }
+  .form-check {
+    width: 80% !important;
+  }
+}

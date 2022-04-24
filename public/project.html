@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<!-- Coding by CodingLab | www.codinglabweb.com-->
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
-    <link rel="stylesheet" href="form.css" />
+    <title>Web Cloud | Project</title>
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="navbar.css" />
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
 
     <!-- Fontawesome CDN Link -->
     <link
@@ -14,14 +19,11 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
-    <script
-      src="https://cdn.socket.io/4.4.1/socket.io.min.js"
-      integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
-      crossorigin="anonymous"
-    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
   <body>
-    <nav class="navbar" style="padding: 0px 15px; background-color: black">
+    <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
       <a class="navbar-brand" href="#">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
       </a>
@@ -30,29 +32,79 @@
           class="navbar-nav"
           style="flex-direction: row; justify-content: flex-end !important"
         >
-          <li>
-            <a id="mypic" href=""></a>
-
-            <button id="uname" class="btn-mini"></button>
-
-            <button id="logout" class="btn-mini">
-              <a style="color: rgba(255, 0, 0, 0.671)" target="_blank"
-                >LOGOUT</a
-              >
-            </button>
-          </li>
+          <div class="section">
+            <div class="top_navbar">
+              <div class="bars">
+                <a href="#">
+                  <i class="fas fa-bars"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </ul>
       </div>
     </nav>
+    <div
+      class="sidebar-parent"
+      style="z-index: 9; margin: 20px; position: absolute"
+    >
+      <div class="sidebar-child">
+        <div class="sidebar-pic">
+          <a id="mypic" href=""></a>
+        </div>
+
+        <li>
+          <button id="uname" class="btn-mini-side"></button>
+        </li>
+        <li>
+          <button id="logout" class="btn-mini-side">
+            <a style="color: rgba(255, 0, 0, 0.671)" target="_blank">LOGOUT</a>
+          </button>
+        </li>
+      </div>
+    </div>
     <div class="myform">
       <div class="container">
-        <div class="cover" style="padding-right: 5px">
-          <img src="images/signin.svg" alt="" />
+        <div class="cover">
+          <!-- <img src="images/signin.svg" alt="" /> -->
+          <ul>
+            <li>
+              <img src="images/nodejs.gif" />
+            </li>
+            <li>
+              <img src="images/python.gif" />
+            </li>
+            <li>
+              <img src="images/html.gif" />
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <img src="images/php.gif" />
+            </li>
+            <li>
+              <img src="images/java.gif" />
+            </li>
+            <li>
+              <img src="images/cloud1.gif" />
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <img src="images/secure.gif" />
+            </li>
+            <li>
+              <img src="images/php1.gif" />
+            </li>
+            <li>
+              <img src="images/db.gif" />
+            </li>
+          </ul>
         </div>
         <div class="forms">
           <div class="form-content">
             <div class="login-form">
-              <div class="title">Template Selection</div>
+              <div class="title">Create Project</div>
               <form action="#">
                 <div class="input-boxes">
                   <div class="input-box">
@@ -65,16 +117,40 @@
                       required
                     />
                   </div>
+
+                  <!-- <textarea
+                    placeholder="Enter the textarea input here.. (limited to 200 characters)"
+                    rows="3"
+                    class="form-control"
+                    name="my-name"
+                    id="my-input"
+                    maxlength="200"
+                  ></textarea
+                  >
+                   -->
                   <div class="input-box">
                     <i class="fas fa-book"></i>
                     <textarea
+                      rows="3"
                       type="text"
                       name="project_description"
                       placeholder="Project Description"
+                      class="my-input"
                       id="project_description"
+                      maxlength="200"
                       required
                     ></textarea>
                   </div>
+                  <span
+                    style="
+                      color: white;
+                      display: flex !important;
+                      text-align: end;
+                      width: 60%;
+                      justify-content: end;
+                    "
+                    id="remainingC"
+                  ></span>
 
                   <div class="select">
                     <select
@@ -82,7 +158,14 @@
                       name="web_framework"
                       id="web_framework"
                     >
-                      <option value="Node.js">Node.js</option>
+                      <option
+                        style="
+                          background-image: url(https://img.icons8.com/fluency/48/000000/database.png);
+                        "
+                        value="Node.js"
+                      >
+                        Node.js
+                      </option>
                       <option value="PHP">PHP</option>
                       <option value="Nest.js">Nest.js</option>
                       <option value="Spring Boot">Spring Boot</option>
@@ -91,7 +174,7 @@
                   </div>
 
                   <div class="form-check1">
-                    <form>
+                    <!-- <form>
                       <div>
                         <input
                           style="
@@ -106,7 +189,7 @@
                         />
                         <label for="UnitListNew"> Enable DB </label>
                       </div>
-                    </form>
+                    </form> -->
 
                     <dl class="fildLine mr">
                       <dd class="custom-select">
@@ -137,7 +220,7 @@
                           checked="checked"
                           id="is_public"
                         />
-                        <label> Private </label>
+                        <label> Make Your Project Public </label>
                       </div>
                     </form>
                   </div>
@@ -147,15 +230,21 @@
                   </button>
 
                   <!-- <div class="text sign-up-text">
-                  Don't have an account? <label for="flip">Sigup now</label>
-                </div> -->
+                    Don't have an account? <label for="flip">Sigup now</label>
+                  </div> -->
                 </div>
+                <span
+                  style="color: red; padding-top: 15px !important"
+                  id="msg"
+                ></span>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="templateform.js"></script>
+    <div class="overlay"></div>
+    <script src="project.js"></script>
+    <script src="navbar.js"></script>
   </body>
 </html>

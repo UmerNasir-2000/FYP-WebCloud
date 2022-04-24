@@ -227,6 +227,7 @@ input ::selection {
   }
   .btn {
     width: 80% !important;
+    padding-bottom: 20px;
   }
   .select select {
     width: 80% !important;
