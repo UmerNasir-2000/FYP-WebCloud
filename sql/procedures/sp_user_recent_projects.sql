@@ -5,6 +5,7 @@ $$
 CREATE PROCEDURE sql_web_cloud.recent_user_projects(IN userId int)
 BEGIN
 	SELECT 
+		proj.id,
 		proj.project_name,
 		proj.description,
 		proj.is_public,

@@ -29,7 +29,7 @@ $("#register").click(function (e) {
         $("input:text").val("");
         $("input:password").val("");
 
-        window.location.href = "landing.html";
+        window.location.href = "home.html";
       }
     },
     error: function (xhr, status, error) {

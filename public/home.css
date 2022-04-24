@@ -27,12 +27,8 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   grid-template-columns: minmax(60vw, 1fr);
   grid-template-rows: minmax(10vh, 1fr);
 }
-
-.logo {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  margin-left: 400px;
+.title {
+  text-align: center;
 }
 .txt {
   margin-left: 30px;
@@ -151,17 +147,17 @@ h1 {
   margin: 0px 10px;
   align-items: center;
 }
-.container {
+.container1 {
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 4;
   grid-row-end: 6;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-direction: row;
   height: fit-content;
 }
-.container1 {
+.container {
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 6;
@@ -170,15 +166,12 @@ h1 {
   justify-content: space-evenly;
   flex-direction: row;
   height: fit-content;
-
-  padding: 25px;
 }
 .box7 {
   box-shadow: 2px 2px 3px blue;
-  display: flex;
+
   height: 250px;
-  justify-content: start;
-  text-align: center;
+  display: flex;
   align-items: center;
   border-radius: 10px;
   grid-column-start: 1;
@@ -187,6 +180,19 @@ h1 {
   grid-row-end: 2;
   color: white;
   background-image: linear-gradient(to left, rgb(161, 206, 245), rgb(0, 0, 75));
+}
+.first-line {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 80% !important;
+
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
 }
 
 ul {
@@ -281,9 +287,44 @@ span {
     align-items: center;
     justify-content: center;
     align-items: center;
-    grid-column-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  .first-line {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .logo {
+    display: none;
+  }
+  .box6 {
+    padding: 20px !important;
+    gap: 30px;
+    border-radius: 10px;
+    grid-column-start: 1;
     grid-column-end: 6;
     grid-row-start: 2;
-    grid-row-end: 4;
+    grid-row-end: 3;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .item {
+    width: 320px !important;
+    background-color: #1a2238 !important;
+    padding: 10px;
+    overflow: auto;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px blue;
+
+    margin-bottom: 40px !important;
   }
 }

@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS sql_web_cloud.trending_projects;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE sql_web_cloud.trending_projects()
+CREATE DEFINER=`root`@`%` PROCEDURE `sql_web_cloud`.`trending_projects`()
 BEGIN
 	SELECT 
 		proj.id AS `project_id`, 
@@ -14,6 +14,7 @@ BEGIN
 		usr.first_name AS `user_first_name`,
 		usr.last_name AS `user_last_name`,
 		usr.email AS `user_email`,
+		usr.profile_picture_url  AS `user_profile_picture_url `,
 		cfg.web_framework AS `web_framework`,
 		cfg.`database` AS `database`
 	FROM 

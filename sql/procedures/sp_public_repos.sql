@@ -5,6 +5,7 @@ $$
 CREATE PROCEDURE sql_web_cloud.public_repos()
 BEGIN
 	SELECT 
+	   proj.id AS `project_id`,
 	   proj.project_name AS `project_name`, 
 	   proj.description AS `project_description`, 
 	   proj.likes AS `project_likes`,

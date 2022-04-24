@@ -21,7 +21,14 @@ body {
   margin: 0px 10px;
   align-items: center;
 }
-
+.lastline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10px;
+  padding-top: 20px;
+  align-items: center;
+}
 .container {
   text-align: center;
   height: fit-content;
