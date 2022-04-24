@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS sql_web_cloud.get_all_repositories;
 
 DELIMITER $$
 $$
-CREATE PROCEDURE sql_web_cloud.get_all_repositories()
+CREATE DEFINER=`root`@`%` PROCEDURE `sql_web_cloud`.`get_all_repositories`()
 BEGIN
 	SELECT 
 	   proj.project_name AS `project_name`, 
@@ -12,6 +12,7 @@ BEGIN
 	   proj.is_public  AS `project_is_public`,
 	   usr.first_name AS `user_first_name`,
 	   usr.last_name AS `user_last_name`,
+	   usr.profile_picture_url  AS `user_profile_picture_url`,
 	   usr.email AS `user_email`,
 	   cfg.web_framework AS `web_framework`,
 	   cfg.`database`  AS `database`  
