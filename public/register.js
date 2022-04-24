@@ -5,7 +5,7 @@ $(document).ready(function () {
     var lastname = $("#lastName").val();
     var email = $("#email").val();
     var password = $("#password").val();
-    console.log(firstname, lastname, email, password);
+
     $.ajax({
       url: `/api/auth/register`,
       method: "POST",
@@ -16,11 +16,16 @@ $(document).ready(function () {
         password: password,
       },
       success: function (result, status, xhr) {
-        alert("Signup Successfully");
-        window.location.href = "index.html";
+        $("input:text").val("");
+        $("input:password").val("");
+        alert("Successfully Registered To Web Cloud");
+
+        window.location.href = "login.html";
       },
       error: function (xhr, status, error) {
-        alert(xhr.responseText);
+        $("#msg").html(xhr.responseJSON.error);
+        $("input:text").val("");
+        $("input:password").val("");
       },
     });
 

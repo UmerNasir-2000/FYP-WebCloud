@@ -1,5 +1,5 @@
 .footer {
-  background: black;
+  background-color: #0e1528;
   text-align: center;
   padding-top: 50px;
 }
@@ -49,7 +49,8 @@
 .footer .credit {
   padding: 1rem;
   text-align: center;
-  background: rgb(0, 0, 75);
+  background-color: #0e1528;
+  border-top: 1px solid blue;
   color: #eee;
   font-size: 1rem;
 }

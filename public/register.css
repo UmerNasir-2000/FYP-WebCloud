@@ -28,10 +28,10 @@ body .myform {
   width: auto;
   box-shadow: 2px 2px 3px blue;
   background: #1a2238 !important;
-  padding-top: 30px;
+  padding-top: 15px;
   perspective: 2700px;
   border-radius: 30px !important;
-  min-height: 70vh;
+  min-height: 72vh;
 }
 
 .container .cover {
@@ -46,15 +46,14 @@ body .myform {
 .container .cover img {
   position: absolute;
   text-align: center;
-  height: 80%;
+  height: 90%;
   width: 100%;
   object-fit: contain;
-  padding-top: 20%;
+  padding-top: 50px;
 }
 .forms .form-content .login-form {
   position: absolute;
-  padding-top: 50px;
-  height: 60%;
+  height: 50%;
   width: 50%;
   right: 0;
   padding-left: 100px;
@@ -94,11 +93,6 @@ body .myform {
   position: relative;
 }
 
-textarea ::selection {
-  background-color: black !important;
-  color: white !important;
-}
-
 input {
   background: #1a2238 !important;
   color: white !important;
@@ -130,6 +124,15 @@ input ::selection {
 }
 
 .form-content .input-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.form-content .input-box textarea {
   height: 100%;
   width: 100%;
   outline: none;
@@ -172,8 +175,7 @@ input ::selection {
   color: white !important;
   cursor: pointer;
   transition: all 0.4s ease;
-  margin-top: 10px !important;
-  margin-bottom: 10px;
+  margin-top: 5px !important;
 }
 
 .btn:hover {
@@ -181,40 +183,18 @@ input ::selection {
   background-color: rgb(248, 248, 248) !important;
 }
 
-.forms .form-content .button input {
-  color: white !important;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-.forms .form-content .button input:hover {
-  color: white !important;
-  background-color: rgb(0, 0, 75) !important;
-}
-.forms .form-content label {
-  color: rgb(32, 71, 179);
-  cursor: pointer;
-}
-.forms .form-content label:hover {
-  text-decoration: underline;
-}
-.forms .form-content .login-text {
-  text-align: center;
-  margin-top: 25px;
-}
-
 @media (max-width: 730px) {
   .container .cover {
     display: none;
-  }
-  .container {
-    background-color: transparent !important;
   }
   body .myform {
     justify-content: center;
     align-items: center;
     padding: 20px;
     margin: 20px;
+  }
+  .container {
+    background-color: transparent !important;
   }
   .container .form-content .login-form {
     width: 100%;

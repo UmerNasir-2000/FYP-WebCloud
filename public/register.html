@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<!-- Coding by CodingLab | www.codinglabweb.com-->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
-    <link rel="stylesheet" href="form.css" />
+    <title>Web Cloud | Register</title>
+    <link rel="stylesheet" href="register.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
+
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
 
     <!-- Fontawesome CDN Link -->
@@ -17,7 +19,10 @@
   </head>
   <body>
     <nav
-      style="background-color: black !important"
+      style="
+        background-color: transparent !important;
+        border-bottom: 1px solid blue;
+      "
       class="navbar navbar-expand-lg navbar-dark bg-dark"
     >
       <button
@@ -32,18 +37,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">WebCloud</a>
+        <a class="navbar-brand project-logo" href="#">&lt;/&gt;WebCloud</a>
       </div>
     </nav>
     <div class="myform">
       <div class="container">
         <div class="cover" style="padding-right: 5px">
-          <img src="images/signin2.svg" alt="" />
+          <img src="images/output-onlinegiftools.gif" alt="" />
         </div>
         <div class="forms">
           <div class="form-content">
             <div class="login-form">
-              <div class="title">Signup</div>
+              <div class="title">Register</div>
               <form action="#">
                 <div class="input-boxes">
                   <div class="input-box">
@@ -83,22 +88,64 @@
                     />
                   </div>
                   <div class="text">
-                    <a href="loginform.html">Have an account ?</a>
+                    <p style="margin-top: 0 !important">
+                      Already Have An Account.?<a
+                        href="login.html"
+                        style="font-style: italic"
+                      >
+                        Login</a
+                      >
+                    </p>
                   </div>
-                  <button class="btn" type="button" id="register">
-                    Submit
+                  <button
+                    class="btn"
+                    type="button"
+                    id="register"
+                    style="margin-bottom: 10px"
+                  >
+                    Register
                   </button>
 
                   <!-- <div class="text sign-up-text">
                   Don't have an account? <label for="flip">Sigup now</label>
                 </div> -->
                 </div>
+                <span style="color: red" id="msg"></span>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="signupform.js"></script>
+    <section class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Why choose us?</h3>
+          <p>You can code any where any time without environmental setup</p>
+        </div>
+
+        <div class="box">
+          <h3>Quick Links</h3>
+          <a style="text-decoration: none" href="landing.html">home</a>
+          <a style="text-decoration: none" href="userguide.html">about</a>
+          <a style="text-decoration: none" href="#">contact</a>
+          <a style="text-decoration: none" href="userguide.html">FAQ</a>
+        </div>
+
+        <div class="box">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i>SZABIST 100</p>
+          <p><i class="fas fa-globe"></i> www.webcloud.com</p>
+          <p><i class="fas fa-phone"></i> +123-456-7890.</p>
+        </div>
+      </div>
+
+      <h1 class="credit">
+        Created By
+        <a style="text-decoration: none" href="#">Umer And Wahaj</a> | All
+        Rights Reserved. &#169;
+      </h1>
+    </section>
+    <script src="register.js"></script>
   </body>
 </html>
