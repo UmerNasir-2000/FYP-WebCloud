@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<!-- Coding by CodingLab | www.codinglabweb.com-->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
-    <link rel="stylesheet" href="form.css" />
+    <title>Web Cloud | Login</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="navbar.css" />
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-
-    <!-- Fontawesome CDN Link -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -16,8 +14,12 @@
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
   </head>
   <body>
+    <!-- NAVBAR START-->
     <nav
-      style="background-color: black !important"
+      style="
+        background-color: transparent !important;
+        border-bottom: 1px solid blue;
+      "
       class="navbar navbar-expand-lg navbar-dark bg-dark"
     >
       <button
@@ -32,14 +34,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">WebCloud</a>
+        <a class="navbar-brand project-logo" href="#">&lt;/&gt;WebCloud</a>
       </div>
     </nav>
+
+    <!-- NAVBAR END-->
+
+    <!-- LOGIN FORM START-->
     <div class="myform">
       <div class="container">
         <div class="cover">
           <div class="front">
-            <img src="images/signin1.svg" alt="" />
+            <img src="images/nest.svg" alt="" />
           </div>
         </div>
         <div class="forms">
@@ -67,14 +73,16 @@
                     />
                   </div>
                   <div class="text">
-                    <a href="#">Forgot password?</a>
+                    <a href="#">Forgot Password?</a>
                   </div>
 
                   <button class="btn" type="button" id="register">Login</button>
 
                   <p class="text">
-                    Doesn't have account ? <a href="signupform.html">SignUP</a>
+                    New To Web Cloud. ?
+                    <a href="signupform.html">Register</a>
                   </p>
+                  <span style="color: red" id="msg"></span>
                 </div>
               </form>
             </div>
@@ -82,6 +90,7 @@
         </div>
       </div>
     </div>
-    <script src="loginform.js"></script>
+    <!-- NAVBAR START-->
+    <script src="login.js"></script>
   </body>
 </html>

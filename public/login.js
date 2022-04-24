@@ -1,5 +1,6 @@
 $("#register").click(function (e) {
   e.preventDefault();
+
   var email = $("#email").val();
   var password = $("#password").val();
 
@@ -29,28 +30,19 @@ $("#register").click(function (e) {
         // window.location.href = `http://${xhr.responseJSON.user.firstName.toLowerCase()}.localhost:5000/landing.html`;
         localStorage.setItem("token", xhr.responseJSON.accessToken);
         localStorage.setItem("name", xhr.responseJSON.user.name);
+        localStorage.setItem("fullname", xhr.responseJSON.user.fullname);
         localStorage.setItem("email", xhr.responseJSON.user.email);
         localStorage.setItem("url", xhr.responseJSON.user.profile_picture_url);
+        $("input:text").val("");
+        $("input:password").val("");
+
         window.location.href = "landing.html";
-        //window.location.replace(wholeURL);
-        //window.location.hostname = "umer.localhost:5001";
       }
     },
     error: function (xhr, status, error) {
-      alert(xhr.responseText);
+      $("#msg").html(xhr.responseJSON.error);
     },
   });
 
   $(".error").remove();
-
-  // if (email.length < 1) {
-  //   $("#email").before(
-  //     '<span style="font-size:10pt ;color: red;" class="error">This field is required</span>'
-  //   );
-  // }
-  // if (password.length < 1) {
-  //   $("#password").before(
-  //     '<span style="font-size:10pt; color: red;" class="error">This field is required</span>'
-  //   );
-  // }
 });

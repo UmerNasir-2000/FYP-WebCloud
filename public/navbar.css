@@ -93,3 +93,9 @@ body.active .section {
   color: aliceblue;
   font-size: 2rem;
 }
+
+.project-logo {
+  font-size: larger;
+  font-weight: bold;
+  font-style: italic;
+}
