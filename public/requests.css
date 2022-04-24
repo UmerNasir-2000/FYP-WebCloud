@@ -1,0 +1,53 @@
+/* Google Font Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #0e1528 !important;
+}
+.table {
+  color: white;
+}
+#tblReg tbody tr:nth-of-type(even) {
+  background-color: rgb(15, 23, 36);
+}
+td {
+  text-align: center;
+  vertical-align: middle;
+  color: white !important;
+  padding: 5px;
+}
+thead {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: none !important;
+  font-size: large;
+}
+
+.outer {
+  background-color: #1a2238;
+  padding: 25px;
+  margin: 25px;
+  border-radius: 25px;
+  box-shadow: 2px 2px 3px blue !important;
+}
+.standard-select1 {
+  background-color: transparent !important;
+  color: white !important;
+  border-radius: 3px;
+}
+.standard-select1 option {
+  background-color: #0e1528 !important;
+  color: white !important;
+  border-radius: 10px !important;
+}
+@media (max-width: 810px) {
+  .outer {
+    background-color: transparent;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    margin: 0;
+  }
+}

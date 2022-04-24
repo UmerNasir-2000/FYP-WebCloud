@@ -10,7 +10,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="requests.css" />
     <link rel="stylesheet" href="navbar.css" />
     <link rel="stylesheet" href="footer.css" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
@@ -24,9 +24,9 @@
           },
         }).then((res) => {
           $.each(res.allRequests, function (r1, reg) {
-            var str = reg.createdAt;
-
-            if (str.length > 5) str = str.substring(0, 10);
+            var str = new Date(
+              reg.createdAt.toLocaleString()
+            ).toLocaleDateString();
 
             let tryString = reg.id + " Approved";
 
@@ -42,20 +42,19 @@
                     <option value=${reg.id}>Rejected</option>
                   </select>
                 </td>
-                <td>${reg.first_name}</td>
+                <td>${reg.first_name} ${reg.last_name}</td>
                 <td style="font-size:smaller">
                   ${str}</td>
             </tr>`;
 
-            $(".wrapper > .box2 > table > tbody").append(tr);
+            $(".outer > #tblReg > table > tbody").append(tr);
           });
 
           //On Update API
 
-          $(".wrapper > .box2 > table > tbody > tr > #yes > #status").on(
+          $(".outer > #tblReg > table > tbody > tr > #yes > #status").on(
             "change",
             function () {
-              alert("Triggered");
               let a = $("#status :selected").text();
 
               $.ajax({
@@ -72,7 +71,7 @@
                   );
                 },
               }).then(function (res) {
-                alert("Updated");
+                alert("Request Status Update Successfully.");
               });
             }
           );
@@ -109,11 +108,12 @@
 
     <!--TABLE START-->
 
-    <div class="wrapper">
-      <div class="box1"></div>
-      <div class="box2">
-        <h4 style="font-size: 20pt; color: white">PROJECTS REQUESTS</h4>
-        <table class="styled-table" style="table-layout: fixed; width: 90%">
+    <div class="outer">
+      <div id="tblReg">
+        <h4 style="font-size: 20pt; color: white; text-align: center">
+          PROJECTS REQUESTS
+        </h4>
+        <table class="table">
           <thead>
             <tr style="color: white; font-size: 15pt">
               <th>Project ID</th>

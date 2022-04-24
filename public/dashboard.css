@@ -7,6 +7,7 @@
 body {
   min-height: 100vh;
   background-color: #0e1528;
+
   /*
     #0E1525;
    #2B3245;
@@ -64,6 +65,7 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   text-align: center;
   border-radius: 5px;
   background-color: #1a2238 !important;
+
   padding: 10px;
 }
 .box2 {
