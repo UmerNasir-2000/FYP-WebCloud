@@ -70,7 +70,7 @@ const getUserProjectsService = asyncHandler(async (req, res) => {
       model: configurations,
       required: true,
       attributes: {
-        exclude: ["id", "project_id", "createdAt"],
+        exclude: ["id", "project_id", "createdAt", "db_port", "web_port"],
       },
     },
     attributes: {
@@ -93,6 +93,13 @@ const getUserProjectByIdService = asyncHandler(async (req, res) => {
     where: {
       user_id: req.user.id,
       id: req.params.id,
+    },
+    include: {
+      model: configurations,
+      required: true,
+      attributes: {
+        exclude: ["id", "project_id", "createdAt", "db_port", "web_port"],
+      },
     },
   });
 
