@@ -30,7 +30,7 @@ body {
   align-items: center;
 }
 .container {
-  text-align: center;
+  text-align: left;
   height: fit-content;
   display: grid;
   grid-gap: 2rem;
@@ -55,6 +55,16 @@ ul {
   height: 70px !important;
   max-height: 70px !important;
   overflow: auto !important;
+}
+.item:hover {
+  background-color: #0e1528;
+}
+button.openbtn {
+  border: none !important;
+  background-color: transparent;
+  color: transparent;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .first-row {

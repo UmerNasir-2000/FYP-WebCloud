@@ -7,6 +7,7 @@ const {
   project_history,
 } = require("../models");
 const sendEmail = require("../utils/email-config");
+const db = require("../models");
 
 const createProjectTemplate = asyncHandler(async (req, res) => {
   const {

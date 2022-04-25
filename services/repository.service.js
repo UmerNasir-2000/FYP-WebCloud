@@ -180,9 +180,17 @@ const getPublicRepositoryByIdService = asyncHandler(async (req, res) => {
     },
   });
 
+  const configurations = await db.sequelize.query(
+    "SELECT DISTINCT `database`, web_framework FROM configurations WHERE project_id = ($projectId);",
+    {
+      bind: { projectId: req.params.id },
+    }
+  );
+
   res.status(StatusCodes.OK).json({
     message: `Fetch Public Repository Id = ${req.params.id}`,
     publicRepo,
+    configurations,
   });
 });
 

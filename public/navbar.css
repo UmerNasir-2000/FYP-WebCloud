@@ -41,7 +41,7 @@
   background-color: #f1f1f1;
 }
 .sidebar-parent .sidebar-child {
-  background-color: rgb(0, 0, 75);
+  background-color: #0e1528;
   position: fixed;
   top: 0;
   right: -225px;
@@ -49,7 +49,12 @@
   height: 100%;
   padding: 25px 0;
   transition: all 0.5s ease;
-  border: 1px solid white;
+  padding: 10px;
+  border-left: 1px solid blue;
+
+  box-shadow: 2px 2px 3px blue;
+
+  /* box-shadow: 1px 1px red, -10px 0 0.4em rgb(196, 196, 197); */
 }
 .section {
   width: calc(100% - 225px);
@@ -76,7 +81,7 @@ body.active .section {
 .btn-mini-side {
   background-color: transparent;
   width: 100%;
-  border: 1px solid white;
+  border: 1px solid blue;
   margin: 0 auto;
   display: block;
   padding: 13px 30px !important;
@@ -92,10 +97,4 @@ body.active .section {
 .bars i {
   color: aliceblue;
   font-size: 2rem;
-}
-
-.project-logo {
-  font-size: larger;
-  font-weight: bold;
-  font-style: italic;
 }

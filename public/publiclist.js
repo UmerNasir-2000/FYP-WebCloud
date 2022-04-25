@@ -17,7 +17,7 @@ $(document).ready(function () {
         let tr = `
         <tr>
             <td>      
-      
+            <button  value=${reg.project_id}  class="openbtn" > 
             <div class="item">
              
          <div class="first-row">
@@ -143,12 +143,16 @@ $(document).ready(function () {
             }
             </div>
          </div>
-       
+         </button>
             </td>
         </tr>
       
         `;
         $("#tblReg  > table > tbody").append(tr);
+      });
+      $(".openbtn").click(function () {
+        localStorage["projectId"] = this.value;
+        window.location.href = "detail.html";
       });
     },
     error: function (xhr, status, error) {
