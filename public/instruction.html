@@ -8,13 +8,22 @@
     <link rel="icon" type="image/png" href="./favicon-32x32.png" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="landingstyle.css" />
+    <link rel="stylesheet" href="instruction.css" />
+    <link rel="stylesheet" href="navbar.css" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <script
       type="text/javascript"
       src="/bootstrap/js/bootstrap.min.js"
     ></script>
-
+    <style>
+      ul {
+        list-style-type: none;
+      }
+    </style>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
       integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
@@ -23,12 +32,16 @@
     ></script>
     <script>
       $(document).ready(function () {
-        var user = localStorage.getItem("name");
+        var user = `${localStorage.getItem(
+          "first_name"
+        )} ${localStorage.getItem("last_name")}`;
         var pic = localStorage.getItem("url");
+        var email = localStorage.getItem("email");
         var project_name = localStorage.getItem("project_name");
         $("#uname").text(user);
         $("#mypic").text(pic);
-        $("#pj").text(project_name);
+        $("#pj").text(user);
+        $("#em").text(email);
 
         $("#mybody").hide();
         if (localStorage.getItem("token")) {
@@ -41,8 +54,8 @@
         $("#mypic").empty();
 
         let tr = `
-<img id="mypic" src=${pic} class='avatar'  alt="Avatar">
-`;
+      <img id="mypic" src=${pic} class='avatar'  alt="Avatar">
+      `;
         $("#mypic").append(tr);
 
         $("#logout").click(function () {
@@ -57,97 +70,70 @@
     </script>
   </head>
   <body id="mybody">
-    <nav
-      class="navbar navbar-light"
-      style="
-        background-color: rgb(15, 23, 36);
-        align-content: space-between;
-        padding: 10px;
-      "
-    >
-      <h1
-        class="display-6"
-        style="font-size: 40px; color: white; font-weight: bolder"
-      >
-        &lt;/&gt;WebCloud
-      </h1>
-      <ul class="navbar-nav" style="flex-direction: row">
-        <li>
+    <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
+      <a class="navbar-brand" href="#">
+        <img src="images/four.svg" height="50px" width="50px" alt="" />
+      </a>
+      <div style="justify-content: end !important">
+        <ul
+          class="navbar-nav"
+          style="flex-direction: row; justify-content: flex-end !important"
+        >
+          <div class="section">
+            <div class="top_navbar">
+              <div class="bars">
+                <a href="#">
+                  <i class="fas fa-bars"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </nav>
+    <div class="sidebar-parent">
+      <div class="sidebar-child">
+        <div class="sidebar-pic">
           <a id="mypic" href=""></a>
+        </div>
 
-          <button
-            id="uname"
-            class="btn btn-success"
-            style="
-              background-color: rgb(15, 23, 36);
-              border-width: 2px;
-              pointer-events: none;
-            "
-          ></button>
-
-          <button
-            class="btn"
-            style="background-color: rgb(15, 23, 36); border-width: 2px"
-          >
-            <a id="logout" style="color: rgba(255, 0, 0, 0.671)" target="_blank"
-              >LOGOUT</a
-            >
+        <li>
+          <button id="uname" class="btn-mini-side"></button>
+        </li>
+        <li>
+          <button id="logout" class="btn-mini-side">
+            <a style="color: rgba(255, 0, 0, 0.671)" target="_blank">LOGOUT</a>
           </button>
         </li>
-      </ul>
-    </nav>
+      </div>
+    </div>
     <section class="home" id="home">
       <div class="content" style="text-align: center">
-        <h1>Your Project Has Been Successfully Created</h1>
+        <h1>Your Project Has Been Created Successfully</h1>
 
-        <ul style="color: aqua; font-size: 15pt; text-align: center">
-          <li>Your Project Name Is : <span id="pj"></span></li>
-          <li>Your Project Framework Is : PHP</li>
-          <li>Your Project Database Is : MySQL</li>
-          <li>Your Database User Is : Root</li>
-          <li>Your Database Password Is : 123456</li>
+        <ul
+          style="
+            color: white;
+            font-size: 15pt;
+            text-align: start;
+            font-style: italic;
+          "
+        >
+          <li>Dear : <span id="pj"></span></li>
+          <li>
+            Please Check Your Email <span id="em"></span> For Instructions
+            Related To Your Project. Confidential Details Sent. Do Not Share It.
+          </li>
         </ul>
-        <a href="Steps.html"><button class="btn">Proceed</button></a>
+        <a href="editor.html"><button class="btn">Proceed</button></a>
       </div>
 
-      <div class="image" style="background-color: black">
+      <div class="image" style="background-color: transparent">
         <img src="images/two.svg" alt="" />
       </div>
     </section>
 
-    <!-- home section ends -->
-
-    <!-- about section starts  -->
-
-    <section class="footer">
-      <div class="box-container">
-        <div class="box">
-          <h3>Why choose us?</h3>
-          <p>You can code any where any time without environmental setup</p>
-        </div>
-
-        <div class="box">
-          <h3>Quick Links</h3>
-          <a style="text-decoration: none" href="landing.html">home</a>
-          <a style="text-decoration: none" href="userguide.html">about</a>
-          <a style="text-decoration: none" href="#">contact</a>
-          <a style="text-decoration: none" href="userguide.html">FAQ</a>
-        </div>
-
-        <div class="box">
-          <h3>Contact Us</h3>
-          <p><i class="fas fa-map-marker-alt"></i>SZABIST 100</p>
-          <p><i class="fas fa-globe"></i> www.webcloud.com</p>
-          <p><i class="fas fa-phone"></i> +123-456-7890.</p>
-        </div>
-      </div>
-
-      <h1 class="credit">
-        Created By
-        <a style="text-decoration: none" href="#">Umer And Wahaj</a> | &#169;
-        All Rights Reserved.
-      </h1>
-    </section>
     <script src="landingjs.js"></script>
+    <script src="navbar.js"></script>
   </body>
 </html>

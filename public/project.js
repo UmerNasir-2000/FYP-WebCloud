@@ -76,7 +76,10 @@ $(document).ready(function () {
       success: function (result, status, xhr) {
         $("input:text").val("");
         $("#project_description").val("");
+
+        socket.emit("project", "project is created");
         $("body").addClass("loading");
+
         setTimeout(function () {
           //your code here
           window.location.href = "instruction.html";

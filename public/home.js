@@ -1,6 +1,6 @@
 $(document).ready(function () {
   document.getElementById("fullname").innerText = localStorage.getItem("name");
-  console.log(localStorage.getItem("name"));
+  console.log(localStorage.getItem("first_name"));
 
   $.ajax({
     url: `/api/repo/trending`,

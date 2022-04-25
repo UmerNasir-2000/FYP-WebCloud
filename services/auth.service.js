@@ -72,7 +72,8 @@ const loginUserService = asyncHandler(async (req, res) => {
       user: {
         id: validUser.id,
         email: validUser.email,
-        name: validUser.first_name,
+        first_name: validUser.first_name,
+        last_name: validUser.last_name,
         username: `${validUser.first_name.toLowerCase()}.${validUser.last_name.toLowerCase()}`,
         profile_picture_url: validUser.profile_picture_url,
         is_admin: validUser.is_admin,
