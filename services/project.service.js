@@ -6,6 +6,7 @@ const {
   requests,
   project_history,
 } = require("../models");
+const sendEmail = require("../utils/email-config");
 
 const createProjectTemplate = asyncHandler(async (req, res) => {
   const {
@@ -52,6 +53,8 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     project_name,
     project_status: projectRequest.status,
   };
+
+  await sendEmail(req.user.email);
 
   res
     .status(StatusCodes.CREATED)
