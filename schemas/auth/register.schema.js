@@ -7,7 +7,10 @@ let registerSchema = yup.object().shape({
   password: yup
     .string()
     .required()
-    .matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/),
+    .matches(
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+      "Invalid Password Entered."
+    ),
 });
 
 module.exports = registerSchema;
