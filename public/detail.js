@@ -1,13 +1,10 @@
 $(document).ready(function () {
-  alert(localStorage.getItem("publicId"));
   $.ajax({
     url: `/api/repo/${localStorage.getItem("publicId")}`,
     method: "GET",
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   }).then(function (reg) {
     $("#tblReg > table > tbody").empty();
-
-    console.log("Id", reg.publicRepo);
 
     let tr = `
          
@@ -17,12 +14,14 @@ $(document).ready(function () {
                 <div class="wrapper" >
                 <div class="box1">
                 <div class="first">
-                <button class="forkbtn" value=${reg.id} >
+                <button class="forkbtn" value=${reg.repoDetail[0].project_id} >
                 Fork Repository
                    </button>
              
               
-                  <button  value=${reg.project_id}  class="likebtn" >
+                  <button  value=${
+                    reg.repoDetail[0].project_id
+                  }  class="likebtn" >
                   Like
                   <img src="https://img.icons8.com/ios-filled/30/fa314a/like--v1.png"/>  
                       
@@ -31,7 +30,9 @@ $(document).ready(function () {
                 </div>
                 
       <div class="first-row">
-          <div class="name">Project Name : ${reg.publicRepo.project_name}</div>
+          <div class="name">Project Name : ${
+            reg.repoDetail[0].project_name
+          }</div>
           <div class="nameandemail">
           <div>
           Name : Wahaj Rashid
@@ -43,9 +44,7 @@ $(document).ready(function () {
           
        </div>
       </div>
-        <div class="desc">Project Description : ${
-          reg.publicRepo.project_description
-        }
+        <div class="desc">Project Description : ${reg.repoDetail[0].description}
         
         
         </div>
@@ -56,34 +55,34 @@ $(document).ready(function () {
         Project Web Framwork :
       
         ${
-          reg.publicRepo.web_framework === "Node.js"
+          reg.repoDetail[0].web_framework === "Node.js"
             ? `<img src="https://img.icons8.com/fluency/48/000000/node-js.png"/>` +
               `<h2>Node.js</h2>`
             : ""
         }
         
         ${
-          reg.publicRepo.web_framework === "PHP"
+          reg.repoDetail[0].web_framework === "PHP"
             ? `<img src="https://img.icons8.com/color/48/000000/php.png"/>` +
               `<h2>PHP</h2>`
             : ""
         }
         
         ${
-          reg.publicRepo.web_framework === "Nest.js"
+          reg.repoDetail[0].web_framework === "Nest.js"
             ? `<img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/64/000000/external-cheetah-animal-head-icongeek26-glyph-icongeek26.png"/>` +
               `<h2>Nest.js</h2>`
             : ""
         }
         ${
-          reg.publicRepo.web_framework === "Spring Boot"
+          reg.repoDetail[0].web_framework === "Spring Boot"
             ? `<img src="./images/spring.svg" alt="" />` +
               `<h2>Spring Boot</h2>`
             : ""
         }
         
         ${
-          reg.publicRepo.web_framework === "Dotnet"
+          reg.repoDetail[0].web_framework === "Dotnet"
             ? `<img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/000000/external-net-or-dot-net-a-software-framework-developed-by-microsoft-logo-shadow-tal-revivo.png"/>` +
               `<h2>Dotnet</h2>`
             : ""
@@ -95,13 +94,13 @@ $(document).ready(function () {
         
         </div>
              <div>Project Database : ${
-               reg.publicRepo.database === "MySQL"
+               reg.repoDetail[0].database === "MySQL"
                  ? `<img src="images/mysql.svg" width=68 height=68 />` +
                    `<h2>MYSQL</h2>`
                  : ""
              }
                   ${
-                    reg.publicRepo.database === "MongoDB"
+                    reg.repoDetail[0].database === "MongoDB"
                       ? `<img src="https://img.icons8.com/color/48/000000/mongodb.png"/>` +
                         `<h2>MongoDB</h2>`
                       : ""
@@ -115,15 +114,19 @@ $(document).ready(function () {
       
       
       <div class="box2">
-      <button  value=${reg.project_likes}  class="openbtn" > 
+      <button  value=${reg.repoDetail[0].usr_id}  class="openbtn" > 
      
       
         
         <div>
-        <img class="image" src=${reg.publicRepo.profile_picture_url} alt="" />
-            <h3>${reg.publicRepo.first_name}${reg.publicRepo.last_name}</h3>
+        <img class="image" src=${
+          reg.repoDetail[0].profile_picture_url
+        } alt="" />
+            <h3>${reg.repoDetail[0].first_name}  ${
+      reg.repoDetail[0].last_name
+    }</h3>
             
-            <span>${reg.publicRepo.email}</span>
+            <span>${reg.repoDetail[0].email}</span>
           </div>
      
         
@@ -158,8 +161,8 @@ $(document).ready(function () {
     });
     $(".openbtn").click(function () {
       alert(this.value);
-      localStorage["mykey"] = this.value;
-      window.location.href = "userownprojectbyid.html";
+      localStorage["idprofile"] = this.value;
+      window.location.href = "userprofile.html";
     });
 
     $(".forkbtn").click(function () {

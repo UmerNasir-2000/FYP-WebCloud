@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $.ajax({
-    url: `/api/user/3`,
+    url: `/api/user/${localStorage.getItem("idprofile")}`,
     method: "GET",
     beforeSend: function (xhr) {
       xhr.setRequestHeader(
@@ -11,11 +11,30 @@ $(document).ready(function () {
   }).then(function (res) {
     $("#tblReg  > table > tbody ").empty();
 
-    $.each(res.userProjects, function (r1, reg) {
-      var str = reg.createdAt;
+    $("#tblReg1   > table > tbody").empty();
+
+    let tr = `
+    <tr>
+          <td>  
+          <div class="box1">
+            <img class="image" src=${res.userDetails[0].profile_picture_url} alt="" />
+  
+            <div class="userinfo">
+              <div>
+                <h3>${res.userDetails[0].first_name} ${res.userDetails[0].last_name}</h3>
+                <span>${res.userDetails[0].email}</span>
+              </div>
+            </div>
+          </div>
+        </td>
+</tr>
+  
+    `;
+    $("#tblReg1   > table > tbody").append(tr);
+    $.each(res.userDetails, function (r1, reg) {
+      var str = reg.project_created_at;
 
       if (str.length > 5) str = str.substring(0, 10);
-      console.log(reg);
       let tr = `
           <tr>
               <td>      
@@ -38,40 +57,40 @@ $(document).ready(function () {
               <div>
               
                 ${
-                  reg.configuration.web_framework === "Node.js"
+                  reg.web_framework === "Node.js"
                     ? `<img src="https://img.icons8.com/fluency/48/000000/node-js.png"/>`
                     : ""
                 }
                 
                 ${
-                  reg.configuration.web_framework === "PHP"
+                  reg.web_framework === "PHP"
                     ? `<img src="https://img.icons8.com/color/48/000000/php.png"/>`
                     : ""
                 }
                 
                 ${
-                  reg.configuration.web_framework === "Nest.js"
+                  reg.web_framework === "Nest.js"
                     ? `<img src="images/nest.svg" width=48 heught=48/>`
                     : ""
                 }
                 ${
-                  reg.configuration.web_framework === "Spring Boot"
+                  reg.web_framework === "Spring Boot"
                     ? `<img src="./images/spring.svg" alt="" />`
                     : ""
                 }
                 
                 ${
-                  reg.configuration.web_framework === "Dotnet"
+                  reg.web_framework === "Dotnet"
                     ? `<img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/000000/external-net-or-dot-net-a-software-framework-developed-by-microsoft-logo-shadow-tal-revivo.png"/>`
                     : ""
                 }
                    ${
-                     reg.configuration.database === "MySQL"
+                     reg.database === "MySQL"
                        ? `<img src="images/mysql.svg" width=48 height=48 />`
                        : ""
                    }
                           ${
-                            reg.configuration.database === "MongoDB"
+                            reg.database === "MongoDB"
                               ? `<img src="https://img.icons8.com/color/48/000000/mongodb.png"/>`
                               : ""
                           }
@@ -83,9 +102,9 @@ $(document).ready(function () {
                 </h1>
                 <div class="desc">
                 <p>  ${
-                  reg.description.length > 120
-                    ? reg.description.substring(0, 120) + "....."
-                    : reg.description
+                  reg.project_description.length > 120
+                    ? reg.project_description.substring(0, 120) + "....."
+                    : reg.project_description
                 }
                 </p>
                 </div>
@@ -99,7 +118,7 @@ $(document).ready(function () {
                 >
                   <div>
                     <img
-                      src=${localStorage.getItem("url")}
+                      src=${reg.profile_picture_url}
                       width="50"
                       height="50"
                       style="border-radius: 30px"
@@ -116,8 +135,8 @@ $(document).ready(function () {
                     "
                   >
                    
-                    <div>Created by : ${localStorage.getItem("name")}</div> 
-                    <div>${localStorage.getItem("email")}</div>
+                    <div>Created by : ${reg.first_name}${reg.last_name}</div> 
+                    <div>${reg.email}</div>
                   </div>
            
               </div>
@@ -151,24 +170,4 @@ $(document).ready(function () {
       $("#tblReg  > table > tbody ").append(tr);
     });
   });
-  $("#tblReg1   > table > tbody").empty();
-
-  let tr = `
-    <tr>
-          <td>  
-          <div class="box1">
-            <img class="image" src=${localStorage.getItem("url")} alt="" />
-  
-            <div class="userinfo">
-              <div>
-                <h3>${localStorage.getItem("name")}</h3>
-                <span>${localStorage.getItem("email")}</span>
-              </div>
-            </div>
-          </div>
-        </td>
-</tr>
-  
-    `;
-  $("#tblReg1   > table > tbody").append(tr);
 });

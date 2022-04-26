@@ -202,13 +202,13 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   width: 100% !important;
   text-align: justify;
   max-height: 100%;
-  height: 100% !important;
+  height: 70% !important;
   color: white;
 }
 
 .openbtn div {
   color: white;
-  height: 100%;
+  height: 70%;
   width: 100%;
   padding: 20px;
 }
