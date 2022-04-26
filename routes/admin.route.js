@@ -16,10 +16,102 @@ const {
 } = require("../controllers/admin.controller");
 const logDatabase = require("../middlewares/logDatabase");
 
+/**
+ * @openapi
+ * '/api/admin/dashboard':
+ *  get:
+ *     tags:
+ *     - Admin
+ *     summary: Dashboard API For Admin
+ *     responses:
+ *      200:
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                projectTemplates:
+ *                  type: number
+ *                totalUsers:
+ *                  type: number
+ *                totalProjects:
+ *                  type: number
+ *                pendingProjectsCount:
+ *                  type: number
+ *                requests:
+ *                  type: array
+ *                  items:
+ *                    type: object
+ *                    properties:
+ *                      id:
+ *                       type: number
+ *                      status:
+ *                       type: string
+ *                      email:
+ *                       type: string
+ *                      first_name:
+ *                       type: string
+ *                      last_name:
+ *                        type: string
+ *                      createdAt:
+ *                        type: string
+ *                        format: date
+ *                      is_public:
+ *                        type: boolean
+ *                      project_name:
+ *                        type: string
+ *                      description:
+ *                        type: string
+ *      400:
+ *        description: Bad request
+ */
+
 router
   .route("/dashboard")
   .get(validateToken, validateAdmin, logDatabase, dashboard);
-
+/**
+ * @openapi
+ * '/api/admin/charts':
+ *  post:
+ *     tags:
+ *     - Admin
+ *     summary: Fetch Charts Based On The Entity Value Provided
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *         schema:
+ *           type: object
+ *           required:
+ *             - entity
+ *           properties:
+ *             entity:
+ *               type: string
+ *     responses:
+ *      200:
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                configurations:
+ *                  type: array
+ *                  items:
+ *                    type: object
+ *                    properties:
+ *                      web_framework:
+ *                       type: string
+ *                      total_web_framework:
+ *                       type: number
+ *      400:
+ *        description: Bad request
+ */
 router
   .route("/charts")
   .post(
