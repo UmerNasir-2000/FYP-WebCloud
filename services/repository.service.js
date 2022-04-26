@@ -159,38 +159,16 @@ const likeRepoService = asyncHandler(async (req, res) => {
 });
 
 const getPublicRepositoryByIdService = asyncHandler(async (req, res) => {
-  let publicRepo = await projects.findOne({
-    where: {
-      is_public: true,
-      id: req.params.id,
-    },
-    include: {
-      model: users,
-      required: true,
-      where: {
-        status: "Enable",
-      },
-      attributes: {
-        exclude: ["password", "is_admin", "status", "has_subscription"],
-      },
-    },
-
-    attributes: {
-      exclude: ["path", "user_id", "is_public"],
-    },
-  });
-
-  const configurations = await db.sequelize.query(
-    "SELECT DISTINCT `database`, web_framework FROM configurations WHERE project_id = ($projectId);",
+  const repoDetail = await db.sequelize.query(
+    "CALL sql_web_cloud.get_repo_detail_by_id($id)",
     {
-      bind: { projectId: req.params.id },
+      bind: { id: req.params.id },
     }
   );
 
   res.status(StatusCodes.OK).json({
     message: `Fetch Public Repository Id = ${req.params.id}`,
-    publicRepo,
-    configurations,
+    repoDetail,
   });
 });
 

@@ -151,7 +151,7 @@ $(document).ready(function () {
         $("#tblReg  > table > tbody").append(tr);
       });
       $(".openbtn").click(function () {
-        localStorage["projectId"] = this.value;
+        localStorage["publicId"] = this.value;
         window.location.href = "detail.html";
       });
     },
