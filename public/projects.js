@@ -154,7 +154,7 @@ $(document).ready(function () {
       });
       $(".openbtn").click(function () {
         localStorage["projectId"] = this.value;
-        window.location.href = "detail.html";
+        window.location.href = "own.html";
       });
     },
     error: function (xhr, status, error) {
