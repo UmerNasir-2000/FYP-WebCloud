@@ -1,0 +1,73 @@
+/* Google Font Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #0e1528 !important;
+
+  /*
+background: rgb(0, 0, 75) !important; */
+  /*
+background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
+1) 100% ); */
+}
+.table {
+  color: white;
+}
+td {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: none !important;
+}
+thead {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: none !important;
+  font-size: large;
+}
+
+.outer {
+  background-color: #1a2238;
+  padding: 25px;
+  margin: 25px;
+  border-radius: 25px;
+  box-shadow: 2px 2px 3px blue !important;
+}
+
+.subscribe {
+  color: white;
+  border-radius: 20px 10px;
+  font-weight: 1000;
+  font-style: italic;
+  padding: 5px 10px;
+}
+
+.danger-badge {
+  background-color: #7e0404;
+}
+
+.success-badge {
+  background-color: green;
+}
+
+.standard-select {
+  background-color: transparent !important;
+  color: white !important;
+  border-radius: 3px;
+}
+.standard-select option {
+  background-color: #0e1528 !important;
+  color: white !important;
+  border-radius: 10px !important;
+}
+.standard-select1 {
+  background-color: transparent !important;
+  color: white !important;
+  border-radius: 3px;
+}
+.standard-select1 option {
+  background-color: #0e1528 !important;
+  color: white !important;
+  border-radius: 10px !important;
+}

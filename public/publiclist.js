@@ -12,6 +12,7 @@ $(document).ready(function () {
       $("#tblReg  > table > tbody").empty();
 
       $.each(res.publicRepos, function (r1, reg) {
+        console.log(reg);
         var str = new Date(reg.project_createdAt).toLocaleDateString();
 
         let tr = `
