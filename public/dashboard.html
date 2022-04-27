@@ -39,6 +39,9 @@
     <script src="project.js"></script>
     <script>
       $(document).ready(function () {
+        jQuery(function () {
+          jQuery("#ddlEntity").change();
+        });
         $("#mycanvas1").hide();
         $("#web").hide();
 
@@ -160,23 +163,6 @@
           var ctx = $("#mycanvas").get(0).getContext("2d");
           var ctx1 = $("#mycanvas1").get(0).getContext("2d");
 
-          var data = [
-            {
-              value: 10,
-              color: "navy",
-              highlight: "coral",
-              label: "MySQL",
-            },
-            {
-              value: 90,
-              color: "green",
-              highlight: "yellowgreen",
-              label: "MongoDB",
-            },
-          ];
-
-          var piechart = new Chart(ctx).Pie(data);
-
           $("#ddlEntity").on("change", function () {
             $.ajax({
               url: `/api/admin/charts/`,
@@ -191,28 +177,31 @@
                 );
               },
             }).then((res) => {
+              console.log(res);
               data = [
                 {
                   value: res.configuration[0].total_database,
                   color: "navy",
                   highlight: "coral",
-                  label: "Corn Flower Blue",
+                  label: "MySQL",
                 },
                 {
                   value: res.configuration[1].total_database,
                   color: "green",
                   highlight: "yellowgreen",
-                  label: "Lightgreen",
+                  label: "MONGODB",
                 },
               ];
               var piechart = new Chart(ctx).Pie(data);
               var data1 = [
                 {
                   value: res.configuration[0].total_web_framework,
-                  color: "navy",
-                  highlight: "coral",
-                  label: "DotNet",
+
+                  color: "lightblue",
+                  highlight: "yellowgreen",
+                  label: "PHP",
                 },
+
                 {
                   value: res.configuration[1].total_web_framework,
                   color: "green",
@@ -220,26 +209,23 @@
                   label: "Node js",
                 },
                 {
-                  value: res.configuration[2].total_web_framework,
-
-                  color: "lightgreen",
+                  value: res.configuration[3].total_web_framework,
+                  color: "navy",
                   highlight: "coral",
-                  label: "Spring Boot",
+                  label: "DotNet",
                 },
-
                 {
                   value: res.configuration[2].total_web_framework,
-
                   color: "rgb(214, 60, 60)",
                   highlight: "coral",
                   label: "Nest js",
                 },
-                {
-                  value: res.configuration[0].total_web_framework,
 
-                  color: "lightblue",
-                  highlight: "yellowgreen",
-                  label: "PHP",
+                {
+                  value: res.configuration[4].total_web_framework,
+                  color: "lightgreen",
+                  highlight: "coral",
+                  label: "Spring Boot",
                 },
               ];
 
@@ -281,6 +267,11 @@
               <li class="dropdown-item">
                 <a href="repositories.html" style="text-decoration: none">
                   Repositories
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="forklist.html" style="text-decoration: none">
+                  Forked Repositories
                 </a>
               </li>
               <li id="logout" class="dropdown-item">

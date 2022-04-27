@@ -174,7 +174,7 @@ const getPublicRepositoryByIdService = asyncHandler(async (req, res) => {
 
 const getUserForkedProjectsService = asyncHandler(async (req, res) => {
   const forkedProjects = await db.sequelize.query(
-    `CALL sql_web_cloud.users_forked_repos($userId);`,
+    `CALL sql_web_cloud.users_forked_repo($userId);`,
     {
       bind: { userId: req.user.id },
     }

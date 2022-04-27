@@ -1,0 +1,261 @@
+/* Google Font Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #0e1528 !important;
+}
+.btn {
+  width: 100%;
+  border-radius: 10px !important;
+  border: 2px solid blue !important;
+  font-size: 16px;
+  font-weight: 500;
+  color: white !important;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  padding: 3px 20px;
+}
+
+.btn:hover {
+  color: rgb(0, 0, 75) !important;
+  background-color: rgb(248, 248, 248) !important;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid blue;
+  padding: 5px;
+}
+.navbar-nav {
+  display: flex;
+  flex-direction: initial;
+  margin-right: 5px;
+  gap: 5px;
+}
+.home {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-size: 140% 85%;
+  background-position: top;
+  padding: 1rem 2%;
+}
+
+.home .image {
+  flex: 1 1 40rem;
+  padding-top: 1rm;
+}
+
+.home .image img {
+  width: 100%;
+}
+
+.home .content {
+  flex: 1 1 40rem;
+  padding-top: 3rm;
+}
+
+.home .content h1 {
+  font-size: 4rem;
+  color: #fff;
+}
+
+.home .content p {
+  font-size: 1.8rem;
+  color: #eee;
+  padding: 0.5rem 0;
+}
+
+.home .content .btn {
+  border: 2px solid rgb(17, 236, 229);
+  background: transparent;
+
+  color: rgb(17, 236, 229);
+}
+
+.home .content .btn:hover {
+  color: black;
+  background-color: white;
+}
+
+.about {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+  padding-top: 6rem;
+}
+
+.about .image {
+  flex: 1 1 40rem;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.about .image img {
+  height: 70vh;
+}
+
+.about .content {
+  flex: 1 1 40rem;
+}
+
+.about .content h3 {
+  font-size: 4rem;
+  color: #fff;
+}
+
+.about .content .heading {
+  background: transparent;
+}
+
+.about .content p {
+  font-size: 1.8rem;
+  color: #eee;
+  padding: 0.5rem 0;
+}
+
+.about .content ul li {
+  list-style: none;
+  font-size: 2rem;
+  color: #fff;
+  padding: 0.5rem 0;
+}
+
+.about .content ul li i {
+  color: var(--blue);
+}
+.footer {
+  background: transparent;
+  text-align: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.footer .box-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.footer .box-container .box {
+  flex: 1;
+  padding-bottom: 50px;
+}
+
+.footer .box-container .box h3 {
+  font-size: 2rem;
+  color: var(--blue);
+}
+
+.footer .box-container .box p {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.footer .box-container .box p i {
+  padding: 0.5rem;
+  color: white;
+}
+
+.footer .box-container .box:nth-child(2) {
+  text-align: center;
+}
+
+.footer .box-container .box a {
+  font-size: 1.5rem;
+  display: block;
+  color: white;
+  padding: 0.5rem 0;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer .credit {
+  padding: 1rem;
+  text-align: center;
+  background: transparent;
+  color: #eee;
+  font-size: 2rem;
+}
+
+.footer .credit a {
+  color: #fff;
+}
+.btn-mini-side {
+  font-size: 1.5rem !important;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1a2238;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0e1528;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: blue;
+}
+
+/* media queries  */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 55%;
+  }
+
+  .home .content {
+    text-align: center;
+  }
+
+  .features .description {
+    width: auto;
+    padding: 1rem;
+  }
+
+  .contact form {
+    width: 95%;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 50%;
+  }
+
+  .home .content h1 {
+    font-size: 3.5rem;
+  }
+
+  .about .image img {
+    width: 80%;
+    height: auto;
+  }
+
+  .contact form .inputBox input {
+    width: 100%;
+  }
+}

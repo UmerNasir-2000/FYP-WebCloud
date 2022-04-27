@@ -70,7 +70,7 @@ $(document).ready(function () {
         
         ${
           reg.repoDetail[0].web_framework === "Nest.js"
-            ? `<img src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/64/000000/external-cheetah-animal-head-icongeek26-glyph-icongeek26.png"/>` +
+            ? `<img src="images/nest.svg"/ width="48" height="48">` +
               `<h2>Nest.js</h2>`
             : ""
         }
@@ -168,11 +168,9 @@ $(document).ready(function () {
     $(".forkbtn").click(function () {
       alert(this.value);
       $.ajax({
-        url: `/api/repo/fork/${this.value}`,
+        url: `/api/repo/fork`,
         method: "POST",
-        data: {
-          userId: this.value,
-        },
+        data: { project_id: this.value },
         beforeSend: function (xhr) {
           xhr.setRequestHeader(
             "Authorization",
@@ -181,8 +179,6 @@ $(document).ready(function () {
         },
       }).then(function (res) {
         alert("Forked");
-        console.log(res);
-        console.log(this.value);
       });
     });
   });

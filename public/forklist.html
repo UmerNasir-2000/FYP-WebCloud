@@ -4,45 +4,45 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Cloud</title>
+
     <link rel="icon" type="image/png" href="./favicon-32x32.png" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href=" detail.css" />
-    <link rel="stylesheet" href="navbar.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="forklist.css" />
+    <link rel="stylesheet" href="navbar.css" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <script
       type="text/javascript"
       src="/bootstrap/js/bootstrap.min.js"
     ></script>
-    <style>
-      table,
-      tbody,
-      tr,
-      td {
-        all: unset !important;
-      }
-    </style>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
       integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-
-    <title style="color: aliceblue">Document</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   </head>
-  <body>
+
+  <body id="mybody">
     <nav
       class="navbar"
       style="padding: 0px 15px; background-color: transparent"
     >
       <a class="navbar-brand" href="#">
-        <img src="images/four.svg" height="50px" width="50px" alt="" />
+        <img
+          src="images/four.svg"
+          height="50px"
+          width="50px"
+          alt=""
+          style="object-fit: contain"
+        />
       </a>
       <div style="justify-content: end !important">
         <ul
@@ -77,14 +77,25 @@
         </li>
       </div>
     </div>
-    <div class="outer-grid" id="tblReg">
-      <h3 style="color: white; text-align: center">Users Own Project By ID</h3>
-      <table>
-        <tbody></tbody>
-      </table>
+    <div class="outer">
+      <div id="tblReg">
+        <h2 style="text-align: center; color: white">
+          List Of People Who Forked Repository
+        </h2>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Subscription</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
-
-    <script src=" detail.js"></script>
+    <script src="forklist.js"></script>
     <script src="navbar.js"></script>
   </body>
 </html>

@@ -6,6 +6,7 @@ CREATE PROCEDURE `users_forked_repo` (
 	IN projectId int)
 BEGIN
 	SELECT 
+		usr.id,
 		usr.first_name, 
 		usr.last_name, 
 		usr.email, 
