@@ -68,7 +68,7 @@ $(document).ready(function () {
         project_description: project_description,
         web_framework: web_framework,
         database: database,
-        is_public: is_public === "on" ? true : false,
+        is_public: is_public,
         email: email,
         profile_pic: profile_pic,
       },

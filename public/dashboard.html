@@ -162,6 +162,9 @@
           });
           var ctx = $("#mycanvas").get(0).getContext("2d");
           var ctx1 = $("#mycanvas1").get(0).getContext("2d");
+          jQuery(function () {
+            jQuery("#ddlEntity").change();
+          });
 
           $("#ddlEntity").on("change", function () {
             $.ajax({
@@ -267,11 +270,6 @@
               <li class="dropdown-item">
                 <a href="repositories.html" style="text-decoration: none">
                   Repositories
-                </a>
-              </li>
-              <li class="dropdown-item">
-                <a href="forklist.html" style="text-decoration: none">
-                  Forked Repositories
                 </a>
               </li>
               <li id="logout" class="dropdown-item">
