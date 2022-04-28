@@ -33,7 +33,7 @@ $(document).ready(function () {
           <div class="name">Project Name : ${
             reg.repoDetail[0].project_name
           }</div>
-          <div class="nameandemail">
+          <div class="nameandemail" style="display: none;">
           <div>
           Name : Wahaj Rashid
           </div>
