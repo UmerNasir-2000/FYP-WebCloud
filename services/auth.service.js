@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
@@ -16,8 +17,10 @@ const registerUserService = asyncHandler(async (req, res) => {
       .json({ error: "Email Already Exists." });
   }
 
-  const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(password, salt);
+  // const salt = await bcrypt.genSalt(10);
+  // const hash = await bcrypt.hash(password, salt);
+
+  const hash = await argon2.hash(password);
 
   const user = await users.create({
     first_name: firstName,
@@ -63,6 +66,11 @@ const loginUserService = asyncHandler(async (req, res) => {
       .json({ message: "User does not exist" });
 
   const correctPassword = await bcrypt.compare(password, validUser.password);
+
+  //const correctPassword = await argon2.verify(validUser.password, password);
+
+  console.log("validUser.password", validUser.password);
+  console.log("correctPassword :>> ", correctPassword);
 
   if (correctPassword) {
     const accessToken = generateToken(validUser.id);

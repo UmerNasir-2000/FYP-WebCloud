@@ -2,6 +2,7 @@ const {
   createProjectTemplate,
   getUserProjectsService,
   getUserProjectByIdService,
+  getUserForkedProjectsService,
 } = require("../services/project.service");
 
 /**
@@ -37,8 +38,20 @@ const getUserProjectById = async (req, res) => {
   await getUserProjectByIdService(req, res);
 };
 
+/**
+ *   @desc    GET Fetch User's Forked Projects By For Logged In User
+ *   @route   GET /api/project/forked-projects
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const getUserForkedProjects = async (req, res) => {
+  await getUserForkedProjectsService(req, res);
+};
+
 module.exports = {
   createUserProjectTemplate,
   getUserProjects,
   getUserProjectById,
+  getUserForkedProjects,
 };

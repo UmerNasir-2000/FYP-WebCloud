@@ -123,8 +123,24 @@ const getUserProjectByIdService = asyncHandler(async (req, res) => {
   });
 });
 
+const getUserForkedProjectsService = asyncHandler(async (req, res) => {
+  let forkedProjects = await db.sequelize.query(
+    `CALL sql_web_cloud.projects_forked_logged_user($userId) `,
+    {
+      bind: { userId: req.user.id },
+    }
+  );
+
+  console.log("req.user.id :>> ", req.user.id);
+  res.status(StatusCodes.OK).json({
+    message: `List of Projects By Forked By Logged In User`,
+    forkedProjects,
+  });
+});
+
 module.exports = {
   createProjectTemplate,
   getUserProjectsService,
   getUserProjectByIdService,
+  getUserForkedProjectsService,
 };

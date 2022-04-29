@@ -60,9 +60,21 @@ const getUserNotificationsService = asyncHandler(async (req, res) => {
       user_id: req.user.id,
     },
   });
+  let foundUser = "";
+  if (userNotifications) {
+    foundUser = await users.findOne({
+      where: {
+        id: req.user.id,
+      },
+      attributes: {
+        exclude: ["password", "is_admin", "status", "has_subscription"],
+      },
+    });
+  }
   res.status(StatusCodes.OK).json({
     message: `User Notifications`,
     userNotifications,
+    foundUser,
   });
 });
 
