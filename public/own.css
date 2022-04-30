@@ -13,6 +13,25 @@ background: rgb(0, 0, 75) !important; */
 background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 1) 100% ); */
 }
+.btn {
+  height: 80%;
+  width: 30%;
+  border-radius: 10px 30px !important;
+  border: 2px solid rgb(0, 0, 75) !important;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  background-color: blue !important;
+  color: white !important;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-top: 10px !important;
+  margin-bottom: 10px;
+}
+.btn:hover {
+  color: rgb(0, 0, 75) !important;
+  background-color: rgb(248, 248, 248) !important;
+}
 .wrapper {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
@@ -209,6 +228,21 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   background-color: #0e1528;
 }
 @media (max-width: 730px) {
+  .btn {
+    height: 80%;
+    width: 100%;
+    border-radius: 10px 30px !important;
+    border: 2px solid rgb(0, 0, 75) !important;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+    background-color: blue !important;
+    color: white !important;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-top: 10px !important;
+    margin-bottom: 10px;
+  }
   .box1 {
     align-items: flex-start;
   }
@@ -225,6 +259,9 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
     width: 100% !important;
     height: 20% auto;
     padding: 10px;
+  }
+  .fourth-row button {
+    width: 70%;
   }
   .first-row {
     position: relative !important;

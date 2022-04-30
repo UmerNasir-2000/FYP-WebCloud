@@ -26,6 +26,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
     <style>
       table,
       tbody,
@@ -35,7 +36,7 @@
     </style>
     <title style="color: aliceblue">Web Cloud | Home</title>
   </head>
-  <body>
+  <body id="mybody">
     <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
       <a class="navbar-brand" href="#">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
@@ -67,6 +68,15 @@
           <button id="uname" class="btn-mini-side"></button>
         </li>
         <li>
+          <button
+            onclick="location.href = 'notification.html';"
+            id="notifications"
+            class="btn-mini-side"
+          >
+            Notifications
+          </button>
+        </li>
+        <li>
           <button id="logout" class="btn-mini-side">
             <a style="color: rgba(255, 0, 0, 0.671)" target="_blank">LOGOUT</a>
           </button>
@@ -76,26 +86,30 @@
     <div class="outer-grid">
       <div class="wrapper">
         <div class="box6">
-          <button class="btn-mini-side">
-            <a style="text-decoration: none" href="projects.html"
-              >Previous Project</a
-            >
+          <button
+            class="btn-mini-side"
+            onclick="location.href = 'projects.html';"
+          >
+            Previous Project
           </button>
 
-          <button class="btn-mini-side">
-            <a style="text-decoration: none" href="publiclist.html"
-              >Explore Repositories</a
-            >
+          <button
+            class="btn-mini-side"
+            onclick="location.href = 'publiclist.html';"
+          >
+            Explore Repositories
           </button>
-          <button class="btn-mini-side">
-            <a style="text-decoration: none" href="templates.html"
-              >About Template</a
-            >
+          <button
+            class="btn-mini-side"
+            onclick="location.href = 'templates.html';"
+          >
+            About Template
           </button>
-          <button class="btn-mini-side">
-            <a style="text-decoration: none" href="project.html"
-              >Start Project</a
-            >
+          <button
+            class="btn-mini-side"
+            onclick="location.href = 'project.html';"
+          >
+            Start Project
           </button>
         </div>
         <div class="box7">
@@ -108,7 +122,7 @@
               <button class="btn">
                 <a
                   style="text-decoration: none; font-weight: bold !important"
-                  href="templateform.html"
+                  href="project.html"
                   >START PROJECT</a
                 >
               </button>

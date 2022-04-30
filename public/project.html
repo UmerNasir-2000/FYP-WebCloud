@@ -27,7 +27,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
+  <body id="mybody">
     <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
       <a class="navbar-brand" href="#">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
@@ -71,40 +71,28 @@
     <div class="myform">
       <div class="container">
         <div class="cover">
-          <!-- <img src="images/signin.svg" alt="" /> -->
-          <ul>
-            <li>
-              <img src="images/nodejs.gif" />
-            </li>
-            <li>
-              <img src="images/python.gif" />
-            </li>
-            <li>
-              <img src="images/html.gif" />
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="images/php.gif" />
-            </li>
-            <li>
-              <img src="images/java.gif" />
-            </li>
-            <li>
-              <img src="images/cloud1.gif" />
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <img src="images/secure.gif" />
-            </li>
-            <li>
-              <img src="images/php1.gif" />
-            </li>
-            <li>
-              <img src="images/db.gif" />
-            </li>
-          </ul>
+          `<img
+            class="image"
+            src="https://img.icons8.com/officel/240/000000/php-logo.png"
+          />
+
+          <script>
+            $(document).ready(function () {
+              let images = [
+                "https://img.icons8.com/fluency/240/000000/node-js.png",
+                "images/nest.svg",
+                "./images/spring.svg",
+                "https://img.icons8.com/color/240/000000/mongodb.png",
+                "images/mysql.svg",
+                "https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/240/000000/external-net-or-dot-net-a-software-framework-developed-by-microsoft-logo-shadow-tal-revivo.png",
+              ];
+              var i = 0;
+              window.setInterval(function () {
+                $(".image").attr("src", images[i]);
+                i = i == images.length - 1 ? 0 : i + 1;
+              }, 2500);
+            });
+          </script>
         </div>
         <div class="forms">
           <div class="form-content">

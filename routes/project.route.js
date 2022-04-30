@@ -8,6 +8,7 @@ const {
   createUserProjectTemplate,
   getUserProjects,
   getUserProjectById,
+  getUserForkedProjects,
 } = require("../controllers/project.controller");
 const logDatabase = require("../middlewares/logDatabase");
 
@@ -159,5 +160,9 @@ router
     logDatabase,
     createUserProjectTemplate
   );
+
+router
+  .route("/forked-projects")
+  .get(validateToken, logDatabase, getUserForkedProjects);
 
 module.exports = router;

@@ -26,13 +26,19 @@ $(document).ready(function () {
                
                 
                     <button   disabled  class="likebtn" >
-                    <img src="https://img.icons8.com/ios-filled/30/fa314a/like--v1.png"/>  
+                    <img src="https://img.icons8.com/fluency/32/000000/star.png"/>  
                     ${res.hasProject.likes}
                         
                     </button>
                   </div>
         <div class="first-row">
-            <div class="name" id="ideBtn"> Open In IDE </div>
+        <button
+        onclick="location.href = 'editor.html';"
+        id="notifications"
+        class="btn"
+      >
+      Open IDE
+      </button>
         </div>
           <div class="desc">Project Description : ${
             res.hasProject.description

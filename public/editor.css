@@ -1,5 +1,5 @@
 body {
-  background-color: black !important;
+  background-color: #0e1528 !important;
 }
 #editor * {
   font-family: monospace !important;
@@ -20,6 +20,10 @@ body {
   /* Misc */
   display: flex;
 }
+.dropdown-menu ul li:hover {
+  color: black !important;
+}
+
 .container__right {
   /* Take the remaining width */
 
@@ -92,7 +96,7 @@ span.fancytree-title {
   color: white !important;
 }
 ul.fancytree-container {
-  background-color: rgb(15, 23, 36) !important;
+  background-color: #0e1528 !important;
   border: none !important;
 }
 

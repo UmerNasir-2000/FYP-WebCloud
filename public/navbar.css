@@ -64,6 +64,7 @@
   color: aliceblue;
 }
 body.active .sidebar-parent .sidebar-child {
+  overflow: auto;
   right: 0;
 }
 

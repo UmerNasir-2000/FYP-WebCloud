@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  $(".notification_icon .fa-bell").click(function () {
+    $(".dropdown").toggleClass("active");
+  });
   document.getElementById("fullname").innerText =
     localStorage.getItem("first_name");
 
@@ -10,13 +13,12 @@ $(document).ready(function () {
     $("#tblReg  > table > tbody").empty();
 
     $.each(res.trendingPublicRepos, function (r1, reg) {
-      console.log(reg);
       var str = new Date(reg.project_createdAt).toLocaleDateString();
 
       let tr = `
           <tr>
               <td>      
-        
+              <button  value=${reg.project_id}  class="openbtn" > 
               <div class="item1">
                
            <div class="first-row">
@@ -136,18 +138,22 @@ $(document).ready(function () {
               `
               }</div>
               <div>
-              <a href="#" style="text-decoration: none"> 
-              <img src="https://img.icons8.com/ios-filled/30/fa314a/like--v1.png"/>  </a> ${
+              <a href="#" style="text-decoration:none; color :white"> 
+              <img src="https://img.icons8.com/fluency/32/000000/star.png"/> ${
                 reg.project_likes
-              }
+              }</a> 
               </div>
               </div>
-         
+              </button> 
               </td>
           </tr>
         
           `;
       $("#tblReg  > table > tbody").append(tr);
+    });
+    $(".openbtn").click(function () {
+      localStorage["publicId"] = this.value;
+      window.location.href = "detail.html";
     });
   });
   $.ajax({
@@ -158,12 +164,14 @@ $(document).ready(function () {
     $("#tblReg1  > table > tbody").empty();
 
     $.each(res.userRecentRepos, function (r1, reg) {
+      console.log("Recent", reg);
       var str = reg.createdAt;
 
       if (str.length > 5) str = str.substring(0, 10);
       let tr = `
           <tr>
               <td>      
+              <button  value=${reg.id}  class="openbtn" > 
         
               <div class="item1">
                
@@ -223,7 +231,7 @@ $(document).ready(function () {
                   </div>
             
             </div>
-                <h1 style="font-size: medium; margin-top: 6px">
+                <h1 style="font-size: medium; margin-top: 6px;text-align:start">
                   Description
                 </h1>
                 <div class="desc">
@@ -284,18 +292,45 @@ $(document).ready(function () {
           `
           }</div>
           <div>
-          <a href="#" style="text-decoration: none;"> 
-          <img src="https://img.icons8.com/ios-filled/30/fa314a/like--v1.png"/>  </a> ${
-            reg.likes
-          }
+         <a href="#" style="text-decoration:none; color :white"> 
+              <img src="https://img.icons8.com/fluency/32/000000/star.png"/> ${
+                reg.likes
+              }</a> 
           </div>
               </div>
-         
+         </button>
               </td>
           </tr>
         
           `;
       $("#tblReg1  > table > tbody").append(tr);
+    });
+    $.ajax({
+      url: `/api/user/notifications`,
+      method: "GET",
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    }).then(function (res) {
+      $(".dropdown  > table > tbody").empty();
+
+      $.each(res.userNotifications, function (r1, reg) {
+        console.log("not", reg);
+        let t = new Date(reg.createdAt).toDateString();
+        tr = `
+        <div class="notify_item">
+     
+        <div class="notify_info">
+          <p>${reg.text}</p>
+          <span >${t}</span>
+        </div>
+      </div>
+        `;
+        $(".dropdown  > table > tbody").append(tr);
+      });
+    });
+
+    $(".openbtn").click(function () {
+      localStorage["publicId"] = this.value;
+      window.location.href = "detail.html";
     });
   });
 });

@@ -66,6 +66,13 @@ button.openbtn {
   padding: 0 !important;
   margin: 0 !important;
 }
+button.openbtn1 {
+  border: none !important;
+  background-color: transparent;
+  color: transparent;
+  padding: 0 !important;
+  margin: 0 !important;
+}
 
 .first-row {
   display: flex;
@@ -98,6 +105,7 @@ button.openbtn {
   .container {
     height: fit-content;
     position: relative;
+    text-align: center;
     display: grid;
     grid-template-columns: repeat(1, minmax(150px, 1fr));
     grid-gap: 1rem;

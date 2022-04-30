@@ -41,14 +41,6 @@ $(document).ready(function () {
     //window.location.href = "index.html";
   });
 
-  $("#mybody").hide();
-  if (localStorage.getItem("token")) {
-    $("#mybody").show();
-  } else if (!localStorage.getItem("token")) {
-    window.location.href = "index.html";
-    alert("User Need to Login First");
-  }
-
   $("#register").click(function () {
     var project_name = $("#project_name").val();
     var database = $("#db_engine").val();

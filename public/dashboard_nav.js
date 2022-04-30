@@ -1,18 +1,25 @@
 $(document).ready(function () {
-  var user = localStorage.getItem("name");
+  $("#mybody").hide();
   var fullname = localStorage.getItem("fullname");
   var pic = localStorage.getItem("url");
+  var user = localStorage.getItem("first_name");
   $("#uname").text(user);
+  $("#aname").text(user);
   $("#mypic").text(pic);
-  $("#mybody").hide();
-  $("#mybody").show();
   $("#fullname").text(fullname);
-
-  if (localStorage.getItem("token")) {
+  if (!localStorage.getItem("token")) {
+    window.setInterval(function () {
+      // this will execute every 5 minutes => show the alert here
+      alert("User is Required to Login First");
+      window.location.href = "index.html";
+    }, 1);
+  } else if (localStorage.getItem("isadmin") == "0") {
+    window.setInterval(function () {
+      alert("Only For Admin");
+    }, 2);
+    history.back();
+  } else if (localStorage.getItem("token")) {
     $("#mybody").show();
-  } else if (!localStorage.getItem("token")) {
-    window.location.href = "index.html";
-    alert("User Need to Login First");
   }
 
   $("#mypic").empty();
@@ -29,11 +36,12 @@ $(document).ready(function () {
     localStorage.removeItem("project_name");
     localStorage.removeItem("fullname");
     localStorage.removeItem("email");
-    //window.location.host = "localhost:5001";
+    localStorage.removeItem("first_name");
+    localStorage.removeItem("last_name");
+    localStorage.removeItem("publicId");
+    localStorage.removeItem("projectId");
+    localStorage.removeItem("idprofile");
     window.location.href = "index.html";
-    const wholeURL = `${window.location.protocol}//${window.location.host}/index.html`;
-
-    //window.location.href = "index.html";
   });
   $(".select_button1").click(function () {
     $(".select1").toggle();

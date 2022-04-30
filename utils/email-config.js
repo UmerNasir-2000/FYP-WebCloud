@@ -12,7 +12,7 @@ const sendEmail = async (receiver) => {
   });
 
   let mailOptions = {
-    from: `"Web Cloud 👻" <${process.env.SENDER_EMAIL}>`,
+    from: `"Web Cloud" <${process.env.SENDER_EMAIL}>`,
     to: `${receiver}`,
     subject: "Hello ✔",
     text: "Hello world?",

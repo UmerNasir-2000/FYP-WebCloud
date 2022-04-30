@@ -18,6 +18,7 @@
       src="/bootstrap/js/bootstrap.min.js"
     ></script>
 
+    <script src="navbar.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
       integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
@@ -33,7 +34,7 @@
       }
     </style>
   </head>
-  <body>
+  <body id="mybody">
     <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
       <a class="navbar-brand" href="#">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
@@ -74,10 +75,10 @@
     <h4
       style="
         font-size: 30pt;
-        margin-bottom: -10px;
-        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-top: 15px;
         color: white;
-        text-align: center;
+        margin-left: 7%;
       "
     >
       OWN REPOSITORIES
@@ -87,7 +88,11 @@
         <tbody></tbody>
       </table>
     </div>
-    <script src="navbar.js"></script>
+    <div id="tblReg2" class="container">
+      <table>
+        <tbody></tbody>
+      </table>
+    </div>
     <script src="projects.js"></script>
   </body>
 </html>
