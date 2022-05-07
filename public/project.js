@@ -75,7 +75,7 @@ $(document).ready(function () {
         setTimeout(function () {
           //your code here
           window.location.href = "instruction.html";
-        }, 1000);
+        }, 3000);
 
         localStorage.setItem(
           "project_name",
