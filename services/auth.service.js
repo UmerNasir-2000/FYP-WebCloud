@@ -20,7 +20,8 @@ const registerUserService = asyncHandler(async (req, res) => {
   // const salt = await bcrypt.genSalt(10);
   // const hash = await bcrypt.hash(password, salt);
 
-  const hash = await bcrypt.hash(password);
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
 
   const user = await users.create({
     first_name: firstName,

@@ -2,17 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Web Cloud</title>
-
-    <link rel="stylesheet" href="navbar.css" />
-    <link rel="stylesheet" href="notification.css" />
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="notification.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <script
       type="text/javascript"
       src="/bootstrap/js/bootstrap.min.js"
@@ -24,14 +26,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script>
-      $(document).ready(function () {
-        $(".notification_icon .fa-bell").click(function () {
-          $(".dropdown").toggleClass("active");
-        });
-      });
-    </script>
-    <style></style>
+
+    <title style="color: aliceblue">Web Cloud | Home</title>
   </head>
   <body id="mybody">
     <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
@@ -80,8 +76,20 @@
         </li>
       </div>
     </div>
+    <div id="tblReg">
+      <h2 style="text-align: center; color: white">Notifications</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">User Details</th>
+            <th scope="col">Notification</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
-    <script src="notification.js"></script>
     <script src="navbar.js"></script>
+    <script src="notification.js"></script>
   </body>
 </html>

@@ -19,7 +19,7 @@ $(document).ready(function () {
         let tr = `
           <tr>
               <td>      
-              <button  value=${reg.project_id}  class="openbtn" > 
+              <button  value=${reg.project_id} class="openbtn" > 
         
               <div class="item">
                
@@ -154,6 +154,7 @@ $(document).ready(function () {
         $("#tblReg  > table > tbody").append(tr);
       });
       $(".openbtn").click(function () {
+        alert(this.value);
         localStorage["publicId"] = this.value;
         window.location.href = "detail.html";
       });
