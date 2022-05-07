@@ -26,7 +26,7 @@ body {
   z-index: 999;
   background: #0e1528 url("images/64X64.gif") center no-repeat;
 }
-*/ body.loading {
+body.loading {
   overflow: hidden;
 }
 /* Make spinner image visible when body element has the loading class */
@@ -260,9 +260,10 @@ input ::selection {
   /* background-color: blue !important; */
   color: white !important;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition-duration: 0.4s;
   margin-top: 20px !important;
 }
+
 .btn-mini {
   text-decoration: none;
   border-radius: 10px !important;

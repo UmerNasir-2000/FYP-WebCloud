@@ -18,7 +18,7 @@ $(document).ready(function () {
       let tr = `
           <tr>
               <td>      
-              <button  value=${reg.project_id}  class="openbtn" > 
+              <button  value=${reg.project_id}  class="openbtn1" > 
               <div class="item1">
                
            <div class="first-row">
@@ -329,6 +329,10 @@ $(document).ready(function () {
     });
 
     $(".openbtn").click(function () {
+      localStorage["projectId"] = this.value;
+      window.location.href = "own.html";
+    });
+    $(".openbtn1").click(function () {
       localStorage["publicId"] = this.value;
       window.location.href = "detail.html";
     });

@@ -1,75 +1,56 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-
-.notification_wrap {
-  width: 500px;
-  margin: 120px auto 0;
+/* Google Font Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
 }
-
-.notification_wrap .notification_icon {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  font-size: 32px;
-  margin: 0 auto;
-  text-align: center;
-  color: #605dff;
+body {
+  background-color: #0e1528 !important;
 }
-
-.notification_wrap .notification_icon .fa-bell {
-  cursor: pointer;
-}
-
-.notification_wrap .dropdown {
-  width: 350px;
-  height: auto;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.125);
-  margin: 15px auto 0;
-  padding: 15px;
-  position: relative;
-  display: none;
-}
-
-.notification_wrap .dropdown .notify_item {
+.sp {
   display: flex;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #dbdaff;
+  justify-content: end;
+}
+table {
+  margin: 0 auto; /* or margin: 0 auto 0 auto */
+  color: blue !important;
+}
+td {
+  padding: 8px 8px;
+  border: 0;
+  color: white;
+}
+table thead {
+  border: 1px solid blue !important;
+}
+table {
+  border: 1px solid blue;
+  width: 50% !important;
+}
+table td {
+  border: 1px solid blue; /* Style just to show the table cell boundaries */
+}
+table th {
+  white-space: nowrap;
+  color: white;
+  padding: 10px;
+  border: 1px solid blue !important;
 }
 
-.notification_wrap .dropdown .notify_item:last-child {
-  border-bottom: 0px;
+table.no-spacing {
+  border-spacing: 0; /* Removes the cell spacing via CSS */
+  border-collapse: collapse; /* Optional - if you don't want to have double border where cells touch */
 }
 
-.notification_wrap .dropdown .notify_item .notify_img {
-  margin-right: 15px;
+button.viewbtn:hover {
+  border-radius: 10px;
+  background-color: blue;
+  transition: 1s all;
 }
-
-.notification_wrap .dropdown .notify_item .notify_info p {
-  margin-bottom: 5px;
-}
-
-.notification_wrap .dropdown .notify_item .notify_info p span {
-  color: #605dff;
-  margin-left: 5px;
-}
-
-.notification_wrap .dropdown .notify_item .notify_info .notify_time {
-  color: #c5c5e6;
-  font-size: 12px;
-}
-
-.notification_wrap .dropdown:before {
-  content: "";
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 15px solid;
-  border-color: transparent transparent #fff transparent;
-}
-
-.notification_wrap .dropdown.active {
-  display: block;
+button.viewbtn {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  color: white;
+  width: 100%;
+  padding: 30px 50px;
 }

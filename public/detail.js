@@ -5,6 +5,8 @@ $(document).ready(function () {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   }).then(function (reg) {
     $("#tblReg > table > tbody").empty();
+    document.getElementById("headerTxt").innerText =
+      reg.repoDetail[0].project_name;
     console.log(reg);
     let tr = `
          
@@ -14,10 +16,20 @@ $(document).ready(function () {
                 <div class="wrapper" >
                 <div class="box1">
                 <div class="first">
-                <button class="forkbtn" value=${reg.repoDetail[0].project_id} >
-                Fork Repository
-                   </button>
-             
+                ${
+                  localStorage.getItem("isadmin") === "0"
+                    ? `
+                  <button class="forkbtn" value=${reg.repoDetail[0].project_id} >
+                  Fork Repository
+                  </button>
+                  `
+                    : ""
+                }
+                   <button class="forkbtn" value=${
+                     reg.repoDetail[0].project_id
+                   } >
+                   Download
+                      </button>
               
                   <button  value=${
                     reg.repoDetail[0].project_id
@@ -27,13 +39,36 @@ $(document).ready(function () {
                   </button>
                  
                 </div>
-                
-      <div class="first-row">
-          <div class="name">Project Name : ${
-            reg.repoDetail[0].project_name
-          }</div>
+                <div class="singleline">
+    
+          <button  value=${reg.repoDetail[0].usr_id}  class="openbtn" >  
+          <div class="first-row">
+          <img class="image" src=${
+            reg.repoDetail[0].profile_picture_url
+          } alt="" />
   
-      </div>
+          <div class="nameandemail">
+          <h3>${reg.repoDetail[0].first_name}  ${
+      reg.repoDetail[0].last_name
+    }</h3>
+                  
+                  <span>${reg.repoDetail[0].email}</span>
+       </div>
+         
+            </div>
+       
+          
+            </button>
+            <div   disabled  class="ispublic"> 
+            ${
+              reg.repoDetail[0].is_public === false
+                ? `<span style="  background-color: #7e0404;border-radius:20px 10px;">Private</span>`
+                : `<span style="background-color: green; ">Public</span>`
+            }
+                
+            </div>
+            </div>
+ 
         <div class="desc">Project Description : ${reg.repoDetail[0].description}
         
         
@@ -98,32 +133,7 @@ $(document).ready(function () {
              
              </div>
     </div>
-      </div>
-      
-      
-      
-      
-      <div class="box2">
-      <button  value=${reg.repoDetail[0].usr_id}  class="openbtn" > 
-     
-      
-        
-        <div class="first-row">
-        <img class="image" src=${
-          reg.repoDetail[0].profile_picture_url
-        } alt="" />
-
-        <div class="nameandemail">
-        <h3>${reg.repoDetail[0].first_name}  ${reg.repoDetail[0].last_name}</h3>
-                
-                <span>${reg.repoDetail[0].email}</span>
-     </div>
-       
-          </div>
-     
-        
-          </button>
-      </div>
+      </div> 
     </td>
     </tr>
        
@@ -132,6 +142,7 @@ $(document).ready(function () {
     $("#tblReg > table > tbody").append(tr);
 
     $(".likebtn").click(function () {
+      $(".likebtn").prop("disabled", true);
       alert(this.value);
       $.ajax({
         url: `/api/repo/like/${this.value}`,
@@ -158,6 +169,8 @@ $(document).ready(function () {
     });
 
     $(".forkbtn").click(function () {
+      $(".forkbtn").prop("disabled", true);
+
       alert(this.value);
       $.ajax({
         url: `/api/repo/fork`,
