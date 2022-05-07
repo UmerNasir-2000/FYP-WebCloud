@@ -20,7 +20,9 @@ $(document).ready(function () {
                   <div class="fourth-row">
   
     
-                  <button class="forkbtn" value=${res.hasProject.id} >
+                  <button style="background-color:red" class="forkbtn" value=${
+                    res.hasProject.id
+                  } >
                   Download
                      </button>
                
@@ -113,11 +115,11 @@ $(document).ready(function () {
             ? `<span style=" white;background-color: #7e0404;border-radius:20px 10px; 
                   font-weight:1000;
                   font-style: italic;
-               ;  padding: 0px 10px;">Private</span>`
+               ;  padding: 8px 70px;">Private</span>`
             : `<span style=" color : white;
                   font-weight:1000;
                   font-style: italic
-                  ;background-color: green;border-radius:20px 10px;     padding: 0px 40px;">Public</span>`
+                  ;background-color: green;border-radius:20px 10px;  margin-bottom:50px ;  padding: 8px 70px;">Public</span>`
         }
             
         </div>

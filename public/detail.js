@@ -17,7 +17,9 @@ $(document).ready(function () {
                 <button class="forkbtn" value=${reg.repoDetail[0].project_id} >
                 Fork Repository
                    </button>
-             
+                   <button style="background-color:red" class="forkbtn"  >
+                  Download
+                     </button>
               
                   <button  value=${
                     reg.repoDetail[0].project_id
@@ -29,9 +31,9 @@ $(document).ready(function () {
                 </div>
                 
       <div class="first-row">
-          <div class="name">Project Name : ${
-            reg.repoDetail[0].project_name
-          }</div>
+
+
+        
           <div class="nameandemail" style="display: none;">
           <div>
           Name : Wahaj Rashid
@@ -51,7 +53,7 @@ $(document).ready(function () {
         <div>
       
     
-        Project Web Framwork :
+        Project Web Framework :
       
         ${
           reg.repoDetail[0].web_framework === "Node.js"
@@ -113,6 +115,20 @@ $(document).ready(function () {
       
       
       <div class="box2">
+      <div   disabled  class="ispublic"> 
+      ${
+        reg.repoDetail[0].is_public === "0"
+          ? `<span style=" white;background-color: #7e0404;border-radius:20px 10px; 
+                font-weight:1000;
+                font-style: italic;
+             ;  padding: 8px 70px;">Private</span>`
+          : `<span style=" color : white;
+                font-weight:1000;
+                font-style: italic
+                ;background-color: green;border-radius:20px 10px;  margin-bottom:50px ;  padding: 8px 70px;">Public</span>`
+      }
+          
+      </div>
       <button  value=${reg.repoDetail[0].usr_id}  class="openbtn" > 
      
       

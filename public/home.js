@@ -161,14 +161,24 @@ $(document).ready(function () {
     method: "GET",
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   }).then(function (res) {
-    $("#tblReg1  > table > tbody").empty();
-
-    $.each(res.userRecentRepos, function (r1, reg) {
-      console.log("Recent", reg);
-      var str = reg.createdAt;
-
-      if (str.length > 5) str = str.substring(0, 10);
+    if (res.userRecentRepos.length !== 0) {
       let tr = `
+    <h4
+   
+  >
+   Recent Projects
+  </h4>
+      `;
+      $("#tblReg3").append(tr);
+
+      $("#tblReg1  > table > tbody").empty();
+
+      $.each(res.userRecentRepos, function (r1, reg) {
+        console.log("Recent", reg);
+        var str = reg.createdAt;
+
+        if (str.length > 5) str = str.substring(0, 10);
+        let tr = `
           <tr>
               <td>      
               <button  value=${reg.id}  class="openbtn" > 
@@ -303,8 +313,11 @@ $(document).ready(function () {
           </tr>
         
           `;
-      $("#tblReg1  > table > tbody").append(tr);
-    });
+        $("#tblReg1  > table > tbody").append(tr);
+      });
+    } else {
+      console.log("empty");
+    }
     $.ajax({
       url: `/api/user/notifications`,
       method: "GET",

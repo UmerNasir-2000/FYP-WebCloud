@@ -110,38 +110,7 @@ $(document).ready(function () {
                 }
                 </p>
                 </div>
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
-                  "
-                >
-                  <div>
-                    <img
-                      src=${reg.profile_picture_url}
-                      width="50"
-                      height="50"
-                      style="border-radius: 30px"
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    style="
-                      display: flex;
-                      flex-direction: column; 
-                      font-size:small;
-                      margin-right: 20px;
-                      gap:5px;
-                    "
-                  >
-                   
-                    <div>Created by : ${reg.first_name}${reg.last_name}</div> 
-                    <div>${reg.email}</div>
-                  </div>
-           
-              </div>
+          
               <div class="lastline">
               <div>${str}</div>
               <div> 

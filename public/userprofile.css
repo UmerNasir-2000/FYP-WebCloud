@@ -7,8 +7,8 @@ body {
   min-height: 100vh;
 }
 .item {
-  height: 290px !important;
-  max-height: 290px !important;
+  height: 240px !important;
+  max-height: 240px !important;
   width: 340px !important;
   background-color: #1a2238;
   overflow: auto !important;

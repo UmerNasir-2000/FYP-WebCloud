@@ -12,13 +12,14 @@ $("#register").click(function (e) {
       password: password,
     },
     success: function (result, status, xhr) {
+      alert("INSIDE SUCCESS");
       if (xhr.responseJSON.user.status !== "Enable") {
         window.location.href = "disable.html";
-      }
-      if (
+      } else if (
         xhr.responseJSON.user.is_admin &&
         xhr.responseJSON.user.status === "Enable"
       ) {
+        alert("INSIDE SUCCESS ADMIN");
         localStorage.setItem("isadmin", 1);
         localStorage.setItem("first_name", xhr.responseJSON.user.first_name);
         localStorage.setItem("last_name", xhr.responseJSON.user.last_name);
@@ -28,6 +29,7 @@ $("#register").click(function (e) {
 
         window.location.href = "dashboard.html";
       } else if (xhr.responseJSON.user.status === "Enable") {
+        alert("INSIDE SUCCESS USER");
         localStorage.setItem("isadmin", 0);
         localStorage.setItem("token", xhr.responseJSON.accessToken);
         localStorage.setItem("first_name", xhr.responseJSON.user.first_name);
