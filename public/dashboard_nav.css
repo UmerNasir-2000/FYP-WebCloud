@@ -9,6 +9,9 @@
   position: relative;
   display: inline-block;
 }
+.dropdown-content ul {
+  text-align: start !important;
+}
 .dropdown-item a {
   color: white !important;
 }

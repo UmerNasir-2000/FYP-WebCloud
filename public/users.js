@@ -6,6 +6,7 @@ $(document).ready(function () {
   }).then(function (res) {
     $("#tblReg > table > tbody").empty();
     $.each(res.existingUsers, function (r1, reg) {
+      console.log("R1", reg);
       let tr = `
             <tr>
           
@@ -23,34 +24,45 @@ $(document).ready(function () {
               }</td>
               <td id="yes">
                   <select class="standard-select1" id="status">
-                    <option value="" disabled selected hidden>${
-                      reg.status
-                    }</option>
-                    <option value=${reg.id}>Disable</option>
+                  <option value=""  disabled selected hidden>${
+                    reg.status
+                  }</option>
                     <option value=${reg.id}>Enable</option>
+                    <option value=${reg.id}>Disable</option>
                   </select>
+              </td>
+              <td>
+              <button  value=${reg.id}  class="openbtn" >View</button>
               </td>
             </tr>             
   `;
       $("#tblReg > table > tbody").append(tr);
     });
-    $("select").on("change", function () {
-      let a = $("#status :selected").text();
-      let id = $("#status :selected").val();
-
-      $.ajax({
-        url: `/api/admin/user-status/${id}`,
-        method: "PUT",
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader(
-            "Authorization",
-            `Bearer ${localStorage.getItem("token")}`
-          );
-        },
-        data: {
-          user_status: a,
-        },
-      }).then((res) => alert("Updated"));
+    $(".openbtn").click(function () {
+      localStorage["idprofile"] = this.value;
+      window.location.href = "userprofile.html";
     });
+
+    $("#tblReg >  table > tbody >tr > #yes > #status").on(
+      "change",
+      function () {
+        var a = $("#status :selected").text();
+        var id = $("#status :selected").val();
+        console.log(a);
+        $.ajax({
+          url: `/api/admin/user-status/${id}`,
+          method: "PUT",
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader(
+              "Authorization",
+              `Bearer ${localStorage.getItem("token")}`
+            );
+          },
+          data: {
+            user_status: a,
+          },
+        }).then((res) => alert("Updated"));
+      }
+    );
   });
 });

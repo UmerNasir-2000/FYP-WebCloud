@@ -6,6 +6,16 @@ body {
   background-color: #0e1528;
   min-height: 100vh;
 }
+.item:hover {
+  background-color: #0e1528;
+}
+button.openbtn {
+  border: none !important;
+  background-color: transparent;
+  color: transparent;
+  padding: 0 !important;
+  margin: 0 !important;
+}
 .item {
   height: 290px !important;
   max-height: 290px !important;
@@ -30,7 +40,6 @@ body {
   align-items: center;
 }
 .container {
-  text-align: center;
   height: fit-content;
   display: grid;
   grid-gap: 2rem;
@@ -87,6 +96,7 @@ ul {
 @media (max-width: 810px) {
   .container {
     height: fit-content;
+    text-align: center;
     position: relative;
     display: grid;
     grid-template-columns: repeat(1, minmax(150px, 1fr));

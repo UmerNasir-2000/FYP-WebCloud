@@ -5,6 +5,7 @@ $$
 CREATE DEFINER=`root`@`%` PROCEDURE `sql_web_cloud`.`get_all_repositories`()
 BEGIN
 	SELECT 
+	   proj.id AS `project_id`,
 	   proj.project_name AS `project_name`, 
 	   proj.description AS `project_description`, 
 	   proj.likes AS `project_likes`,

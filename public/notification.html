@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Notification Dropdown</title>
+    <link rel="stylesheet" href="requests.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/jquery/jquery.min.js"></script>
+    <linknodemailer
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="/bootstrap/js/bootstrap.min.js"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
+      integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    nodemailer
+    <script>
+      $(document).ready(function () {
+        $(".notification_icon .fa-bell").click(function () {
+          $(".dropdown").toggleClass("active");
+        });
+      });
+    </script>
+    <style>
+      .sp {
+        display: flex;
+        justify-content: end;
+      }
+      table {
+        margin: 0 auto; /* or margin: 0 auto 0 auto */
+      }
+      td {
+        padding: 8px 8px;
+        border: 0;
+      }
+      table {
+        border: 1px solid blue;
+      }
+      table td {
+        border: 1px solid blue; /* Style just to show the table cell boundaries */
+      }
+      th {
+        padding: 10px;
+      }
+
+      table.no-spacing {
+        border-spacing: 0; /* Removes the cell spacing via CSS */
+        border-collapse: collapse; /* Optional - if you don't want to have double border where cells touch */
+      }
+      .outer {
+        background-color: transparent;
+        box-shadow: transparent !important;
+      }
+      button.viewbtn:hover {
+        border-radius: 10px;
+        background-color: blue;
+        transition: 1s all;
+      }
+      button.viewbtn {
+        cursor: pointer;
+        border: 0;
+        background-color: transparent;
+        color: white;
+        width: 100%;
+        padding: 30px 50px;
+      }
+    </style>
+  </head>
+  <body id="mybody">
+    <div id="tblReg">
+      <h2 style="text-align: center; color: white">
+        User View All Notifications
+      </h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">User Details</th>
+            <th scope="col">Notification</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="notification.js"></script>
+  </body>
+</html>

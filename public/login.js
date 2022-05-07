@@ -19,6 +19,7 @@ $("#register").click(function (e) {
         xhr.responseJSON.user.is_admin &&
         xhr.responseJSON.user.status === "Enable"
       ) {
+        localStorage.setItem("isadmin", 1);
         localStorage.setItem("first_name", xhr.responseJSON.user.first_name);
         localStorage.setItem("last_name", xhr.responseJSON.user.last_name);
         localStorage.setItem("email", xhr.responseJSON.user.email);
@@ -27,6 +28,7 @@ $("#register").click(function (e) {
 
         window.location.href = "dashboard.html";
       } else if (xhr.responseJSON.user.status === "Enable") {
+        localStorage.setItem("isadmin", 0);
         localStorage.setItem("token", xhr.responseJSON.accessToken);
         localStorage.setItem("first_name", xhr.responseJSON.user.first_name);
         localStorage.setItem("last_name", xhr.responseJSON.user.last_name);
@@ -41,8 +43,6 @@ $("#register").click(function (e) {
     },
     error: function (xhr, status, error) {
       $("#msg").html(xhr.responseJSON.error);
-      $("input:text").val("");
-      $("input:password").val("");
     },
   });
 

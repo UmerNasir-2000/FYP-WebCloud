@@ -1,20 +1,21 @@
 $(document).ready(function () {
-  var user = localStorage.getItem("first_name");
+  $("#mybody").hide();
   var fullname = localStorage.getItem("fullname");
   var pic = localStorage.getItem("url");
+  var user = localStorage.getItem("first_name");
   $("#uname").text(user);
   $("#mypic").text(pic);
-  $("#mybody").hide();
-  $("#mybody").show();
   $("#fullname").text(fullname);
 
-  if (localStorage.getItem("token")) {
+  if (!localStorage.getItem("token")) {
+    window.setInterval(function () {
+      // this will execute every 5 minutes => show the alert here
+      alert("User is Required to Login First");
+      window.location.href = "index.html";
+    }, 1);
+  } else if (localStorage.getItem("token")) {
     $("#mybody").show();
-  } else if (!localStorage.getItem("token")) {
-    window.location.href = "index.html";
-    alert("User Need to Login First");
   }
-
   $("#mypic").empty();
 
   let tr = `

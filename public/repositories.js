@@ -19,6 +19,7 @@ $(document).ready(function () {
         let tr = `
           <tr>
               <td>      
+              <button  value=${reg.project_id}  class="openbtn" > 
         
               <div class="item">
                
@@ -139,22 +140,26 @@ $(document).ready(function () {
               `
               }</div>
               <div>
-              <a href="#" style="text-decoration: none"> 
-              <img src="https://img.icons8.com/ios-filled/30/fa314a/like--v1.png"/>  </a> ${
+              <a href="#" style="text-decoration:none; color :white"> 
+              <img src="https://img.icons8.com/fluency/32/000000/star.png"/> ${
                 reg.project_likes
-              }
+              }</a> 
               </div>
            </div>
-         
+         </button>
               </td>
           </tr>
         
           `;
         $("#tblReg  > table > tbody").append(tr);
       });
+      $(".openbtn").click(function () {
+        localStorage["publicId"] = this.value;
+        window.location.href = "detail.html";
+      });
     },
     error: function (xhr, status, error) {
-      alert(xhr.responseText);
+      console.log(xhr.responseText);
     },
   });
 });

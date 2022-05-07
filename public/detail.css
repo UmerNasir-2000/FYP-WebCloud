@@ -23,11 +23,9 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   box-shadow: 2px 2px 3px blue;
 }
 .box2 {
-  padding: 10px;
   display: flex;
   text-align: center;
   flex-direction: column;
-  justify-content: space-evenly;
   grid-column-start: 3;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -35,8 +33,6 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   color: white;
   align-items: center;
   justify-content: start;
-  gap: 10px;
-  margin: 10px;
 }
 .box2 div {
   border-radius: 10px;
@@ -65,7 +61,6 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 }
 
 .first-row {
-  position: relative !important;
   background-color: #0e1528 !important;
   display: flex;
   flex-direction: row;
@@ -116,8 +111,7 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   width: 40%;
   text-align: start !important;
 }
-.nameandemail {
-}
+
 .download {
   text-align: center !important;
   height: fit-content !important;
@@ -148,9 +142,11 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   color: white;
 }
 .nameandemail {
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  text-align: start;
+  text-align: center;
+  justify-content: center;
 }
 
 .outer-grid {
@@ -202,13 +198,13 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   width: 100% !important;
   text-align: justify;
   max-height: 100%;
-  height: 70% !important;
+  height: 100% !important;
   color: white;
 }
 
 .openbtn div {
   color: white;
-  height: 70%;
+  height: 50%;
   width: 100%;
   padding: 20px;
 }
@@ -216,8 +212,8 @@ button.openbtn {
   border: 0;
   background-color: transparent;
 }
-.openbtn:hover {
-  background-color: #283149;
+button .first-row:hover {
+  background-color: #36415f !important;
 }
 
 ::-webkit-scrollbar {

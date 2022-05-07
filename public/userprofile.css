@@ -94,7 +94,7 @@ span {
 
 .wrapper {
   display: grid !important;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(4, 2fr);
   grid-auto-rows: 200px;
   border-radius: 10px;
   padding-left: 50px;
@@ -122,6 +122,13 @@ span {
   flex-direction: column;
   text-align: justify;
 }
+#tblReg1 {
+  box-shadow: 2px 2px 3px blue;
+  height: max-content;
+  text-align: center;
+  width: auto;
+  padding: 10px;
+}
 .box2 {
   padding: 10px;
   display: flex;
@@ -129,7 +136,7 @@ span {
   flex-direction: column;
   justify-content: space-between;
   grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 5;
   color: white;

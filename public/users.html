@@ -14,7 +14,7 @@
     />
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="users.css" />
-    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="dashboard_nav.css" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <script
       type="text/javascript"
@@ -31,52 +31,50 @@
   </head>
 
   <body id="mybody">
-    <nav
-      class="navbar"
-      style="padding: 0px 15px; background-color: transparent"
-    >
-      <a class="navbar-brand" href="#">
-        <img
-          src="images/four.svg"
-          height="50px"
-          width="50px"
-          alt=""
-          style="object-fit: contain"
-        />
+    <nav class="navbar navbar-expand navbar-light">
+      <a class="navbar-brand" href="dashboard.html" style="margin-left: 5px">
+        <img src="images/four.svg" height="50px" width="50px" alt="" />
       </a>
-      <div style="justify-content: end !important">
-        <ul
-          class="navbar-nav"
-          style="flex-direction: row; justify-content: flex-end !important"
-        >
-          <div class="section">
-            <div class="top_navbar">
-              <div class="bars">
-                <a href="#">
-                  <i class="fas fa-bars"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </ul>
-      </div>
-    </nav>
-    <div class="sidebar-parent">
-      <div class="sidebar-child">
-        <div class="sidebar-pic">
-          <a id="mypic" href=""></a>
-        </div>
+      <ul class="navbar-nav mr-auto pl-2" style="margin-right: 10px">
+        <li>
+          <a href="javascript:void(0);" class="select_button1" id="mypic"> </a>
 
-        <li>
-          <button id="uname" class="btn-mini-side"></button>
+          <form class="dropdown-content select1">
+            <ul
+              class="list-group text-black"
+              style="cursor: pointer; text-align: center"
+            >
+              <button
+                id="uname"
+                class="dropdown-item"
+                style="pointer-events: none; color: rgb(12, 235, 12)"
+              ></button>
+              <li class="dropdown-item">
+                <a href="users.html" style="text-decoration: none"> Users </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="requests.html" style="text-decoration: none">
+                  Requests
+                </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="repositories.html" style="text-decoration: none">
+                  Repositories
+                </a>
+              </li>
+              <li id="logout" class="dropdown-item">
+                <a
+                  style="color: rgba(255, 9, 9, 0.938) !important"
+                  target="_blank"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </form>
         </li>
-        <li>
-          <button id="logout" class="btn-mini-side">
-            <a style="color: rgba(255, 0, 0, 0.671)" target="_blank">LOGOUT</a>
-          </button>
-        </li>
-      </div>
-    </div>
+      </ul>
+    </nav>
+
     <div class="outer">
       <div id="tblReg">
         <h2 style="text-align: center; color: white">Admin View All Users</h2>
@@ -88,13 +86,14 @@
               <th scope="col">Email</th>
               <th scope="col">Subscription</th>
               <th scope="col">Status</th>
+              <th scope="col">View Deatils</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
       </div>
     </div>
+    <script src="dashboard_nav.js"></script>
     <script src="users.js"></script>
-    <script src="navbar.js"></script>
   </body>
 </html>

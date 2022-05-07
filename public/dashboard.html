@@ -36,12 +36,8 @@
       integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
       crossorigin="anonymous"
     ></script>
-    <script src="project.js"></script>
     <script>
       $(document).ready(function () {
-        jQuery(function () {
-          jQuery("#ddlEntity").change();
-        });
         $("#mycanvas1").hide();
         $("#web").hide();
 
@@ -49,6 +45,9 @@
           callDashboard();
         });
         callDashboard();
+        jQuery(function () {
+          jQuery("#ddlEntity").change();
+        });
 
         function callDashboard() {
           $(".standard-select").on("change", function () {
@@ -195,37 +194,38 @@
               var piechart = new Chart(ctx).Pie(data);
               var data1 = [
                 {
-                  value: res.configuration[0].total_web_framework,
-
-                  color: "lightblue",
-                  highlight: "yellowgreen",
-                  label: "PHP",
-                },
-
-                {
-                  value: res.configuration[1].total_web_framework,
-                  color: "green",
-                  highlight: "yellowgreen",
-                  label: "Node js",
-                },
-                {
-                  value: res.configuration[3].total_web_framework,
+                  value: res.configuration[4].total_web_framework,
                   color: "navy",
                   highlight: "coral",
                   label: "DotNet",
                 },
                 {
+                  value: res.configuration[0].total_web_framework,
+                  color: "green",
+                  highlight: "yellowgreen",
+                  label: "Node js",
+                },
+                {
+                  value: res.configuration[1].total_web_framework,
+
+                  color: "lightgreen",
+                  highlight: "coral",
+                  label: "Spring Boot",
+                },
+
+                {
                   value: res.configuration[2].total_web_framework,
+
                   color: "rgb(214, 60, 60)",
                   highlight: "coral",
                   label: "Nest js",
                 },
-
                 {
-                  value: res.configuration[4].total_web_framework,
-                  color: "lightgreen",
-                  highlight: "coral",
-                  label: "Spring Boot",
+                  value: res.configuration[3].total_web_framework,
+
+                  color: "lightblue",
+                  highlight: "yellowgreen",
+                  label: "PHP",
                 },
               ];
 
@@ -237,9 +237,9 @@
     </script>
     <title style="color: aliceblue">Web Cloud | Admin Dashboard</title>
   </head>
-  <body>
+  <body id="mybody">
     <nav class="navbar navbar-expand navbar-light">
-      <a class="navbar-brand" href="#" style="margin-left: 5px">
+      <a class="navbar-brand" href="dashboard.html" style="margin-left: 5px">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
       </a>
       <ul class="navbar-nav mr-auto pl-2" style="margin-right: 10px">
@@ -252,7 +252,7 @@
               style="cursor: pointer; text-align: center"
             >
               <button
-                id="uname"
+                id="aname"
                 class="dropdown-item"
                 style="pointer-events: none; color: rgb(12, 235, 12)"
               ></button>
@@ -267,11 +267,6 @@
               <li class="dropdown-item">
                 <a href="repositories.html" style="text-decoration: none">
                   Repositories
-                </a>
-              </li>
-              <li class="dropdown-item">
-                <a href="forklist.html" style="text-decoration: none">
-                  Forked Repositories
                 </a>
               </li>
               <li id="logout" class="dropdown-item">
@@ -441,7 +436,8 @@
       </h1>
     </section>
 
-    <script src="chart.js"></script>
     <script src="dashboard_nav.js"></script>
+    <script src="chart.js"></script>
+    <script src="project.js"></script>
   </body>
 </html>

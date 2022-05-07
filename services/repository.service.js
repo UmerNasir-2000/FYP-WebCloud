@@ -89,7 +89,7 @@ const forkRepositoryService = asyncHandler(async (req, res) => {
 
   if (repoCount && repoCount[0]?.dataValues.total_repositories > 3) {
     return res.status(StatusCodes.BAD_REQUEST).json({
-      message: "Can't fork more than 3 repositories. Require Subscription",
+      message: "Can't fork more than 4 repositories. Require Subscription",
     });
   }
 

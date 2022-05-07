@@ -124,7 +124,7 @@
     <nav
       class="navbar navbar-expand navbar-light navbar-bottom"
       style="
-        background-color: rgb(15, 23, 36);
+        background-color: #0e1528;
         align-content: space-between;
         padding: 2px;
         border: 0 !important;
@@ -137,7 +137,7 @@
         class="display-6"
         style="font-size: 40px; color: white; font-weight: bolder"
       >
-        <a href="landing.html" style="text-decoration: none; color: white">
+        <a href="home.html" style="text-decoration: none; color: white">
           &lt;/&gt;WebCloud
         </a>
       </h1>
@@ -146,7 +146,7 @@
           <button
             class="btn btn-success"
             style="
-              background-color: rgb(15, 23, 36);
+              background-color: #0e1528;
               border-color: white;
               border-width: 2px;
             "
@@ -161,7 +161,7 @@
           <button
             class="btn btn-success"
             style="
-              background-color: rgb(15, 23, 36);
+              background-color: #0e1528;
               margin-left: 5px;
               border-color: white;
               border-width: 2px;
@@ -183,7 +183,7 @@
           <button
             style="
               margin-left: 5px;
-              background-color: rgb(15, 23, 36);
+              background-color: #0e1528;
               border-color: white;
               border-width: 2px;
             "
@@ -202,19 +202,22 @@
           </a>
  
        
-          <form class="dropdown-menu select1">
+          <form class="dropdown-menu select1" style="  
+          
+          color: white !important;
+  background-color: #1a2238;
+  box-shadow: 2px 2px 3px blue;">
             <ul class="list-group text-black" style="cursor: pointer; text-align: center;">
               <button
               id="uname"
            class="dropdown-item"
-              style="
- 
-              
+              style=" 
                 pointer-events: none;
+                color: white
               "
             ></button>
-            <li class="dropdown-item">
-              <a href="landing.html" style="text-decoration: none; color: black;">
+            <li class="dropdown-item home">
+              <a href="landing.html" style="text-decoration: none ; ">
                 Home
               </a>
             </li>
@@ -234,8 +237,8 @@
         <li class="nav-item dropdown">
           <button
             style="
-              margin-left: 5px;
-              background-color: rgb(15, 23, 36);
+              margin-left: 15px;
+              background-color: #0e1528;
               border-color: white;
               border-width: 2px;
               margin-top: 2.5px;
@@ -248,13 +251,16 @@
           >
             Select Themes
           </button>
-          <form class="dropdown-menu">
-            <ul class="list-group text-black" style="cursor: pointer">
-              <li id="cascadia-code" class="dropdown-item">Cobalt Blue</li>
-              <li id="twilight" class="dropdown-item">Twilight</li>
-              <li id="xcode" class="dropdown-item">XCode</li>
-              <li id="monokai" class="dropdown-item">Monokai Pro</li>
-              <li id="eclipse" class="dropdown-item">Eclipse</li>
+          <form class="dropdown-menu" style="
+          color: white !important;
+          background-color: #1a2238;
+          box-shadow: 2px 2px 3px blue;">
+            <ul class="list-group text-black" style="cursor: pointer; ;">
+              <li style="color: white" id="cascadia-code" class="dropdown-item">Cobalt Blue</li>
+              <li style="color: white"id="twilight" class="dropdown-item">Twilight</li>
+              <li style="color: white"id="xcode" class="dropdown-item">XCode</li>
+              <li style="color: white"id="monokai" class="dropdown-item">Monokai Pro</li>
+              <li style="color: white"id="eclipse" class="dropdown-item">Eclipse</li>
             </ul>
           </form>
         </li>
@@ -277,7 +283,7 @@
         id="explorer"
         class="container__right"
         style="
-          background-color: rgb(15, 23, 36);
+          background-color: #0e1528;
           border-color: white;
           border-width: 10px;
         "
@@ -352,7 +358,7 @@
                   class="btn btn-primary"
                   title="Run Project"
                   style="
-                    background-color: rgb(15, 23, 36);
+                    background-color: #0e1528;
                     border-color: rgb(33, 248, 33);
                     border-width: 1px;
                     margin-top: 2px;
@@ -368,7 +374,7 @@
                   class="btn btn-primary"
                   title="Create New File"
                   style="
-                    background-color: rgb(15, 23, 36);
+                    background-color: #0e1528;
                     border-color: white;
                     border-width: 1px;
                     margin-top: 2px;
@@ -384,7 +390,7 @@
                   title="Refresh Explorer"
                   class="btn btn-primary"
                   style="
-                    background-color: rgb(15, 23, 36);
+                    background-color: #0e1528;
                     border-color: white;
                     border-width: 1px;
                     margin-top: 2px;
@@ -457,5 +463,6 @@
     </div> -->
     <script src="editor.js"></script>
     <script src="auth.js"></script>
+    <script src="navbar.js"></script>
   </body>
 </html>

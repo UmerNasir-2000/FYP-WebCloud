@@ -11,7 +11,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link rel="stylesheet" href="requests.css" />
-    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="dashboard_nav.css" />
     <link rel="stylesheet" href="footer.css" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <script>
@@ -24,6 +24,7 @@
           },
         }).then((res) => {
           $.each(res.allRequests, function (r1, reg) {
+            console.log(reg);
             var str = new Date(
               reg.createdAt.toLocaleString()
             ).toLocaleDateString();
@@ -79,29 +80,51 @@
       });
     </script>
   </head>
-  <body>
+  <body id="mybody">
     <!--NAVBAR START-->
 
-    <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
-      <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand navbar-light">
+      <a class="navbar-brand" href="dashboard.html" style="margin-left: 5px">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
       </a>
-      <div style="justify-content: end !important">
-        <ul
-          class="navbar-nav"
-          style="flex-direction: row; justify-content: flex-end !important"
-        >
-          <div class="section">
-            <div class="top_navbar">
-              <div class="bars">
-                <a href="#">
-                  <i class="fas fa-bars"></i>
+      <ul class="navbar-nav mr-auto pl-2" style="margin-right: 10px">
+        <li>
+          <a href="javascript:void(0);" class="select_button1" id="mypic"> </a>
+
+          <form class="dropdown-content select1">
+            <ul
+              class="list-group text-black"
+              style="cursor: pointer; text-align: center"
+            >
+              <button
+                id="uname"
+                class="dropdown-item"
+                style="pointer-events: none; color: rgb(12, 235, 12)"
+              ></button>
+              <li class="dropdown-item">
+                <a href="users.html" style="text-decoration: none"> Users </a>
+              </li>
+              <li class="dropdown-item">
+                <a href="requests.html" style="text-decoration: none">
+                  Requests
                 </a>
-              </div>
-            </div>
-          </div>
-        </ul>
-      </div>
+              </li>
+              <li class="dropdown-item">
+                <a href="repositories.html" style="text-decoration: none">
+                  Repositories
+                </a>
+              </li>
+              <li id="logout" class="dropdown-item">
+                <a
+                  style="color: rgba(255, 9, 9, 0.938) !important"
+                  target="_blank"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </form>
+        </li>
+      </ul>
     </nav>
 
     <!--NAVBAR END-->
@@ -127,7 +150,7 @@
         </table>
       </div>
     </div>
-
+    <script src="dashboard_nav.js"></script>
     <!--TABLE END-->
   </body>
 </html>

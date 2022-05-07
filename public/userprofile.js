@@ -9,6 +9,8 @@ $(document).ready(function () {
       );
     },
   }).then(function (res) {
+    document.getElementById("headerTxt").innerText =
+      res.userDetails.length + " " + "Repositories";
     $("#tblReg  > table > tbody ").empty();
 
     $("#tblReg1   > table > tbody").empty();
@@ -156,10 +158,10 @@ $(document).ready(function () {
               `
               }</div>
               <div>
-              <a href="#"> 
-              <img src="https://img.icons8.com/ios-filled/30/fa314a/like--v1.png"/></a>${
+              <a href="#" style="text-decoration:none; color :white"> 
+              <img src="https://img.icons8.com/fluency/32/000000/star.png"/> ${
                 reg.likes
-              }
+              }</a> 
               </div>
               </div>
          

@@ -138,10 +138,10 @@ $(document).ready(function () {
             `
             }</div>
             <div>
-            <a href="#" style="text-decoration: none"> 
-            <img src="https://img.icons8.com/ios-filled/30/fa314a/like--v1.png"/>  </a> ${
-              reg.project_likes
-            }
+          <a href="#" style="text-decoration:none; color :white"> 
+              <img src="https://img.icons8.com/fluency/32/000000/star.png"/> ${
+                reg.project_likes
+              }</a> 
             </div>
          </div>
          </button>
@@ -157,7 +157,7 @@ $(document).ready(function () {
       });
     },
     error: function (xhr, status, error) {
-      alert(xhr.responseText);
+      console.log(xhr.responseText);
     },
   });
 });

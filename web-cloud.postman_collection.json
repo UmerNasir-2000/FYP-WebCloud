@@ -1,663 +1,528 @@
 {
-	"info": {
-		"_postman_id": "fadc7724-5bc9-45d2-beb8-8722173a513d",
-		"name": "Web Cloud",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Auth",
-			"item": [
-				{
-					"name": "Register User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Umer\",\n    \"lastName\": \"Nasir\",\n    \"email\": \"umer.nas@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/auth/register",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"umer.nas@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/auth/login",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Project",
-			"item": [
-				{
-					"name": "Create Project Template",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"project_name\": \"Netflix Clone\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"PHP\",\n    \"database\": \"MySQL\",\n    \"is_public\": false\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/project/create-template",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"project",
-								"create-template"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User's Own Projects",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/project/user",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"project",
-								"user"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User's Own Project By Id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/project/user/6",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"project",
-								"user",
-								"6"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Users",
-			"item": [
-				{
-					"name": "View All Users",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/user/",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"user",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "View User By Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/user/3",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"3"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Repositories",
-			"item": [
-				{
-					"name": "Fetch Public Repositories",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/repo/public",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								"public"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch Trending Public Repositories",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/repo/trending",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								"trending"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch Recent User Projects",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/repo/recent/projects",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								"recent",
-								"projects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch Public Repositories By Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/repo/2",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Users For A Specific Forked Repository",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/repo/project/1",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								"project",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fork Repository",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"project_id\": 1\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/repo/fork",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								"fork"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Like Repository",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/repo/like/1",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								"like",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch All Repositories",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/repo/",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User's Forked Projects",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/repo/projects",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"repo",
-								"projects"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTgxNjM0LCJleHAiOjE2NTAxODY0MzR9.6tPT-QXCykbi-K-wnXqZWiK3PAQO_AAmX6vWNUQhvZk",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Admin",
-			"item": [
-				{
-					"name": "Update Request",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"project_status\": \"Approved\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/admin/request/1",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"request",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update User Status",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"user_status\": \"Enable\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/admin/user-status/1",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"user-status",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Dashboard Charts",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"entity\": \"web_framework\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/admin/charts",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"charts"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Fetch Admin Requests",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"entity\": \"web_framework\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/api/admin/requests",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"requests"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Dashboard",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/admin/dashboard",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"dashboard"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Dashboard Requests",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/api/admin/dashboard-requests",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"dashboard-requests"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Miscellaneous",
-			"item": [
-				{
-					"name": "Healthcheck",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/test",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"test"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTg0MjQ1LCJleHAiOjE2NTA3ODkwNDV9.NMCuZyKGv9hhpe5UpUMy5OeSqj_-qn2XUdT62zkifKo",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	]
+  "info": {
+    "_postman_id": "fadc7724-5bc9-45d2-beb8-8722173a513d",
+    "name": "Web Cloud",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstName\": \"Umer\",\n    \"lastName\": \"Nasir\",\n    \"email\": \"umer.nas@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/auth/register",
+              "host": ["{{URL}}"],
+              "path": ["api", "auth", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"umer.nas@outlook.com\",\n    \"password\": \"Cena@2000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/auth/login",
+              "host": ["{{URL}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Project",
+      "item": [
+        {
+          "name": "Create Project Template",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project_name\": \"Netflix Clone\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"PHP\",\n    \"database\": \"MySQL\",\n    \"is_public\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/project/create-template",
+              "host": ["{{URL}}"],
+              "path": ["api", "project", "create-template"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User's Own Projects",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/project/user",
+              "host": ["{{URL}}"],
+              "path": ["api", "project", "user"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User's Own Project By Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/project/user/6",
+              "host": ["{{URL}}"],
+              "path": ["api", "project", "user", "6"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "View All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/user/",
+              "host": ["{{URL}}"],
+              "path": ["api", "user", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Notifications",
+
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/user/notifications",
+              "host": ["{{URL}}"],
+              "path": ["api", "user", "notifications"]
+            }
+          },
+          "response": []
+        },
+
+        {
+          "name": "View User By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/user/3",
+              "host": ["{{URL}}"],
+              "path": ["api", "user", "3"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Repositories",
+      "item": [
+        {
+          "name": "Fetch Public Repositories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/repo/public",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", "public"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Trending Public Repositories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/repo/trending",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", "trending"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Recent User Projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/repo/recent/projects",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", "recent", "projects"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Public Repositories By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/repo/2",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", "2"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Users For A Specific Forked Repository",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/repo/project/1",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", "project", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fork Repository",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/repo/fork",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", "fork"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Like Repository",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/repo/like/1",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", "like", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch All Repositories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/repo/",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User's Forked Projects",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project_name\": \"Second Project\",\n    \"project_description\": \"This is for testing purposes only\",\n    \"web_framework\": \"Nest.js\",\n    \"database\": \"MySQL\",\n    \"is_public\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/repo/projects",
+              "host": ["{{URL}}"],
+              "path": ["api", "repo", "projects"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ5NTgxNjM0LCJleHAiOjE2NTAxODY0MzR9.6tPT-QXCykbi-K-wnXqZWiK3PAQO_AAmX6vWNUQhvZk",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Update Request",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project_status\": \"Approved\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/admin/request/1",
+              "host": ["{{URL}}"],
+              "path": ["api", "admin", "request", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Status",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_status\": \"Enable\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/admin/user-status/1",
+              "host": ["{{URL}}"],
+              "path": ["api", "admin", "user-status", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Dashboard Charts",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"entity\": \"web_framework\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/admin/charts",
+              "host": ["{{URL}}"],
+              "path": ["api", "admin", "charts"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Admin Requests",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"entity\": \"web_framework\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/api/admin/requests",
+              "host": ["{{URL}}"],
+              "path": ["api", "admin", "requests"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/admin/dashboard",
+              "host": ["{{URL}}"],
+              "path": ["api", "admin", "dashboard"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Dashboard Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/admin/dashboard-requests",
+              "host": ["{{URL}}"],
+              "path": ["api", "admin", "dashboard-requests"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Miscellaneous",
+      "item": [
+        {
+          "name": "Healthcheck",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/test",
+              "host": ["{{URL}}"],
+              "path": ["test"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUwMTg0MjQ1LCJleHAiOjE2NTA3ODkwNDV9.NMCuZyKGv9hhpe5UpUMy5OeSqj_-qn2XUdT62zkifKo",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ]
 }

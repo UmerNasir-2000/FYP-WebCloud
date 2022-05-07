@@ -5,7 +5,7 @@ $(document).ready(function () {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   }).then(function (reg) {
     $("#tblReg > table > tbody").empty();
-
+    console.log(reg);
     let tr = `
          
             <tr>
@@ -21,10 +21,9 @@ $(document).ready(function () {
               
                   <button  value=${
                     reg.repoDetail[0].project_id
-                  }  class="likebtn" >
-                  Like
-                  <img src="https://img.icons8.com/ios-filled/30/fa314a/like--v1.png"/>  
-                      
+                  }  class="likebtn" > 
+                  <img src="https://img.icons8.com/fluency/32/000000/star.png"/>  
+                      ${reg.repoDetail[0].likes}
                   </button>
                  
                 </div>
@@ -118,15 +117,17 @@ $(document).ready(function () {
      
       
         
-        <div>
+        <div class="first-row">
         <img class="image" src=${
           reg.repoDetail[0].profile_picture_url
         } alt="" />
-            <h3>${reg.repoDetail[0].first_name}  ${
-      reg.repoDetail[0].last_name
-    }</h3>
-            
-            <span>${reg.repoDetail[0].email}</span>
+
+        <div class="nameandemail">
+        <h3>${reg.repoDetail[0].first_name}  ${reg.repoDetail[0].last_name}</h3>
+                
+                <span>${reg.repoDetail[0].email}</span>
+     </div>
+       
           </div>
      
         
@@ -177,8 +178,12 @@ $(document).ready(function () {
             `Bearer ${localStorage.getItem("token")}`
           );
         },
-      }).then(function (res) {
-        alert("Forked");
+        success: function (res) {
+          alert("Forked");
+        },
+        error: function (xhr, status, error) {
+          alert(xhr.responseJSON.message);
+        },
       });
     });
   });
