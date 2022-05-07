@@ -30,6 +30,9 @@ $(document).ready(function () {
     localStorage.removeItem("project_name");
     localStorage.removeItem("fullname");
     localStorage.removeItem("email");
+    localStorage.removeItem("last_name");
+    localStorage.removeItem("isadmin");
+    localStorage.removeItem("first_name");
     //window.location.host = "localhost:5001";
     window.location.href = "index.html";
     const wholeURL = `${window.location.protocol}//${window.location.host}/index.html`;
