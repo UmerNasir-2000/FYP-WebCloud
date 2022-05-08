@@ -2,7 +2,7 @@ DROP PROCEDURE IF EXISTS sql_web_cloud.public_repos;
 
 DELIMITER $$
 $$
-CREATE DEFINER=`root`@`%` PROCEDURE `sql_web_cloud`.`public_repos`()
+CREATE DEFINER=`root`@`%` PROCEDURE `sql_web_cloud`.`public_repos`(IN userId int)
 BEGIN
 	SELECT 
 	   proj.id AS `project_id`,
@@ -25,6 +25,7 @@ BEGIN
 	INNER JOIN requests req
 	ON proj.id  = req.project_id 
 	WHERE proj.is_public = 1 AND usr.status = "Enable" 
-    AND req.status = "Approved" AND usr.is_admin = 0;
+    AND req.status = "Approved" AND usr.is_admin = 0
+	AND usr.id != userId;
 END$$
 DELIMITER ;

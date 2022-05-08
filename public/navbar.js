@@ -23,6 +23,10 @@ $(document).ready(function () {
   `;
   $("#mypic").append(tr);
 
+  $("#uname").click(function () {
+    window.location.href = "home.html";
+  });
+
   $("#logout").click(function () {
     localStorage.removeItem("token");
     localStorage.removeItem("name");

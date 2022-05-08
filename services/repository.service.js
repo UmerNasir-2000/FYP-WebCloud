@@ -13,7 +13,10 @@ const { Op } = require("sequelize");
 
 const getPublicRepositoriesService = asyncHandler(async (req, res) => {
   let publicRepos = await db.sequelize.query(
-    "CALL sql_web_cloud.public_repos()"
+    "CALL sql_web_cloud.public_repos($userId)",
+    {
+      bind: { userId: req.user.id },
+    }
   );
 
   res
