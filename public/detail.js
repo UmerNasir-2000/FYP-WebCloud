@@ -1,3 +1,6 @@
+var socket = io("http://localhost:5000/");
+socket.on("connection");
+
 $(document).ready(function () {
   $.ajax({
     url: `/api/repo/${localStorage.getItem("publicId")}`,
@@ -182,7 +185,6 @@ $(document).ready(function () {
     });
 
     $(".forkbtn").click(function () {
-      alert(this.value);
       $.ajax({
         url: `/api/repo/fork`,
         method: "POST",
@@ -194,7 +196,8 @@ $(document).ready(function () {
           );
         },
         success: function (res) {
-          alert("Forked");
+          console.log(res.notification);
+          socket.emit("notification", res.notification);
         },
         error: function (xhr, status, error) {
           alert(xhr.responseJSON.message);

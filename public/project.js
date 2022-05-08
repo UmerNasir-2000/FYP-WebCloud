@@ -1,6 +1,5 @@
 var socket = io("http://localhost:5000/");
 socket.on("connection");
-
 $(document).ready(function () {
   var user = localStorage.getItem("name");
   var usertoken = localStorage.getItem("token");

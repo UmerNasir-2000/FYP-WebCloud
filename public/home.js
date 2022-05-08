@@ -1,4 +1,13 @@
+var socket = io("http://localhost:5000/");
+socket.on("connection");
+
 $(document).ready(function () {
+  socket.on("fetch_notification", (data) => {
+    toastr.options.timeOut = 7500; // 1.5s
+    if (data.user_id === localStorage.getItem("userId"))
+      toastr.success(data.text);
+  });
+
   $(".notification_icon .fa-bell").click(function () {
     $(".dropdown").toggleClass("active");
   });

@@ -150,10 +150,13 @@ const io = new Server(httpServer);
 
 io.on("connection", (socket) => {
   logger.info(`Client Connected Successfully with Id = ${socket.id}`);
-  let isIt = false;
 
   socket.on("project", (data) => {
     io.emit("admin", "You're ready to go Mr. Nasir");
+  });
+
+  socket.on("notification", (data) => {
+    io.emit("fetch_notification", data);
   });
 });
 

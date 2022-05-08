@@ -103,13 +103,13 @@ const forkRepositoryService = asyncHandler(async (req, res) => {
     });
 
     const notification = await notifications.create({
-      text: `User With ${req.user.email} Forked Your Project Named ${project.project_name}`,
+      text: `User With Email ${req.user.email} Forked Your Project Named ${project.project_name}`,
       user_id: project.user_id,
     });
 
     return res
       .status(StatusCodes.OK)
-      .json({ message: "Fork Repository API", repo });
+      .json({ message: "Fork Repository API", repo, notification });
   }
 
   res.status(StatusCodes.BAD_REQUEST).json({ message: "Invalid Project Id" });

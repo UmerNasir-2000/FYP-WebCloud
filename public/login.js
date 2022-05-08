@@ -28,6 +28,7 @@ $("#register").click(function (e) {
         window.location.href = "dashboard.html";
       } else if (xhr.responseJSON.user.status === "Enable") {
         localStorage.setItem("isadmin", 0);
+        localStorage.setItem("userId", xhr.responseJSON.user.id);
         localStorage.setItem("token", xhr.responseJSON.accessToken);
         localStorage.setItem("first_name", xhr.responseJSON.user.first_name);
         localStorage.setItem("last_name", xhr.responseJSON.user.last_name);
