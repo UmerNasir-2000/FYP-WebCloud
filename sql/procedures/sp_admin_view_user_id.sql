@@ -6,11 +6,6 @@ CREATE PROCEDURE sql_web_cloud.admin_view_user_id(IN userId int)
 BEGIN
 	SELECT 
 		usr.id as `user_id`, 
-		usr.first_name as `first_name`, 
-		usr.last_name as `last_name`, 
-		usr.email as `email`, 
-		usr.status as `user_status`, 
-		usr.profile_picture_url as `profile_picture_url`,
 		proj.id as `project_id`,
 		proj.project_name as `project_name`,
 		proj.description as `project_description`,
