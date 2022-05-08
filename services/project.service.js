@@ -55,7 +55,18 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     project_status: projectRequest.status,
   };
 
-  await sendEmail(req.user.email);
+  let emailDetails = {
+    email: req.user.email,
+    web_framework,
+    database,
+    project_name,
+    is_public,
+    db_password: "123456",
+    db_port: "3306",
+    db_name: "LMS",
+  };
+
+  await sendEmail(emailDetails);
 
   res
     .status(StatusCodes.CREATED)

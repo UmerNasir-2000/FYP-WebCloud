@@ -48,9 +48,7 @@ router
  *        description: Bad request
  */
 
-router
-  .route("/:id")
-  .get(validateToken, logDatabase, validateAdmin, getUserById);
+router.route("/:id").get(validateToken, logDatabase, getUserById);
 
 /**
  * @openapi

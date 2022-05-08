@@ -7,31 +7,19 @@
     <link rel="icon" type="image/png" href="./favicon-32x32.png" />
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="detail.css" />
+    <link rel="stylesheet" href="notification.css" />
     <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="footer.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
-    <script
-      src="https://cdn.socket.io/4.4.1/socket.io.min.js"
-      integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
-      crossorigin="anonymous"
-    ></script>
     <script
       type="text/javascript"
       src="/bootstrap/js/bootstrap.min.js"
     ></script>
-    <style>
-      table,
-      tbody,
-      tr,
-      td {
-        all: unset !important;
-      }
-    </style>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
       integrity="sha512-aVeS8p7lnH8hSLlG8zNWY/7qE3ZC1lgtZi00woKJpPwN8dw+kH3TSkxNzdFlgUxy5JYgdWIZhBIRZKzAIn698g=="
@@ -39,13 +27,10 @@
       referrerpolicy="no-referrer"
     ></script>
 
-    <title style="color: aliceblue">Web Cloud</title>
+    <title style="color: aliceblue">Web Cloud | Home</title>
   </head>
   <body id="mybody">
-    <nav
-      class="navbar"
-      style="padding: 0px 15px; background-color: transparent"
-    >
+    <nav class="navbar" style="padding: 0px 15px; background-color: #0e1528">
       <a class="navbar-brand" href="#">
         <img src="images/four.svg" height="50px" width="50px" alt="" />
       </a>
@@ -91,14 +76,20 @@
         </li>
       </div>
     </div>
-    <div class="outer-grid" id="tblReg">
-      <h3 id="headerTxt" style="color: white; text-align: start"></h3>
-      <table>
+    <div id="tblReg">
+      <h2 style="text-align: center; color: white">Notifications</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">User Details</th>
+            <th scope="col">Notification</th>
+          </tr>
+        </thead>
         <tbody></tbody>
       </table>
     </div>
 
-    <script src=" detail.js"></script>
     <script src="navbar.js"></script>
+    <script src="notification.js"></script>
   </body>
 </html>

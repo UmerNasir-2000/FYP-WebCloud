@@ -30,4 +30,8 @@ ON usr.id = proj.user_id
 WHERE repo.userId = userId;
 
 END$$
+<<<<<<< HEAD
 DELIMITER ;
+=======
+DELIMITER ;
+>>>>>>> 5d55f08b99afad7699d2e4714dd48f37874147e3

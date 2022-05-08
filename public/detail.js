@@ -1,3 +1,6 @@
+var socket = io("http://localhost:5000/");
+socket.on("connection");
+
 $(document).ready(function () {
   $.ajax({
     url: `/api/repo/${localStorage.getItem("publicId")}`,
@@ -7,7 +10,7 @@ $(document).ready(function () {
     $("#tblReg > table > tbody").empty();
     document.getElementById("headerTxt").innerText =
       reg.repoDetail[0].project_name;
-    console.log(reg);
+
     let tr = `
          
             <tr>
@@ -77,7 +80,7 @@ $(document).ready(function () {
         <div>
       
     
-        Project Web Framwork :
+        Project Web Framework :
       
         ${
           reg.repoDetail[0].web_framework === "Node.js"
@@ -158,8 +161,6 @@ $(document).ready(function () {
         },
       }).then(function (res) {
         alert("Liked");
-        console.log(res);
-        console.log(this.value);
       });
     });
     $(".openbtn").click(function () {
@@ -183,7 +184,8 @@ $(document).ready(function () {
           );
         },
         success: function (res) {
-          alert("Forked");
+          console.log(res.notification);
+          socket.emit("notification", res.notification);
         },
         error: function (xhr, status, error) {
           alert(xhr.responseJSON.message);

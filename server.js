@@ -7,7 +7,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const db = require("./models");
-const app = express();
+var app = express();
 const expressWs = require("express-ws")(app);
 const logger = require("./utils/logger");
 const swaggerDocs = require("./utils/swagger");
@@ -24,7 +24,7 @@ const httpServer = createServer(app);
 
 app.use(express.static(__dirname + "/public"));
 
-expressWs.app.ws("/terminals/:pid", function (ws, req) {
+app.ws("/terminals/:pid", function (ws, req) {
   var term = terminals[parseInt(req.params.pid)];
   console.log("Connected to terminal " + term.pid);
   ws.send(logs[term.pid]);
@@ -150,30 +150,32 @@ const io = new Server(httpServer);
 
 io.on("connection", (socket) => {
   logger.info(`Client Connected Successfully with Id = ${socket.id}`);
-  let isIt = false;
 
   socket.on("project", (data) => {
-    console.log(data);
-
-    console.log("Is It Emitting");
     io.emit("admin", "You're ready to go Mr. Nasir");
   });
 
-  // console.log(isIt);
+  socket.on("notification", (data) => {
+    io.emit("fetch_notification", data);
+  });
 });
 
 db.sequelize
   .sync()
   .then(() => {
-    httpServer.listen(PORT, () => {
+    httpServer.listen(process.env.APP_PORT, () => {
       logger.info(
-        `SERVER RUNNING IN ${ENVIRONMENT} MODE ON http://localhost:${PORT}`
+        `SERVER RUNNING IN ${ENVIRONMENT} MODE ON http://localhost:${process.env.APP_PORT}`
       );
-
       swaggerDocs(app, PORT);
+    });
+
+    app.listen(process.env.XTERM_PORT, () => {
+      logger.info(
+        `SERVER RUNNING IN ${ENVIRONMENT} MODE ON http://localhost:${process.env.XTERM_PORT}`
+      );
     });
   })
   .catch((err) => logger.error(err));
 
 module.exports = app;
-module.exports = httpServer;

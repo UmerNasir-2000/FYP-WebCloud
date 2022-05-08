@@ -1,6 +1,5 @@
 var socket = io("http://localhost:5000/");
 socket.on("connection");
-
 $(document).ready(function () {
   var user = localStorage.getItem("name");
   var usertoken = localStorage.getItem("token");
@@ -75,7 +74,7 @@ $(document).ready(function () {
         setTimeout(function () {
           //your code here
           window.location.href = "instruction.html";
-        }, 1000);
+        }, 2000);
 
         localStorage.setItem(
           "project_name",

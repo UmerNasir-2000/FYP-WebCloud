@@ -13,6 +13,7 @@ background: rgb(0, 0, 75) !important; */
 background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 1) 100% ); */
 }
+
 .btn {
   height: 80%;
   width: 30%;
@@ -39,10 +40,9 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   border-radius: 10px;
   padding: 15px;
   margin: 5px !important;
-  box-shadow: 2px 2px 3px blue;
+  border: 2px solid blue;
 }
 .box2 {
-  padding: 10px;
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -79,8 +79,16 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   width: 49%;
   height: 10% auto;
   padding: 5px;
-  border: 0;
-  color: white;
+  border-radius: 10px 30px !important;
+
+  border: 2px solid rgb(0, 0, 75) !important;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  background-color: blue;
+  color: white !important;
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 
 .fourth-row button:hover {
