@@ -108,3 +108,21 @@ ul.fancytree-container {
 #refresh-explorer:hover {
   font-size: larger;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1a2238;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0e1528;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: blue;
+}

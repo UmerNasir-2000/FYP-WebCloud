@@ -66,6 +66,9 @@ button.openbtn {
   padding: 0 !important;
   margin: 0 !important;
 }
+ul {
+  list-style-type: none;
+}
 button.openbtn1 {
   border: none !important;
   background-color: transparent;

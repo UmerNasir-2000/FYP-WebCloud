@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
   font-family: "Poppins", sans-serif;
+<<<<<<< HEAD
 } /* }
 #0E1525;
 #2B3245; */
@@ -45,6 +46,47 @@ table.no-spacing {
   background-color: transparent;
   box-shadow: transparent !important;
 }
+=======
+}
+body {
+  background-color: #0e1528 !important;
+}
+.sp {
+  display: flex;
+  justify-content: end;
+}
+table {
+  margin: 0 auto; /* or margin: 0 auto 0 auto */
+  color: blue !important;
+}
+td {
+  padding: 8px 8px;
+  border: 0;
+  color: white;
+}
+table thead {
+  border: 1px solid blue !important;
+}
+table {
+  border: 1px solid blue;
+  width: 50% !important;
+}
+table td {
+  border: 1px solid blue; /* Style just to show the table cell boundaries */
+}
+table th {
+  white-space: nowrap;
+  color: white;
+  padding: 10px;
+  border: 1px solid blue !important;
+}
+
+table.no-spacing {
+  border-spacing: 0; /* Removes the cell spacing via CSS */
+  border-collapse: collapse; /* Optional - if you don't want to have double border where cells touch */
+}
+
+>>>>>>> 8499e6e7f0e403e47ce5e7753ec27c41ff1c8aad
 button.viewbtn:hover {
   border-radius: 10px;
   background-color: blue;

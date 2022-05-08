@@ -68,8 +68,8 @@ $(document).ready(function () {
         $("input:text").val("");
         $("#project_description").val("");
 
-        socket.emit("project", "project is created");
         $("body").addClass("loading");
+        socket.emit("project", "project is created");
 
         setTimeout(function () {
           //your code here

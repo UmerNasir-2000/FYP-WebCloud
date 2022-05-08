@@ -19,11 +19,12 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   grid-auto-rows: 180px;
   border-radius: 10px;
   padding: 15px;
-  margin: 5px !important;
-  box-shadow: 2px 2px 3px blue;
+  margin: 5px 15px !important;
+  border: 2px solid blue;
 }
 .box2 {
   display: flex;
+  margin: 10px;
   text-align: center;
   flex-direction: column;
   grid-column-start: 3;
@@ -42,23 +43,16 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   padding: 10px;
 }
 .first button {
-  border-radius: 10px;
-  width: 49%;
-  height: 10% auto;
-  padding: 5px;
-  border-radius: 10px 30px !important;
-  gap: 15px;
-  border: 2px solid rgb(0, 0, 75) !important;
-  font-size: 16px;
-  font-weight: bold;
-  font-style: italic;
+  width: 30%;
+  height: 20% auto;
+  gap: 20px;
+  border: 0;
   background-color: blue !important;
-  color: white !important;
-  cursor: pointer;
+  padding: 10px;
+  margin: 0px 10px;
+  color: white;
+  border-radius: 10px 30px !important;
   transition: all 0.4s ease;
-}
-.box2 .ispublic {
-  background-color: transparent !important;
 }
 
 .first button:hover {
@@ -78,6 +72,10 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   align-items: center;
 }
 .first-row div {
+  margin: 10px 0px;
+  background-color: #1a2238 !important;
+}
+.first-row button {
   padding: 10px;
   background-color: #1a2238 !important;
 }
@@ -145,6 +143,7 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   position: relative;
   background-color: #0e1528;
   color: white;
+  row-gap: 10px;
 }
 .nameandemail {
   background-color: transparent;
@@ -189,7 +188,16 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   border: 0;
   color: rgb(0, 0, 75);
 }
+.singleline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  background-color: transparent !important;
+}
 .image {
+  margin-right: 5px;
   width: 90px;
   height: 90px;
   background-color: white;
@@ -198,18 +206,20 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 }
 
 .openbtn {
-  display: flex;
-  padding-top: 10px;
-  width: 100% !important;
   text-align: justify;
-  max-height: 100%;
-  height: 100% !important;
+  color: white;
+}
+.openbtn:hover {
+  background-color: #36415f !important;
+
+  text-align: justify;
   color: white;
 }
 
 .openbtn div {
+  padding: 10px;
   color: white;
-  margin-top: 30%;
+  height: 90%;
   width: 100%;
 }
 button.openbtn {
@@ -218,6 +228,15 @@ button.openbtn {
 }
 button .first-row:hover {
   background-color: #36415f !important;
+}
+.box2 .ispublic {
+  background-color: transparent !important;
+}
+.singleline .ispublic span {
+  color: white;
+  font-weight: 1000;
+  border-radius: 10px 30px !important;
+  padding: 8px 70px;
 }
 
 ::-webkit-scrollbar {
@@ -239,32 +258,39 @@ button .first-row:hover {
   background: blue;
 }
 @media (max-width: 730px) {
-  .box1 {
+  .outer-grid {
+    display: grid;
+
+    grid-template-columns: minmax(20vw, 1fr);
+    grid-template-rows: minmax(10vh, 1fr);
     align-items: flex-start;
+    justify-content: start;
   }
-
-  .box1 div {
+  .wrapper {
+    width: 100%;
+    margin: 0% !important;
+    padding: 10px !important;
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: 180px;
     border-radius: 10px;
-    gap: 10px;
-    padding-bottom: 5px;
-    width: fit-content;
+    border: 2px solid blue;
   }
-
-  .box2 button {
-    border-radius: 10px;
-    width: 100% !important;
-    height: 20% auto;
+  .openbtn div {
     padding: 10px;
+    color: white;
+    height: 90%;
+    width: 80%;
   }
-  .first-row {
-    position: relative !important;
-    display: flex;
-    flex-direction: column;
+  .singleline .ispublic span {
+    color: white;
+    font-weight: 1000;
+    border-radius: 10px 30px !important;
+    padding: 8px 45px;
   }
-  .third-row div {
-    padding: 20px;
+  #headerTxt {
+    text-align: center !important;
   }
-
   * {
     font-size: small;
   }

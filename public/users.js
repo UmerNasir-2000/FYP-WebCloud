@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
     $(".openbtn").click(function () {
       localStorage["idprofile"] = this.value;
-      window.location.href = "userprofile.html";
+      window.location.href = "adminviewprofile.html";
     });
 
     $("#tblReg >  table > tbody >tr > #yes > #status").on(

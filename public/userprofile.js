@@ -9,8 +9,6 @@ $(document).ready(function () {
       );
     },
   }).then(function (res) {
-    document.getElementById("headerTxt").innerText =
-      res.userDetails.length + " " + "Repositories";
     $("#tblReg  > table > tbody ").empty();
 
     $("#tblReg1   > table > tbody").empty();
@@ -18,13 +16,15 @@ $(document).ready(function () {
     let tr = `
     <tr>
           <td>  
+
           <div class="box1">
             <img class="image" src=${res.userDetails[0].profile_picture_url} alt="" />
   
             <div class="userinfo">
               <div>
                 <h3>${res.userDetails[0].first_name} ${res.userDetails[0].last_name}</h3>
-                <span>${res.userDetails[0].email}</span>
+                <p>${res.userDetails[0].email}</p>
+                <p>Total Projects : ${res.userDetails.length}</p>
               </div>
             </div>
           </div>
@@ -33,6 +33,7 @@ $(document).ready(function () {
   
     `;
     $("#tblReg1   > table > tbody").append(tr);
+    console.log(res);
     $.each(res.userDetails, function (r1, reg) {
       var str = reg.project_created_at;
 
@@ -41,6 +42,7 @@ $(document).ready(function () {
           <tr>
               <td>      
         
+              <button  value=${reg.project_id}  class="openbtn" > 
               <div class="item">
                
            <div class="first-row">
@@ -110,7 +112,7 @@ $(document).ready(function () {
                 }
                 </p>
                 </div>
-          
+ 
               <div class="lastline">
               <div>${str}</div>
               <div> 
@@ -133,12 +135,16 @@ $(document).ready(function () {
               }</a> 
               </div>
               </div>
-         
+         </button>
               </td>
           </tr>
         
           `;
       $("#tblReg  > table > tbody ").append(tr);
+    });
+    $(".openbtn").click(function () {
+      localStorage["publicId"] = this.value;
+      window.location.href = "detail.html";
     });
   });
 });

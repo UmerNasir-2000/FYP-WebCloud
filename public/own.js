@@ -41,6 +41,15 @@ $(document).ready(function () {
       >
       Open IDE
       </button>
+ 
+      <div   disabled  class="ispublic"> 
+      ${
+        res.hasProject.is_public === false
+          ? `<span style="  background-color: #7e0404;border-radius:20px 10px;">Private</span>`
+          : `<span style="background-color: green; ">Public</span>`
+      }
+          
+      </div>
         </div>
           <div class="desc">Project Description : ${
             res.hasProject.description
@@ -107,6 +116,7 @@ $(document).ready(function () {
       </div>
    
         </div>
+<<<<<<< HEAD
         <div class="box2">
   
         <div   disabled  class="ispublic"> 
@@ -125,6 +135,9 @@ $(document).ready(function () {
         </div>
           
      
+=======
+        <div class="box2"> 
+>>>>>>> 8499e6e7f0e403e47ce5e7753ec27c41ff1c8aad
           <div class="userinfo">
         <h3>History</h3>
           

@@ -18,11 +18,11 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   height: 80%;
   width: 30%;
   border-radius: 10px 30px !important;
+  background-color: blue !important;
   border: 2px solid rgb(0, 0, 75) !important;
   font-size: 16px;
   font-weight: bold;
   font-style: italic;
-  background-color: blue !important;
   color: white !important;
   cursor: pointer;
   transition: all 0.4s ease;
@@ -65,14 +65,16 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   padding: 10px;
 }
 .fourth-row {
+  background-color: transparent !important;
   position: relative !important;
-  background-color: #0e1528 !important;
   display: flex;
   flex-direction: row;
   height: 20% auto;
   justify-content: space-between;
 }
 .fourth-row button {
+  border-radius: 10px 30px !important;
+  background-color: blue !important;
   border-radius: 10px;
   width: 49%;
   height: 10% auto;
@@ -106,10 +108,16 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   justify-content: space-between;
   align-items: center;
 }
-.first-row div {
-  padding: 10px;
-  background-color: #1a2238 !important;
+.box2 .ispublic {
+  background-color: transparent !important;
 }
+.ispublic span {
+  color: white;
+  font-weight: 1000;
+  border-radius: 10px 30px !important;
+  padding: 8px 70px;
+}
+
 .desc {
   background-color: #1a2238 !important;
   height: 20%;
@@ -233,6 +241,24 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   width: 100%;
   align-items: center;
   background-color: #0e1528;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1a2238;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0e1528;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: blue;
 }
 @media (max-width: 730px) {
   .btn {

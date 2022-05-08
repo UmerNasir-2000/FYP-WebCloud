@@ -122,8 +122,18 @@ span {
   flex-direction: column;
   text-align: justify;
 }
+.item:hover {
+  background-color: #0e1528;
+}
+button.openbtn {
+  border: none !important;
+  background-color: transparent;
+  color: transparent;
+  padding: 0 !important;
+  margin: 0 !important;
+}
 #tblReg1 {
-  box-shadow: 2px 2px 3px blue;
+  border: 1px solid blue;
   height: max-content;
   text-align: center;
   width: auto;
