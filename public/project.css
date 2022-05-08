@@ -359,6 +359,7 @@ input ::selection {
   .container {
     background-color: transparent !important;
     border: none !important;
+    min-height: 90vh;
   }
   body .myform {
     justify-content: center;

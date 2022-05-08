@@ -37,7 +37,7 @@ const getUserByIdService = asyncHandler(async (req, res) => {
   });
 
   if (ifUser) {
-    let userDetails = await db.sequelize.query(
+    let projectDetails = await db.sequelize.query(
       `CALL sql_web_cloud.admin_view_user_id($userId) `,
       {
         bind: { userId: req.params.id },
@@ -45,7 +45,8 @@ const getUserByIdService = asyncHandler(async (req, res) => {
     );
     return res.status(StatusCodes.OK).json({
       message: `View User With Id = ${req.params.id}`,
-      userDetails,
+      ifUser,
+      projectDetails,
     });
   }
 
