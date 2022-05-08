@@ -5,7 +5,8 @@ $(document).ready(function () {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   }).then(function (reg) {
     $("#tblReg > table > tbody").empty();
-    console.log(reg);
+    document.getElementById("projectTxt").innerText =
+      reg.repoDetail[0].project_name;
     let tr = `
          
             <tr>
@@ -17,7 +18,7 @@ $(document).ready(function () {
                 <button class="forkbtn" value=${reg.repoDetail[0].project_id} >
                 Fork Repository
                    </button>
-                   <button style="background-color:red" class="forkbtn"  >
+                   <button style="background-color:red !important" class="forkbtn"  >
                   Download
                      </button>
               
@@ -172,8 +173,6 @@ $(document).ready(function () {
         },
       }).then(function (res) {
         alert("Liked");
-        console.log(res);
-        console.log(this.value);
       });
     });
     $(".openbtn").click(function () {

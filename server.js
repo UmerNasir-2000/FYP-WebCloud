@@ -153,13 +153,8 @@ io.on("connection", (socket) => {
   let isIt = false;
 
   socket.on("project", (data) => {
-    console.log(data);
-
-    console.log("Is It Emitting");
     io.emit("admin", "You're ready to go Mr. Nasir");
   });
-
-  // console.log(isIt);
 });
 
 db.sequelize
