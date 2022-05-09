@@ -169,9 +169,19 @@ const getPublicRepositoryByIdService = asyncHandler(async (req, res) => {
     }
   );
 
+  const ifForked = await repositories.findOne({
+    where: {
+      userId: req.user.id,
+      projectId: req.params.id,
+    },
+  });
+
+  const isForked = ifForked ? true : false;
+
   res.status(StatusCodes.OK).json({
     message: `Fetch Public Repository Id = ${req.params.id}`,
     repoDetail,
+    isForked,
   });
 });
 
