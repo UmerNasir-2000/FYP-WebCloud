@@ -9,6 +9,9 @@ $(document).ready(function () {
       );
     },
   }).then(function (res) {
+    $("#headerTxt").hide();
+
+    console.log(res);
     $("#tblReg  > table > tbody ").empty();
 
     $("#tblReg1   > table > tbody").empty();
@@ -18,13 +21,13 @@ $(document).ready(function () {
           <td>  
 
           <div class="box1">
-            <img class="image" src=${res.userDetails[0].profile_picture_url} alt="" />
+            <img class="image" src=${res.ifUser.profile_picture_url} alt="" />
   
             <div class="userinfo">
               <div>
-                <h3>${res.userDetails[0].first_name} ${res.userDetails[0].last_name}</h3>
-                <p>${res.userDetails[0].email}</p>
-                <p>Total Projects : ${res.userDetails.length}</p>
+                <h3>${res.ifUser.first_name} ${res.ifUser.last_name}</h3>
+                <p>${res.ifUser.email}</p>
+                <p>Total Projects : ${res.projectDetails.length}</p>
               </div>
             </div>
           </div>
@@ -34,11 +37,12 @@ $(document).ready(function () {
     `;
     $("#tblReg1   > table > tbody").append(tr);
     console.log(res);
-    $.each(res.userDetails, function (r1, reg) {
-      var str = reg.project_created_at;
+    if (res.projectDetails.length !== 0) {
+      $.each(res.projectDetails, function (r1, reg) {
+        var str = reg.project_created_at;
 
-      if (str.length > 5) str = str.substring(0, 10);
-      let tr = `
+        if (str.length > 5) str = str.substring(0, 10);
+        let tr = `
           <tr>
               <td>      
         
@@ -140,8 +144,13 @@ $(document).ready(function () {
           </tr>
         
           `;
-      $("#tblReg  > table > tbody ").append(tr);
-    });
+        $("#tblReg  > table > tbody ").append(tr);
+      });
+    } else {
+      $("#headerTxt").show();
+      document.getElementById("headerTxt").innerText =
+        "User Have Not Work On Any Project Yet";
+    }
     $(".openbtn").click(function () {
       localStorage["publicId"] = this.value;
       window.location.href = "detail.html";

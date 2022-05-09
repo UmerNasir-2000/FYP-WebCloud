@@ -23,7 +23,7 @@ body {
 }
 
 .container {
-  text-align: center;
+  text-align: start;
   height: fit-content;
   display: grid;
   grid-gap: 2rem;

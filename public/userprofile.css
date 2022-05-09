@@ -98,6 +98,7 @@ span {
   grid-auto-rows: 200px;
   border-radius: 10px;
   padding-left: 50px;
+  margin-top: 10px;
 }
 .box1 {
   padding-left: 10px;
