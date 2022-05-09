@@ -12,6 +12,8 @@ const sendEmail = async (receiver) => {
     },
   });
 
+  console.log(typeof receiver);
+
   const output = `
         <h3>Your Project Configuration</h3>
         <div style="display: flex; text-align: justify; color: aliceblue">
@@ -37,7 +39,17 @@ const sendEmail = async (receiver) => {
     html: output,
   };
 
-  let info = await transporter.sendMail(mailOptions);
+  let forgotPasswordOptions = {
+    from: `"Web Cloud" <${process.env.SENDER_EMAIL}>`,
+    to: `${receiver}`,
+    subject: `Reset Password Email`,
+    text: `Reset Password With Link http://localhost:5000/forgot-password.html,\n Use This Activation Code = 95xcBvzqOOlkcx@vc`,
+    html: `Reset Password With Link <a href="http://localhost:5000/forgot-password.html">Forgot Password Link</a> ,\n Use This Activation Code = 95xcBvzqOOlkcx@vc`,
+  };
+
+  let info = await transporter.sendMail(
+    typeof receiver === "object" ? mailOptions : forgotPasswordOptions
+  );
 
   logger.info("Message sent: %s", info.messageId);
   logger.info("Preview URL: %s", nodemailer.getTestMessageUrl(info));

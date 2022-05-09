@@ -4,7 +4,7 @@ const logger = require("../utils/logger");
 const logDatabase = async (req, res, next) => {
   const tempBody = req.body;
 
-  tempBody.password ? (tempBody.password = "") : "";
+  //tempBody.password ? (tempBody.password = "") : "";
 
   await logs.create({
     ip_address: req.socket.remoteAddress.split("::")[1],

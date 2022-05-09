@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="requests.css" />
     <link rel="stylesheet" href="dashboard_nav.css" />
     <link rel="stylesheet" href="footer.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <script type="text/javascript" src="/jquery/jquery.min.js"></script>
     <script>
       $(document).ready(function () {
@@ -24,7 +29,6 @@
           },
         }).then((res) => {
           $.each(res.allRequests, function (r1, reg) {
-            console.log(reg);
             var str = new Date(
               reg.createdAt.toLocaleString()
             ).toLocaleDateString();
@@ -36,7 +40,7 @@
                 <td>${reg.id}</td>
                 <td>${reg.project_name}</td>
                 <td id="yes">
-                  <select class="standard-select1" id="status" >
+                  <select class="standard-select1" id="status" style="padding: 5px;">
                     <option value="" disabled selected hidden>${reg.status}</option>
                     <option value=${reg.id}>Pending</option>
                     <option value=${reg.id}>Approved</option>

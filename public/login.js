@@ -42,8 +42,7 @@ $("#register").click(function (e) {
       }
     },
     error: function (xhr, status, error) {
-      toastr.error(xhr.responseJSON.error).fadeOut(5500);
-      $("#msg").html(xhr.responseJSON.error);
+      $("#msg").html(xhr.responseJSON.message);
     },
   });
 

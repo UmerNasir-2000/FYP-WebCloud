@@ -36,7 +36,6 @@ $(document).ready(function () {
   
     `;
     $("#tblReg1   > table > tbody").append(tr);
-    console.log(res);
     if (res.projectDetails.length !== 0) {
       $.each(res.projectDetails, function (r1, reg) {
         var str = reg.project_created_at;

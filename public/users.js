@@ -23,7 +23,7 @@ $(document).ready(function () {
             `
               }</td>
               <td id="yes">
-                  <select class="standard-select1" id="status">
+                  <select class="standard-select1" id="status" style="padding: 5px;">
                   <option value=""  disabled selected hidden>${
                     reg.status
                   }</option>
@@ -32,7 +32,9 @@ $(document).ready(function () {
                   </select>
               </td>
               <td>
-              <button  value=${reg.id}  class="openbtn" >View</button>
+              <button  value=${
+                reg.id
+              }  class="openbtn" style="padding: 5px;">View</button>
               </td>
             </tr>             
   `;

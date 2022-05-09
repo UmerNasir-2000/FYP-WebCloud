@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { registerUser, loginUser } = require("../controllers/auth.controller");
+const {
+  registerUser,
+  loginUser,
+  forgotPassword,
+} = require("../controllers/auth.controller");
 const validateResource = require("../middlewares/validateRequest");
 const validateToken = require("../middlewares/validateToken");
 const registerSchema = require("../schemas/auth/register.schema");
 const loginSchema = require("../schemas/auth/login.schema");
+const forgotPasswordSchema = require("../schemas/auth/forgot-password.schema");
 const logDatabase = require("../middlewares/logDatabase");
 
 /**
@@ -109,5 +114,9 @@ router
 router
   .route("/login")
   .post(validateResource(loginSchema), logDatabase, loginUser);
+
+router
+  .route("/forgot-password")
+  .post(validateResource(forgotPasswordSchema), logDatabase, forgotPassword);
 
 module.exports = router;

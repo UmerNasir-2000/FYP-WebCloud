@@ -1,6 +1,7 @@
 const {
   registerUserService,
   loginUserService,
+  forgotPasswordService,
 } = require("../services/auth.service");
 
 /**
@@ -25,4 +26,15 @@ const loginUser = async (req, res) => {
   await loginUserService(req, res);
 };
 
-module.exports = { registerUser, loginUser };
+/**
+ *   @desc    POST Forgot Password
+ *   @route   POST /api/auth/forgot-password
+ *   @access  PUBLIC
+ *   @author  UMER NASIR
+ **/
+
+const forgotPassword = async (req, res) => {
+  await forgotPasswordService(req, res);
+};
+
+module.exports = { registerUser, loginUser, forgotPassword };
