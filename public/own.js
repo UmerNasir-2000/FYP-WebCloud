@@ -58,39 +58,39 @@ $(document).ready(function () {
           <div>
         
       
-          Project Web Framwork 
+        
         
           ${
             res.hasProject.configuration.web_framework === "Node.js"
-              ? `<img src="https://img.icons8.com/fluency/48/000000/node-js.png"/>` +
-                `<h2>Node.js</h2>`
+              ? `<h2>Node.js</h2>` +
+                `<img src="https://img.icons8.com/fluency/48/000000/node-js.png"/>`
               : ""
           }
           
           ${
             res.hasProject.configuration.web_framework === "PHP"
-              ? `<img src="https://img.icons8.com/color/48/000000/php.png"/>` +
-                `<h2>PHP</h2>`
+              ? `<h2>PHP</h2>` +
+                `<img src="https://img.icons8.com/color/48/000000/php.png"/>`
               : ""
           }
           
           ${
             res.hasProject.configuration.web_framework === "Nest.js"
-              ? `<img src="images/nest.svg"/ width="48" height="48">` +
-                `<h2>Nest.js</h2>`
+              ? `<h2>Nest.js</h2>` +
+                `<img src="images/nest.svg"/ width="48" height="48">`
               : ""
           }
           ${
             res.hasProject.configuration.web_framework === "Spring Boot"
-              ? `<img src="./images/spring.svg" alt="" />` +
-                `<h2>Spring Boot</h2>`
+              ? `<h2>Spring Boot</h2>` +
+                `<img src="./images/spring.svg" alt="" />`
               : ""
           }
           
           ${
             res.hasProject.configuration.web_framework === "Dotnet"
-              ? `<img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/000000/external-net-or-dot-net-a-software-framework-developed-by-microsoft-logo-shadow-tal-revivo.png"/>` +
-                `<h2>Dotnet</h2>`
+              ? `<h2>Dotnet</h2>` +
+                `<img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/000000/external-net-or-dot-net-a-software-framework-developed-by-microsoft-logo-shadow-tal-revivo.png"/>`
               : ""
           }
           
@@ -99,16 +99,16 @@ $(document).ready(function () {
           
           
           </div>
-               <div>Project Database ${
+               <div> ${
                  res.hasProject.configuration.database === "MySQL"
-                   ? `<img src="images/mysql.svg" width=68 height=68 />` +
-                     `<h2>MYSQL</h2>`
+                   ? `<h2>MYSQL</h2>` +
+                     `<img src="images/mysql.svg" width=68 height=68 />`
                    : ""
                }
                     ${
                       res.hasProject.configuration.database === "MongoDB"
-                        ? `<img src="https://img.icons8.com/color/48/000000/mongodb.png"/>` +
-                          `<h2>MongoDB</h2>`
+                        ? `<h2>MongoDB</h2>` +
+                          `<img src="https://img.icons8.com/color/48/000000/mongodb.png"/>`
                         : ""
                     }
                

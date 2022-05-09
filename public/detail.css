@@ -101,7 +101,6 @@ body {
   gap: 15px;
 }
 .first {
-  position: relative !important;
   background-color: #0e1528 !important;
   display: flex;
   flex-direction: row;
@@ -141,7 +140,6 @@ body {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 4;
-  position: relative;
   background-color: #0e1528;
   color: white;
   row-gap: 10px;

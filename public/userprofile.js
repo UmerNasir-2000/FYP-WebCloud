@@ -38,10 +38,11 @@ $(document).ready(function () {
     $("#tblReg1   > table > tbody").append(tr);
     if (res.projectDetails.length !== 0) {
       $.each(res.projectDetails, function (r1, reg) {
-        var str = reg.project_created_at;
+        if (reg.is_public === 1) {
+          var str = reg.project_created_at;
 
-        if (str.length > 5) str = str.substring(0, 10);
-        let tr = `
+          if (str.length > 5) str = str.substring(0, 10);
+          let tr = `
           <tr>
               <td>      
         
@@ -143,7 +144,8 @@ $(document).ready(function () {
           </tr>
         
           `;
-        $("#tblReg  > table > tbody ").append(tr);
+          $("#tblReg  > table > tbody ").append(tr);
+        }
       });
     } else {
       $("#headerTxt").show();
