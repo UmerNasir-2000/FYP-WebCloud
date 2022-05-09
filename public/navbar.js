@@ -10,6 +10,7 @@ $(document).ready(function () {
   if (!localStorage.getItem("token")) {
     window.setInterval(function () {
       // this will execute every 5 minutes => show the alert here
+
       alert("User is Required to Login First");
       window.location.href = "index.html";
     }, 1);

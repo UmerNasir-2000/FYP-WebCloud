@@ -116,28 +116,7 @@ $(document).ready(function () {
       </div>
    
         </div>
-<<<<<<< HEAD
-        <div class="box2">
-  
-        <div   disabled  class="ispublic"> 
-        ${
-          res.hasProject.is_public === false
-            ? `<span style=" white;background-color: #7e0404;border-radius:20px 10px; 
-                  font-weight:1000;
-                  font-style: italic;
-               ;  padding: 8px 70px;">Private</span>`
-            : `<span style=" color : white;
-                  font-weight:1000;
-                  font-style: italic
-                  ;background-color: green;border-radius:20px 10px;  margin-bottom:50px ;  padding: 8px 70px;">Public</span>`
-        }
-            
-        </div>
-          
-     
-=======
         <div class="box2"> 
->>>>>>> 8499e6e7f0e403e47ce5e7753ec27c41ff1c8aad
           <div class="userinfo">
         <h3>History</h3>
           

@@ -61,7 +61,7 @@ $(document).ready(function () {
           data: {
             user_status: a,
           },
-        }).then((res) => alert("Updated"));
+        }).then((res) => toastr.success("Updated").fadeOut(5500));
       }
     );
   });

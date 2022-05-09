@@ -7,11 +7,15 @@ $(document).ready(function () {
     method: "GET",
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   }).then(function (reg) {
-    $("#tblReg > table > tbody").empty();
-    document.getElementById("headerTxt").innerText =
-      reg.repoDetail[0].project_name;
+    $("#headerTxt1").hide();
 
-    let tr = `
+    console.log(reg);
+    if (reg.repoDetail.length !== 0) {
+      $("#tblReg > table > tbody").empty();
+      document.getElementById("headerTxt").innerText =
+        reg.repoDetail[0].project_name;
+
+      let tr = `
          
             <tr>
               <td>
@@ -40,6 +44,7 @@ $(document).ready(function () {
                   <img src="https://img.icons8.com/fluency/32/000000/star.png"/>  
                       ${reg.repoDetail[0].likes}
                   </button>
+                  
                  
                 </div>
                 <div class="singleline">
@@ -52,8 +57,8 @@ $(document).ready(function () {
   
           <div class="nameandemail">
           <h3>${reg.repoDetail[0].first_name}  ${
-      reg.repoDetail[0].last_name
-    }</h3>
+        reg.repoDetail[0].last_name
+      }</h3>
                   
                   <span>${reg.repoDetail[0].email}</span>
        </div>
@@ -142,55 +147,61 @@ $(document).ready(function () {
        
                       
     `;
-    $("#tblReg > table > tbody").append(tr);
+      $("#tblReg > table > tbody").append(tr);
 
-    $(".likebtn").click(function () {
-      $(".likebtn").prop("disabled", true);
-      alert(this.value);
-      $.ajax({
-        url: `/api/repo/like/${this.value}`,
-        method: "POST",
-        data: {
-          id: this.value,
-        },
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader(
-            "Authorization",
-            `Bearer ${localStorage.getItem("token")}`
-          );
-        },
-      }).then(function (res) {
-        alert("Liked");
+      $(".likebtn").click(function () {
+        $(".likebtn").prop("disabled", true);
+
+        $.ajax({
+          url: `/api/repo/like/${this.value}`,
+          method: "POST",
+          data: {
+            id: this.value,
+          },
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader(
+              "Authorization",
+              `Bearer ${localStorage.getItem("token")}`
+            );
+          },
+        }).then(function (res) {
+          toastr.success("Liked").fadeOut(5500);
+        });
       });
-    });
-    $(".openbtn").click(function () {
-      alert(this.value);
-      localStorage["idprofile"] = this.value;
-      window.location.href = "userprofile.html";
-    });
-
-    $(".forkbtn").click(function () {
-      $(".forkbtn").prop("disabled", true);
-
-      alert(this.value);
-      $.ajax({
-        url: `/api/repo/fork`,
-        method: "POST",
-        data: { project_id: this.value },
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader(
-            "Authorization",
-            `Bearer ${localStorage.getItem("token")}`
-          );
-        },
-        success: function (res) {
-          console.log(res.notification);
-          socket.emit("notification", res.notification);
-        },
-        error: function (xhr, status, error) {
-          alert(xhr.responseJSON.message);
-        },
+      $(".openbtn").click(function () {
+        localStorage["idprofile"] = this.value;
+        window.location.href = "userprofile.html";
       });
-    });
+
+      $(".forkbtn").click(function () {
+        $(".forkbtn").prop("disabled", true);
+
+        $.ajax({
+          url: `/api/repo/fork`,
+          method: "POST",
+          data: { project_id: this.value },
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader(
+              "Authorization",
+              `Bearer ${localStorage.getItem("token")}`
+            );
+          },
+          success: function (res) {
+            console.log(res.notification);
+            toastr.success("Forked").fadeOut(5500);
+
+            socket.emit("notification", res.notification);
+          },
+          error: function (xhr, status, error) {
+            toastr.error(xhr.responseJSON.message).fadeOut(5500);
+          },
+        });
+      });
+    } else {
+      $("#headerTxt1").show();
+      document.getElementById("headerTxt1").innerText =
+        "Project Request is Still Pending";
+      toastr.error("Your Project Request is Still Pending").fadeOut(7500);
+    }
   });
 });

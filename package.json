@@ -38,6 +38,7 @@
     "socket.io": "^4.2.0",
     "swagger-jsdoc": "^6.2.0",
     "swagger-ui-express": "^4.3.0",
+    "toastr": "^2.1.4",
     "vash": "^0.13.0",
     "ws": "^8.2.3",
     "xterm": "^3.8.0",

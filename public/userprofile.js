@@ -25,9 +25,9 @@ $(document).ready(function () {
   
             <div class="userinfo">
               <div>
-                <h3>${res.ifUser.first_name} ${res.ifUser.last_name}</h3>
-                <p>${res.ifUser.email}</p>
-                <p>Total Projects : ${res.projectDetails.length}</p>
+                <h3 style="font-style: italic">${res.ifUser.first_name} ${res.ifUser.last_name}</h3>
+                <p style="font-style: italic;margin-bottom:-1px">${res.ifUser.email}</p>
+                <p style="font-style: italic">Total Projects : ${res.projectDetails.length}</p>
               </div>
             </div>
           </div>

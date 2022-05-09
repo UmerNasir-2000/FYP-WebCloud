@@ -65,6 +65,8 @@ $(document).ready(function () {
       },
 
       success: function (result, status, xhr) {
+        toastr.success("Creating Template").fadeOut(5500);
+
         $("input:text").val("");
         $("#project_description").val("");
 
@@ -82,6 +84,8 @@ $(document).ready(function () {
         );
       },
       error: function (xhr, status, error) {
+        toastr.error(xhr.responseJSON.error).fadeOut(5500);
+
         $("#msg").html(xhr.responseJSON.error);
       },
     });

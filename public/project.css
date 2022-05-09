@@ -24,7 +24,7 @@ body {
   top: 0;
   left: 0;
   z-index: 999;
-  background: #0e1528 url("images/64X64.gif") center no-repeat;
+  background: #0e1528 url("images/96x96.gif") center no-repeat;
 }
 body.loading {
   overflow: hidden;

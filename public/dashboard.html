@@ -154,7 +154,7 @@
                   );
                 },
               }).then(function (res) {
-                alert("Updated");
+                toastr.success("Updated").fadeOut(6500);
                 callDashboard();
               });
             });
@@ -200,13 +200,13 @@
                   label: "DotNet",
                 },
                 {
-                  value: res.configuration[0].total_web_framework,
+                  value: res.configuration[1].total_web_framework,
                   color: "green",
                   highlight: "yellowgreen",
                   label: "Node js",
                 },
                 {
-                  value: res.configuration[1].total_web_framework,
+                  value: res.configuration[0].total_web_framework,
 
                   color: "lightgreen",
                   highlight: "coral",
@@ -236,6 +236,12 @@
       });
     </script>
     <title style="color: aliceblue">Web Cloud | Admin Dashboard</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
   </head>
   <body id="mybody">
     <nav class="navbar navbar-expand navbar-light">

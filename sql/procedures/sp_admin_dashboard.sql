@@ -20,7 +20,7 @@ BEGIN
 	ON req.project_id  = prj.id 
 	INNER JOIN users usr 
 	ON usr.id = prj.user_id
-    ORDER BY req.createdAt
+    ORDER BY req.createdAt DESC
     LIMIT 5;
 END$$
 

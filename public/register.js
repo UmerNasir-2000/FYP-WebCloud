@@ -23,6 +23,7 @@ $(document).ready(function () {
         window.location.href = "login.html";
       },
       error: function (xhr, status, error) {
+        toastr.error(xhr.responseJSON.error).fadeOut(5500);
         $("#msg").html(xhr.responseJSON.error);
         $("input:text").val("");
         $("input:password").val("");
