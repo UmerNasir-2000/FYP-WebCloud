@@ -15,6 +15,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <script
       type="text/javascript"
       src="/bootstrap/js/bootstrap.min.js"
@@ -120,7 +126,7 @@
                 <td>${reg.id}</td>
                 <td>${reg.project_name}</td>
                 <td id="yes">
-                  <select class="standard-select1" id="status" >
+                  <select class="standard-select1" id="status" style="padding: 5px;" >
                     <option value=""  disabled selected hidden>${reg.status}</option>
                     <option value=${reg.id}>Pending</option>
                     <option value=${reg.id}>Approved</option>
@@ -128,7 +134,7 @@
                   </select>
                 </td>
                 <td>${reg.email}</td>
-                <td style="font-size:smaller">
+                <td >
                   ${str}</td>
               </tr>
 
@@ -154,8 +160,9 @@
                   );
                 },
               }).then(function (res) {
-                alert("Updated");
+                toastr.options.timeOut = 7500;
                 callDashboard();
+                toastr.success("Request Successfully Updated.");
               });
             });
           });
@@ -321,9 +328,9 @@
             "
           >
             <p style="font-size: large; padding-top: 10px; font-display: bold">
-              Analysis based on :
+              Analysis Based On :
             </p>
-            <select class="standard-select" id="ddlEntity">
+            <select class="standard-select" id="ddlEntity" style="padding: 5px">
               <option id="1" value="database">Database</option>
               <option id="2" value="web_framework">Web Engine</option>
             </select>

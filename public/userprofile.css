@@ -122,6 +122,7 @@ span {
   padding-top: 10px;
   flex-direction: column;
   text-align: justify;
+  border-radius: 40px;
 }
 .item:hover {
   background-color: #0e1528;
@@ -135,6 +136,7 @@ button.openbtn {
 }
 #tblReg1 {
   border: 1px solid blue;
+  border-radius: 25px;
   height: max-content;
   text-align: center;
   width: auto;
