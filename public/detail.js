@@ -32,9 +32,9 @@ $(document).ready(function () {
                   `
                     : ""
                 }
-                   <button class="forkbtn" value=${
+                   <button class="downloadbtn" value=${
                      reg.repoDetail[0].project_id
-                   } >
+                   } style="font-weight: bold">
                    Download
                       </button>
               
@@ -85,39 +85,39 @@ $(document).ready(function () {
         <div>
       
     
-        Project Web Framework :
+       
       
         ${
           reg.repoDetail[0].web_framework === "Node.js"
-            ? `<img src="https://img.icons8.com/fluency/48/000000/node-js.png"/>` +
-              `<h2>Node.js</h2>`
+            ? `<h2>Node.js</h2>` +
+              `<img src="https://img.icons8.com/fluency/48/000000/node-js.png"/>`
             : ""
         }
         
         ${
           reg.repoDetail[0].web_framework === "PHP"
-            ? `<img src="https://img.icons8.com/color/48/000000/php.png"/>` +
-              `<h2>PHP</h2>`
+            ? `<h2>PHP</h2>` +
+              `<img src="https://img.icons8.com/color/48/000000/php.png"/>`
             : ""
         }
         
         ${
           reg.repoDetail[0].web_framework === "Nest.js"
-            ? `<img src="images/nest.svg"/ width="48" height="48">` +
-              `<h2>Nest.js</h2>`
+            ? `<h2>Nest.js</h2>` +
+              `<img src="images/nest.svg"/ width="48" height="48">`
             : ""
         }
         ${
           reg.repoDetail[0].web_framework === "Spring Boot"
-            ? `<img src="./images/spring.svg" alt="" />` +
-              `<h2>Spring Boot</h2>`
+            ? `<h2>Spring Boot</h2>` +
+              `<img src="./images/spring.svg" alt="" />`
             : ""
         }
         
         ${
           reg.repoDetail[0].web_framework === "Dotnet"
-            ? `<img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/000000/external-net-or-dot-net-a-software-framework-developed-by-microsoft-logo-shadow-tal-revivo.png"/>` +
-              `<h2>Dotnet</h2>`
+            ? `<h2>Dotnet</h2>` +
+              `<img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/000000/external-net-or-dot-net-a-software-framework-developed-by-microsoft-logo-shadow-tal-revivo.png"/>`
             : ""
         }
         
@@ -126,16 +126,16 @@ $(document).ready(function () {
         
         
         </div>
-             <div>Project Database : ${
+             <div>${
                reg.repoDetail[0].database === "MySQL"
-                 ? `<img src="images/mysql.svg" width=68 height=68 />` +
-                   `<h2>MYSQL</h2>`
+                 ? `<h2>MYSQL</h2>` +
+                   `<img src="images/mysql.svg" width=68 height=68 />`
                  : ""
              }
                   ${
                     reg.repoDetail[0].database === "MongoDB"
-                      ? `<img src="https://img.icons8.com/color/48/000000/mongodb.png"/>` +
-                        `<h2>MongoDB</h2>`
+                      ? `<h2>MongoDB</h2>` +
+                        `<img src="https://img.icons8.com/color/48/000000/mongodb.png"/>`
                       : ""
                   }
              
@@ -171,6 +171,10 @@ $(document).ready(function () {
       $(".openbtn").click(function () {
         localStorage["idprofile"] = this.value;
         window.location.href = "userprofile.html";
+      });
+
+      $(".downloadbtn").click(function () {
+        toastr.success("Code Download").fadeOut(5500);
       });
 
       $(".forkbtn").click(function () {

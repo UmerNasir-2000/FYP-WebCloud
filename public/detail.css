@@ -3,25 +3,22 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+
 body {
   min-height: 100vh;
   background-color: #0e1528;
-
-  /*
-background: rgb(0, 0, 75) !important; */
-  /*
-background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
-1) 100% ); */
 }
+
 .wrapper {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 180px;
   border-radius: 10px;
-  padding: 15px;
+  padding: 4%;
   margin: 5px 15px !important;
   border: 2px solid blue;
 }
+
 .box2 {
   display: flex;
   margin: 10px;
@@ -95,9 +92,13 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   justify-content: space-between;
 }
 .third-row div {
+  display: flex;
   padding: 40px;
   width: 49%;
   background-color: #1a2238 !important;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 .first {
   position: relative !important;
@@ -122,10 +123,10 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
   width: 40%;
 }
 .desc {
-  justify-content: center;
+  text-align: justify;
   height: 30% !important;
   overflow: auto;
-  padding: 5px;
+  padding: 15px;
 }
 .info {
   height: 40% !important;
@@ -148,6 +149,7 @@ background: radial-gradient( circle, rgba(32, 71, 179, 1) 15%, rgba(13, 0, 11,
 .nameandemail {
   background-color: transparent;
   display: flex;
+  padding: 2px 15px;
   flex-direction: column;
   text-align: center;
   justify-content: center;

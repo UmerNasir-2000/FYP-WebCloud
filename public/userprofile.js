@@ -120,7 +120,7 @@ $(document).ready(function () {
               <div>${str}</div>
               <div> 
               ${
-                reg.is_public === false
+                reg.is_public === 0
                   ? `<span style=" white;background-color: #7e0404;border-radius:20px 10px; 
                   font-weight:1000;
                   font-style: italic;
