@@ -5,6 +5,7 @@ const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
 const { users } = require("../models");
 const { Op } = require("sequelize");
+const sendEmail = require("../utils/email-config");
 
 const registerUserService = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -100,4 +101,28 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: "7d" });
 };
 
-module.exports = { registerUserService, loginUserService };
+const forgotPasswordService = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  const isValidEmail = await users.findOne({
+    where: {
+      email,
+    },
+  });
+
+  if (isValidEmail) {
+    return res
+      .status(StatusCodes.OK)
+      .json({ messsage: "Forgot Password API", validEmail: true });
+  }
+
+  return res
+    .status(StatusCodes.BAD_REQUEST)
+    .json({ messsage: "Forgot Password API", validEmail: false });
+});
+
+module.exports = {
+  registerUserService,
+  loginUserService,
+  forgotPasswordService,
+};
