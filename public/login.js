@@ -42,7 +42,7 @@ $("#register").click(function (e) {
       }
     },
     error: function (xhr, status, error) {
-      $("#msg").html(xhr.responseJSON.error);
+      $("#msg").html(xhr.responseJSON.message);
     },
   });
 
