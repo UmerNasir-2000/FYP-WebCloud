@@ -117,6 +117,7 @@ const forgotPasswordService = asyncHandler(async (req, res) => {
   });
 
   if (isValidEmail) {
+    await sendEmail(email);
     return res
       .status(StatusCodes.OK)
       .json({ messsage: "Forgot Password API", validEmail: true });
