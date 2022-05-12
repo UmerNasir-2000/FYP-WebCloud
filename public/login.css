@@ -16,6 +16,10 @@ body {
   ); */
 }
 
+#msg {
+  background-color: red;
+}
+
 body .myform {
   justify-content: center !important;
   align-items: center !important;

@@ -4,8 +4,17 @@ socket.on("connection");
 $(document).ready(function () {
   socket.on("fetch_notification", (data) => {
     toastr.options.timeOut = 7500; // 1.5s
-    if (data.user_id === localStorage.getItem("userId"))
+    console.log("data :>> ", data);
+    console.log(
+      'localStorage.getItem("userId") :>> ',
+      localStorage.getItem("userId")
+    );
+    console.log("Inside Fetch Notification :>> ");
+    const ifTrue = data.user_id === parseInt(localStorage.getItem("userId"));
+    console.log("ifTrue :>> ", ifTrue);
+    if (ifTrue) {
       toastr.success(data.text);
+    }
   });
 
   $(".notification_icon .fa-bell").click(function () {
@@ -183,7 +192,6 @@ $(document).ready(function () {
       $("#tblReg1  > table > tbody").empty();
 
       $.each(res.userRecentRepos, function (r1, reg) {
-        console.log("Recent", reg);
         var str = reg.createdAt;
 
         if (str.length > 5) str = str.substring(0, 10);
@@ -335,7 +343,6 @@ $(document).ready(function () {
       $(".dropdown  > table > tbody").empty();
 
       $.each(res.userNotifications, function (r1, reg) {
-        console.log("not", reg);
         let t = new Date(reg.createdAt).toDateString();
         tr = `
         <div class="notify_item">

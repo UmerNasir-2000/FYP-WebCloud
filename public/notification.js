@@ -8,12 +8,12 @@ $(document).ready(function () {
 
     console.log(res);
     $.each(res.userNotifications, function (r1, reg) {
-      console.log(reg);
+      //console.log("reg :>> ", reg);
       let t = new Date(reg.createdAt).toDateString();
       tr = `
       <tr>
       <td>
-      <button  value=${reg.id}  class="viewbtn" > 
+      <button  value=${reg.user_id}  class="viewbtn" > 
      View
      </button>
      </td> 
@@ -34,6 +34,8 @@ $(document).ready(function () {
       $("#tblReg > table > tbody").append(tr);
     });
     $(".viewbtn").click(function () {
+      console.log("this.value :>> ", this.value);
+      alert(this.value);
       localStorage["idprofile"] = this.value;
       window.location.href = "userprofile.html";
     });

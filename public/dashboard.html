@@ -182,7 +182,6 @@
                 );
               },
             }).then((res) => {
-              console.log(res);
               data = [
                 {
                   value: res.configuration[0].total_database,
@@ -194,7 +193,7 @@
                   value: res.configuration[1].total_database,
                   color: "green",
                   highlight: "yellowgreen",
-                  label: "MONGODB",
+                  label: "MongoDB",
                 },
               ];
               var piechart = new Chart(ctx).Pie(data);
@@ -209,7 +208,7 @@
                   value: res.configuration[1].total_web_framework,
                   color: "green",
                   highlight: "yellowgreen",
-                  label: "Node js",
+                  label: "Node.js",
                 },
                 {
                   value: res.configuration[0].total_web_framework,
@@ -224,7 +223,7 @@
 
                   color: "rgb(214, 60, 60)",
                   highlight: "coral",
-                  label: "Nest js",
+                  label: "Nest.js",
                 },
                 {
                   value: res.configuration[3].total_web_framework,

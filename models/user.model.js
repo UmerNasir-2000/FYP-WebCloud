@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       status: {
         type: DataTypes.ENUM("Enable", "Disable", "Deleted"),
         allowNull: false,
-        defaultValue: "Disable",
+        defaultValue: "Enable",
       },
       password: {
         type: DataTypes.STRING,

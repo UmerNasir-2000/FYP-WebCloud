@@ -103,3 +103,22 @@ li {
   list-style-type: none !important;
   margin-bottom: 20px;
 }
+
+#logout {
+  background-color: rgba(255, 0, 0, 0.671) !important;
+  color: white !important;
+  border-radius: 8px;
+  border: 0;
+}
+/* #logout a {
+  background-color: rgba(255, 0, 0, 0.671) !important;
+  color: white !important;
+} */
+#logout:hover {
+  background-color: rgba(255, 0, 0, 0.671) !important;
+  color: white;
+}
+/* #logout a:hover {
+  color: white;
+  background-color: rgba(255, 0, 0, 0.671) !important;
+} */

@@ -11,17 +11,21 @@ if (localStorage.getItem("token")) {
   window.location.href = "index.html";
   alert("User Need to Login First");
 }
-$("#box-two").hide();
-$(".one").click(function () {
-  console.log("object");
-  $("#box-two").show();
-  $("#box-one").hide();
+
+var click = 1;
+$("#folders").click(function () {
+  click++;
+  if (click % 2 == 0) {
+    $(".container__right").css({
+      width: "0%",
+    });
+  } else {
+    $(".container__right").css({
+      width: "15%",
+    });
+  }
 });
-$(".two").click(function () {
-  console.log("object");
-  $("#box-two").hide();
-  $("#box-one").show();
-});
+
 $(".select_button1").click(function () {
   $(".select1").toggle();
 });
@@ -57,7 +61,8 @@ function renderTree() {
       var node = data.node;
       console.log("This is data.node object  = " + data.node);
       fileName = node.title;
-      console.log(fileName);
+      console.log("Name", fileName);
+
       document.title = fileName;
       $.ajax({
         url: `/api/files/file`,

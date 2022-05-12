@@ -79,7 +79,7 @@ body {
 
 .desc {
   background-color: #1a2238 !important;
-
+  font-size: large;
   overflow: auto;
 }
 

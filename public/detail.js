@@ -1,7 +1,14 @@
 var socket = io("http://localhost:5000/");
 socket.on("connection");
 
+var isLiked = false;
+
 $(document).ready(function () {
+  let isEnabled = "";
+  if (localStorage.getItem("isadmin") === "1") {
+    isEnabled = "disabled";
+  }
+
   $.ajax({
     url: `/api/repo/${localStorage.getItem("publicId")}`,
     method: "GET",
@@ -9,7 +16,6 @@ $(document).ready(function () {
   }).then(function (reg) {
     $("#headerTxt1").hide();
 
-    console.log(reg);
     if (reg.repoDetail.length !== 0) {
       $("#tblReg > table > tbody").empty();
       document.getElementById("headerTxt").innerText =
@@ -26,7 +32,7 @@ $(document).ready(function () {
                 ${
                   localStorage.getItem("isadmin") === "0"
                     ? `
-                  <button class="forkbtn" value=${reg.repoDetail[0].project_id} >
+                  <button class="forkbtn" style="font-weight: bold;" value=${reg.repoDetail[0].project_id} >
                   Fork Repository
                   </button>
                   `
@@ -38,14 +44,12 @@ $(document).ready(function () {
                    Download
                       </button>
               
-                  <button  value=${
+                  <button value=${
                     reg.repoDetail[0].project_id
-                  }  class="likebtn" > 
-                  <img src="https://img.icons8.com/fluency/32/000000/star.png"/>  
-                      ${reg.repoDetail[0].likes}
-                  </button>
-                  
-                 
+                  }  class="likebtn" ${isEnabled}>
+                  <img src="https://img.icons8.com/fluency/32/000000/star.png"/>
+                  ${reg.repoDetail[0].likes} (LIKES)
+ </button>
                 </div>
                 <div class="singleline">
     
@@ -150,8 +154,6 @@ $(document).ready(function () {
       $("#tblReg > table > tbody").append(tr);
 
       $(".likebtn").click(function () {
-        $(".likebtn").prop("disabled", true);
-
         $.ajax({
           url: `/api/repo/like/${this.value}`,
           method: "POST",
@@ -165,7 +167,17 @@ $(document).ready(function () {
             );
           },
         }).then(function (res) {
-          toastr.success("Liked").fadeOut(5500);
+          let newValue = parseInt($(".likebtn").text().trim());
+          isLiked = !isLiked;
+          if (isLiked) {
+            toastr.success("Liked").fadeOut(5500);
+            newValue += 1;
+          } else {
+            newValue -= 1;
+          }
+          $(".likebtn").html(
+            `<img src="https://img.icons8.com/fluency/32/000000/star.png"/>    ${newValue} (LIKES)`
+          );
         });
       });
       $(".openbtn").click(function () {

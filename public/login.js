@@ -42,7 +42,14 @@ $("#register").click(function (e) {
       }
     },
     error: function (xhr, status, error) {
-      $("#msg").html(xhr.responseJSON.message);
+      $("#msg").css({
+        display: "inline",
+        padding: "5px",
+        "text-transform": "uppercase",
+        "font-weight": "700",
+      });
+      console.log(xhr.responseJSON.error);
+      $("#msg").html(xhr.responseJSON.message || xhr.responseJSON.error);
     },
   });
 

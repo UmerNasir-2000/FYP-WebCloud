@@ -24,8 +24,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
-    
-    
+
     <script src="//cdn.jsdelivr.net/npm/jquery.fancytree@2.27/dist/jquery.fancytree-all-deps.min.js"></script>
 
     <script
@@ -119,9 +118,6 @@
     </script>
   </head>
   <body id="mybody">
-
-
-    
     <nav
       class="navbar navbar-expand navbar-light navbar-bottom"
       style="
@@ -129,111 +125,44 @@
         align-content: space-between;
         padding: 2px;
         border: 0 !important;
-        border-width:0 !important;
-    box-shadow:none !important;
-
+        border-width: 0 !important;
+        box-shadow: none !important;
       "
     >
-      <h1
-        class="display-6"
-        style="font-size: 40px; color: white; font-weight: bolder"
-      >
-        <a href="home.html" style="text-decoration: none; color: white">
-          &lt;/&gt;WebCloud
-        </a>
-      </h1>
-      <ul class="navbar-nav mr-auto pl-2" style="flex-direction: row ;">
-        <!-- <li>
-          <button
-            class="btn btn-success"
-            style="
-              background-color: #0e1528;
-              border-color: white;
-              border-width: 2px;
-            "
-            id="save-file-btn"
-          >
-            <i style="font-size: large" class="bi bi-save"></i>
-
-            Save File
-          </button>
-        </li> -->
-        <!-- <li>
-          <button
-            class="btn btn-success"
-            style="
-              background-color: #0e1528;
-              margin-left: 5px;
-              border-color: white;
-              border-width: 2px;
-            "
-            id="terminal-btn"
-          >
-            <i style="font-size: large" class="bi bi-terminal"></i>
-
-            <a
-              href="/terminal.html"
-              style="color: white; text-decoration: none"
-              target="_blank"
-              >Get Terminal</a
-            >
-          </button>
-        </li> -->
-
-        <!-- <li>
-          <button
-            style="
-              margin-left: 5px;
-              background-color: #0e1528;
-              border-color: white;
-              border-width: 2px;
-            "
-            class="btn btn-primary"
-            type="submit"
-            id="prettier"
-          >
-            <i style="font-size: large" class="bi bi-check-all"></i>
-
-            Prettier
-          </button>
-        </li> -->
+      <a class="navbar-brand" href="home.html" style="margin-left: 5px">
+        <img src="images/four.svg" height="50px" width="50px" alt="" />
+      </a>
+      <ul class="navbar-nav mr-auto pl-2" style="flex-direction: row">
         <li>
-          <a href="javascript:void(0);" class="select_button1" id="mypic">
-            
-          </a>
- 
-       
-          <form class="dropdown-menu select1" style="  
-          
-          color: white !important;
-  background-color: #1a2238;
-  box-shadow: 2px 2px 3px blue;">
-            <ul class="list-group text-black" style="cursor: pointer; text-align: center;">
+          <a href="javascript:void(0);" class="select_button1" id="mypic"> </a>
+
+          <form
+            class="dropdown-menu select1"
+            style="
+              color: white !important;
+              background-color: #1a2238;
+              box-shadow: 2px 2px 3px blue;
+            "
+          >
+            <ul
+              class="list-group text-black"
+              style="cursor: pointer; text-align: center"
+            >
               <button
-              id="uname"
-           class="dropdown-item"
-              style=" 
-                pointer-events: none;
-                color: white
-              "
-            ></button>
-            <li class="dropdown-item home">
-              <a href="home.html" style="text-decoration: none ; ">
-                Home
-              </a>
-            </li>
-              <li id="logout" class="dropdown-item">
-            <a style="color: rgba(255, 9, 9, 0.938)" target="_blank">Logout</a>
-                
+                id="uname"
+                class="dropdown-item"
+                style="pointer-events: none; color: white"
+              ></button>
+              <li class="dropdown-item home">
+                <a href="home.html" style="text-decoration: none"> Home </a>
               </li>
-         
-            
+              <li id="logout" class="dropdown-item">
+                <a style="color: rgba(255, 9, 9, 0.938)" target="_blank"
+                  >Logout</a
+                >
+              </li>
             </ul>
           </form>
-         
-       
-
-       
         </li>
         <li class="nav-item dropdown">
           <button
@@ -252,34 +181,69 @@
           >
             Select Themes
           </button>
-          <form class="dropdown-menu" style="
-          color: white !important;
-          background-color: #1a2238;
-          box-shadow: 2px 2px 3px blue;">
-            <ul class="list-group text-black" style="cursor: pointer; ;">
-              <li style="color: white" id="cascadia-code" class="dropdown-item">Cobalt Blue</li>
-              <li style="color: white"id="twilight" class="dropdown-item">Twilight</li>
-              <li style="color: white"id="xcode" class="dropdown-item">XCode</li>
-              <li style="color: white"id="monokai" class="dropdown-item">Monokai Pro</li>
-              <li style="color: white"id="eclipse" class="dropdown-item">Eclipse</li>
+          <form
+            class="dropdown-menu"
+            style="
+              color: white !important;
+              background-color: #1a2238;
+              box-shadow: 2px 2px 3px blue;
+            "
+          >
+            <ul class="list-group text-black" style="cursor: pointer">
+              <li style="color: white" id="cascadia-code" class="dropdown-item">
+                Cobalt Blue
+              </li>
+              <li style="color: white" id="twilight" class="dropdown-item">
+                Twilight
+              </li>
+              <li style="color: white" id="xcode" class="dropdown-item">
+                XCode
+              </li>
+              <li style="color: white" id="monokai" class="dropdown-item">
+                Monokai Pro
+              </li>
+              <li style="color: white" id="eclipse" class="dropdown-item">
+                Eclipse
+              </li>
             </ul>
           </form>
         </li>
       </ul>
     </nav>
-  <div
-      style="
-        display: flex !important;
 
-        /* Misc */
-       
-        height: 38rem;
-        width: 100% !important;
-      
-      "
-  >
-   
-     
+    <div
+      style="display: flex !important; height: 38rem; width: 100% !important"
+    >
+      <div id="btnclick" class="btn-section">
+        <button id="folders" class="one basic-btn" title="Explorer">
+          <i style="font-size: x-large" class="bi bi-card-list"></i>
+        </button>
+        <button
+          id="manage"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          class="two basic-btn"
+          title="Instructions"
+        >
+          <i style="font-size: x-large" class="bi bi-gear"></i>
+        </button>
+        <button id="terminal-btn" class="basic-btn" title="Terminal">
+          <a
+            href="http://localhost:5001/xterm.html"
+            style="color: white"
+            target="_blank"
+          >
+            <i style="font-size: x-large" class="bi bi-terminal"></i>
+          </a>
+        </button>
+        <button class="basic-btn" id="save-file-btn" title="Save Project">
+          <i style="font-size: x-large" class="bi bi-save"></i>
+        </button>
+        <button class="basic-btn" type="submit" id="prettier" title="Prettier">
+          <i style="font-size: x-large" class="bi bi-check-all"></i>
+        </button>
+      </div>
+
       <div
         id="explorer"
         class="container__right"
@@ -289,181 +253,118 @@
           border-width: 10px;
         "
       >
-        <div
-          id="btnclick"
-         class="btn-section"
-
-        >
-          <button
-            class="one basic-btn"
-            title="Explorer"
-            
-           >
-            <i style="font-size: x-large" class="bi bi-card-list"></i>
-          </button>
-          <button
-            class="two basic-btn"
-            title="Manage"
-
-               >
-            <i style="font-size: x-large" class="bi bi-gear"></i>
-          </button>
-          <button
-            id="terminal-btn"
-            class="basic-btn"
-            title="Terminal"
-
-
-          >
-            <a href="http://localhost:5001/xterm.html" style="color: white" target="_blank">
-              <i style="font-size: x-large" class="bi bi-terminal"></i>
-            </a>
-          </button>
-          <button 
-          class="basic-btn"
-          id="save-file-btn"
-          title="Save Project"
-
-        >
-          <i style="font-size: x-large" class="bi bi-save"></i>
- 
-        </button>
-        <button
-      class="basic-btn"
-        type="submit"
-        id="prettier"
-        title="Prettier"
-
-      >
-        <i style="font-size: x-large" class="bi bi-check-all"></i>
-
-         
-            </button>
+        <div class="grid3" id="box-two">
+          <div>
+            <div style="padding-top: 10px">
+              <button
+                id="run"
+                class="btn btn-primary"
+                title="Run Project"
+                style="
+                  background-color: #0e1528;
+                  border-color: rgb(33, 248, 33);
+                  border-width: 1px;
+                  margin-top: 2px;
+                "
+              >
+                <i
+                  style="font-size: large; color: rgb(33, 248, 33)"
+                  class="bi bi-play"
+                ></i>
+                <!-- </a> -->
+              </button>
+              <button
+                class="btn btn-primary"
+                title="Create New File"
+                style="
+                  background-color: #0e1528;
+                  border-color: white;
+                  border-width: 1px;
+                  margin-top: 2px;
+                "
+                id="create-file"
+              >
+                <i style="font-size: large" class="bi bi-file-earmark-plus"></i>
+              </button>
+              <button
+                title="Refresh Explorer"
+                class="btn btn-primary"
+                style="
+                  background-color: #0e1528;
+                  border-color: white;
+                  border-width: 1px;
+                  margin-top: 2px;
+                "
+                id="refresh-explorer"
+              >
+                <i style="font-size: large" class="bi bi-arrow-clockwise"></i>
+              </button>
+            </div>
+          </div>
+          <div id="tree" style="font-size: large; text-align: start"></div>
         </div>
+      </div>
+      <div class="resizer" id="dragMe"></div>
 
-          <div id="box-one" style="color: aliceblue; text-align: center;" >
-            <h4>WebCloud</h4>
-            <p>
-             Intructions
-            </p>
-            <ul style="text-align: justify;">
-              <li>Ctrl + 3 to ZoomIN</li>
-              <li>Ctrl + 2 to ZoomOut</li>
+      <div class="container__left" id="editor">
+        # Write Your Code To Get Started
+      </div>
+    </div>
 
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">
+              IDE Information
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>Press Ctrl + Q To Zoom Out</li>
+              <li>Press Ctrl + 3 To Zoom In</li>
             </ul>
+            <!-- <select
+              class="form-select form-select mb-3"
+              aria-label=".form-select-lg example"
+            >
+              <option selected class="dropdown-item">Select Your Theme</option>
+              <option value="1" class="dropdown-item">Cobalt Blue</option>
+              <option value="twilight" id="twilight" class="dropdown-item">
+                Twilight
+              </option>
+              <option value="2" class="dropdown-item">Eclipse</option>
+              <option value="2" class="dropdown-item">XCode</option>
+              <option value="3" class="dropdown-item">Monokai Pro</option>
+            </select> -->
           </div>
-
-          <div class="grid3" id="box-two">
-            <div>
-              <div style="padding-top: 10px">
-                <button
-                  id="run"
-                  class="btn btn-primary"
-                  title="Run Project"
-                  style="
-                    background-color: #0e1528;
-                    border-color: rgb(33, 248, 33);
-                    border-width: 1px;
-                    margin-top: 2px;
-                  "
-                >
-                  <i
-                    style="font-size: large; color: rgb(33, 248, 33)"
-                    class="bi bi-play"
-                  ></i>
-                  <!-- </a> -->
-                </button>
-                <button
-                  class="btn btn-primary"
-                  title="Create New File"
-                  style="
-                    background-color: #0e1528;
-                    border-color: white;
-                    border-width: 1px;
-                    margin-top: 2px;
-                  "
-                  id="create-file"
-                >
-                  <i
-                    style="font-size: large"
-                    class="bi bi-file-earmark-plus"
-                  ></i>
-                </button>
-                <button
-                  title="Refresh Explorer"
-                  class="btn btn-primary"
-                  style="
-                    background-color: #0e1528;
-                    border-color: white;
-                    border-width: 1px;
-                    margin-top: 2px;
-                  "
-                  id="refresh-explorer"
-                >
-                  <i style="font-size: large" class="bi bi-arrow-clockwise"></i>
-                </button>
-              </div>
-            </div>
-            <div id="tree" style="font-size: large; text-align: start"></div>
-             </div>
-           </div>
-            <div class="resizer" id="dragMe"></div>
-
-            <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">...</div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-primary">
-                    Save changes
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="container__left" id="editor">
-            #Write Your Code To Get Started
-        </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div id="contextMenu" class="dropdown clearfix">
-      <ul
-        class="dropdown-menu"
-        role="menu"
-        aria-labelledby="dropdownMenu"
-        style="display: block; position: static; margin-bottom: 5px"
-      >
-        <li><a tabindex="-1" href="#">Action 1</a></li>
-        <li><a tabindex="-1" href="#">Action 2</a></li>
-        <li><a tabindex="-1" href="#">Some More Actions</a></li>
-        <li class="divider"></li>
-        <li><a tabindex="-1" href="#">Final Action</a></li>
-      </ul>
-    </div> -->
+
     <script src="editor.js"></script>
     <script src="auth.js"></script>
     <script src="navbar.js"></script>

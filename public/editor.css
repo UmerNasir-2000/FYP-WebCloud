@@ -30,17 +30,15 @@ body {
 }
 
 .container__right {
-  /* Take the remaining width */
-
-  width: 18%;
-  /* Misc */
-  display: flex !important;
+  width: 15%;
+  display: flex;
 }
 .resizer {
   background-color: #cbd5e0;
   cursor: ew-resize;
   height: 100%;
   width: 2px;
+  margin-left: -5px;
 }
 #explorer {
   background-color: "#fff";
@@ -78,6 +76,9 @@ body {
   border-top: 0;
   padding: 5px;
   margin-right: 5px;
+}
+.btn-section button:hover {
+  transform: scale(1.1);
 }
 
 span {
