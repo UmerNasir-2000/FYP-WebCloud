@@ -34,8 +34,8 @@ $(document).ready(function () {
       $("#tblReg > table > tbody").append(tr);
     });
     $(".viewbtn").click(function () {
-      console.log("this.value :>> ", this.value);
-      alert(this.value);
+      // console.log("this.value :>> ", this.value);
+      // alert(this.value);
       localStorage["idprofile"] = this.value;
       window.location.href = "userprofile.html";
     });
