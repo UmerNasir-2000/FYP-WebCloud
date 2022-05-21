@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       user_id: { type: DataTypes.INTEGER, allowNull: false },
+      owner_id: { type: DataTypes.INTEGER, allowNull: false },
     },
     { timestamps: true, createdAt: true, updatedAt: false }
   );

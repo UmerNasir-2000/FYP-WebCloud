@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
         ),
         allowNull: false,
       },
+      db_password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       project_id: {
         type: DataTypes.INTEGER,
         allowNull: false,

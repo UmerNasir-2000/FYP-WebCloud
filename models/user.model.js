@@ -49,6 +49,12 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue:
           "https://i.pinimg.com/originals/35/9d/1d/359d1d33ca0cca4e58b7a8113c2977c1.jpg",
       },
+      container: {
+        type: DataTypes.STRING,
+      },
+      port: {
+        type: DataTypes.INTEGER,
+      },
       is_admin: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
