@@ -1,4 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
+const { exec } = require("child_process");
 const asyncHandler = require("express-async-handler");
 const {
   projects,
@@ -37,15 +38,37 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     user_id: req.user.id,
   });
 
+  const updatedRequest = await projects.update(
+    { path: `/WebCloud/${req.user.id}/${project.id}-${project_name}` },
+    {
+      where: {
+        id: project.id,
+      },
+    }
+  );
+
   const projectConfig = await configurations.create({
     db_port: 3306,
     web_port: 3000,
     database,
     web_framework,
+    db_password: "Ce782lc-13.@3",
     project_id: project.id,
   });
 
   const projectRequest = await requests.create({ project_id: project.id });
+
+  exec(
+    `mkdir ~/WebCloud/${req.user.id}/${project.id}-${project_name}`,
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+    }
+  );
 
   let createdProjectResponse = {
     id: project.id,

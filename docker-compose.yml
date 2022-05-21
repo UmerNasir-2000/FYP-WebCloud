@@ -7,12 +7,12 @@ services:
     environment:
       MYSQL_DATABASE: "sql_web_cloud"
       MYSQL_USER: "user"
-      MYSQL_PASSWORD: 123456
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_PASSWORD: Root@3000
+      MYSQL_ROOT_PASSWORD: Root@3000
     ports:
       - "3308:3306"
     volumes:
-      - db-webcloud-mysql:/var/lib/mysql
+      - database-webcloud-mysql:/var/lib/mysql
 
 volumes:
-  db-webcloud-mysql:
+  database-webcloud-mysql:
