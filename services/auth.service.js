@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
+const { exec } = require("child_process");
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
 const { users } = require("../models");
@@ -21,15 +21,22 @@ const registerUserService = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
-  // const hash = crypto.createHash("sha512").update(password).digest("hex");
-
-  // console.log("hash :>> ", hash);
-
   const user = await users.create({
     first_name: firstName,
     last_name: lastName,
     email,
     password: hash,
+  });
+
+  //console.log("user", user.dataValues.id);
+
+  exec(`mkdir ~/WebCloud/${user.dataValues.id}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
   });
 
   const transformedResponse = {
@@ -71,14 +78,6 @@ const loginUserService = asyncHandler(async (req, res) => {
   console.log("password :>> ", password);
 
   const correctPassword = await bcrypt.compare(password, validUser.password);
-
-  console.log("correctPassword :>> ", correctPassword);
-  // console.log("password :>> ", password);
-  // const hash = crypto.createHash("sha512").update(password).digest("hex");
-  // const correctPassword = validUser.password === hash;
-  // console.log("validUser.password", validUser.password);
-  // console.log("hash :>> ", hash);
-  // console.log("correctPassword :>> ", correctPassword);
 
   if (correctPassword) {
     const accessToken = generateToken(validUser.id);
