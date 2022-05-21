@@ -8,6 +8,7 @@ const {
   project_history,
 } = require("../models");
 const sendEmail = require("../utils/email-config");
+const generatePassword = require("../utils/password-generator");
 const db = require("../models");
 
 const createProjectTemplate = asyncHandler(async (req, res) => {
@@ -47,12 +48,14 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     }
   );
 
+  let randomPassword = generatePassword();
+
   const projectConfig = await configurations.create({
     db_port: 3306,
     web_port: 3000,
     database,
     web_framework,
-    db_password: "Ce782lc-13.@3",
+    db_password: randomPassword,
     project_id: project.id,
   });
 
@@ -78,14 +81,16 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     project_status: projectRequest.status,
   };
 
+  const userPort = await getUserPortMappingService();
+
+  req.user.port = userPort;
+
   let emailDetails = {
     email: req.user.email,
     web_framework,
     database,
     project_name,
-    is_public,
-    db_password: "123456",
-    db_port: "3306",
+    db_password: randomPassword,
     db_name: "LMS",
   };
 
@@ -169,6 +174,36 @@ const getUserForkedProjectsService = asyncHandler(async (req, res) => {
     message: `List of Projects By Forked By Logged In User`,
     forkedProjects,
   });
+});
+
+const getUserPortMappingService = asyncHandler(async () => {
+  const port = await db.sequelize.query(
+    `SELECT * FROM ports WHERE status = "Idle" LIMIT 1;`
+  );
+
+  console.log("port :>> ", port);
+
+  let userPort = "";
+
+  try {
+    if (typeof port[0][0]["port_number"] == "undefined") {
+      console.log(" port[0][0].length:>> ", port[0][0].length);
+      console.log('port[0][0]["port_number"]', port[0][0]["port_number"]);
+      userPort = port[0][0].port_number;
+    }
+  } catch (error) {
+    console.log("error :>> ", error);
+    console.log("Inside Catch Block :>> ");
+  }
+
+  console.log(" port[0].length:>> ", port[0].length);
+  console.log(" port[0][0].length:>> ", port[0][0].length);
+  console.log(" port[0][0].[port_number]:>> ", port[0][0]["port_number"]);
+  console.log(" port[0][0]:>> ", port[0][0]);
+
+  console.log("userPort :>> ", userPort);
+
+  return userPort;
 });
 
 module.exports = {

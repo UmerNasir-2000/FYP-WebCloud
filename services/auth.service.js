@@ -28,8 +28,6 @@ const registerUserService = asyncHandler(async (req, res) => {
     password: hash,
   });
 
-  //console.log("user", user.dataValues.id);
-
   exec(`mkdir ~/WebCloud/${user.dataValues.id}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
@@ -74,8 +72,6 @@ const loginUserService = asyncHandler(async (req, res) => {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ message: "User does not exist" });
-
-  console.log("password :>> ", password);
 
   const correctPassword = await bcrypt.compare(password, validUser.password);
 

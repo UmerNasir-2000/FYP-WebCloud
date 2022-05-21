@@ -25,6 +25,8 @@ const validateToken = asyncHandler(async (req, res, next) => {
           "status",
           "has_subscription",
           "profile_picture_url",
+          "port",
+          "container",
         ],
       });
 
