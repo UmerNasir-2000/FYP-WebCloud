@@ -9,6 +9,7 @@ const {
 } = require("../models");
 const sendEmail = require("../utils/email-config");
 const generatePassword = require("../utils/password-generator");
+const generateEnvironmentFile = require("../utils/env-file-generator");
 const db = require("../models");
 
 const createProjectTemplate = asyncHandler(async (req, res) => {
@@ -40,7 +41,7 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
   });
 
   const updatedRequest = await projects.update(
-    { path: `/WebCloud/${req.user.id}/${project.id}-${project_name}` },
+    { path: `/WebCloud/${req.user.id}/${project.id}` },
     {
       where: {
         id: project.id,
@@ -81,9 +82,28 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     project_status: projectRequest.status,
   };
 
-  // const userPort = await getUserPortMappingService();
+  exec(
+    `rsync -a ~/WebCloud-Templates/PHP-MySQL ~/WebCloud/${req.user.id}/${project.id}`,
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+    }
+  );
 
-  // req.user.port = userPort;
+  let config = {
+    path: `~/WebCloud/${req.user.id}/${project.id}/PHP-MySQL/`,
+    web_volume: "./php/src",
+    db_volume: "./init",
+    db_container: `${project.id}-db`,
+    web_container: `${project.id}-web`,
+    db_password: randomPassword,
+  };
+
+  generateEnvironmentFile(config);
 
   let emailDetails = {
     email: req.user.email,
