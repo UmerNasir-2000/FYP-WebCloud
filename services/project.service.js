@@ -62,7 +62,7 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
   const projectRequest = await requests.create({ project_id: project.id });
 
   exec(
-    `mkdir ~/WebCloud/${req.user.id}/${project.id}-${project_name}`,
+    `mkdir ~/WebCloud/${req.user.id}/${project.id}`,
     (error, stdout, stderr) => {
       if (error) {
         console.error(`exec error: ${error}`);
@@ -81,9 +81,9 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     project_status: projectRequest.status,
   };
 
-  const userPort = await getUserPortMappingService();
+  // const userPort = await getUserPortMappingService();
 
-  req.user.port = userPort;
+  // req.user.port = userPort;
 
   let emailDetails = {
     email: req.user.email,
@@ -195,6 +195,16 @@ const getUserPortMappingService = asyncHandler(async () => {
     console.log("error :>> ", error);
     console.log("Inside Catch Block :>> ");
   }
+
+  const arr = port[0][0];
+
+  const isFound = people.some((element) => {
+    if (element.id === 1) {
+      return true;
+    }
+
+    return false;
+  });
 
   console.log(" port[0].length:>> ", port[0].length);
   console.log(" port[0][0].length:>> ", port[0][0].length);
