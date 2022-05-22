@@ -236,9 +236,43 @@ const getUserPortMappingService = asyncHandler(async () => {
   return userPort;
 });
 
+const startProjectService = asyncHandler(async (req, res) => {
+  exec(
+    `cd ${req.user.path} && docker-compose up -d`,
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+    }
+  );
+
+  res.status(StatusCodes.OK).json({ message: "Started Project Successfully." });
+});
+
+const exitProjectService = asyncHandler(async (req, res) => {
+  exec(
+    `cd ${req.user.path} && docker-compose down`,
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+    }
+  );
+
+  res.status(StatusCodes.OK).json({ message: "Exited Project Successfully." });
+});
+
 module.exports = {
   createProjectTemplate,
   getUserProjectsService,
   getUserProjectByIdService,
   getUserForkedProjectsService,
+  startProjectService,
+  exitProjectService,
 };

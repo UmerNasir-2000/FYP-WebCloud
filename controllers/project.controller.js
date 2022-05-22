@@ -3,6 +3,8 @@ const {
   getUserProjectsService,
   getUserProjectByIdService,
   getUserForkedProjectsService,
+  startProjectService,
+  exitProjectService,
 } = require("../services/project.service");
 
 /**
@@ -49,9 +51,33 @@ const getUserForkedProjects = async (req, res) => {
   await getUserForkedProjectsService(req, res);
 };
 
+/**
+ *   @desc    GET Start The Project
+ *   @route   GET /api/project/start
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const startProject = async (req, res) => {
+  await startProjectService(req, res);
+};
+
+/**
+ *   @desc    GET Exit The Project
+ *   @route   GET /api/project/exit
+ *   @access  PRIVATE
+ *   @author  UMER NASIR
+ **/
+
+const exitProject = async (req, res) => {
+  await exitProjectService(req, res);
+};
+
 module.exports = {
   createUserProjectTemplate,
   getUserProjects,
   getUserProjectById,
   getUserForkedProjects,
+  startProject,
+  exitProject,
 };

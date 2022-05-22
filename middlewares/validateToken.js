@@ -27,6 +27,7 @@ const validateToken = asyncHandler(async (req, res, next) => {
           "profile_picture_url",
           "port",
           "container",
+          "path",
         ],
       });
 

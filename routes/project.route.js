@@ -2,13 +2,14 @@ const express = require("express");
 const router = express.Router();
 const validateResource = require("../middlewares/validateRequest");
 const validateToken = require("../middlewares/validateToken");
-const validateAdmin = require("../middlewares/validateAdmin");
 const createProjectSchema = require("../schemas/project/create-project-template.schema");
 const {
   createUserProjectTemplate,
   getUserProjects,
   getUserProjectById,
   getUserForkedProjects,
+  startProject,
+  exitProject,
 } = require("../controllers/project.controller");
 const logDatabase = require("../middlewares/logDatabase");
 
@@ -164,5 +165,8 @@ router
 router
   .route("/forked-projects")
   .get(validateToken, logDatabase, getUserForkedProjects);
+
+router.route("/start").get(validateToken, logDatabase, startProject);
+router.route("/exit").get(validateToken, logDatabase, exitProject);
 
 module.exports = router;
