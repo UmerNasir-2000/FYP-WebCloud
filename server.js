@@ -12,6 +12,7 @@ const expressWs = require("express-ws")(app);
 const logger = require("./utils/logger");
 const swaggerDocs = require("./utils/swagger");
 const { Server } = require("socket.io");
+var session = require("express-session");
 
 const USE_BINARY = os.platform() !== "win32";
 
@@ -83,7 +84,77 @@ app.ws("/terminals/:pid", function (ws, req) {
   });
 });
 
+// app.post("/terminals", function (req, res) {
+//   console.log("req.user", req.user);
+//   const env = Object.assign({}, process.env);
+//   env["COLORTERM"] = "truecolor";
+//   var cols = parseInt(req.query.cols),
+//     rows = parseInt(req.query.rows),
+//     term = pty.spawn(process.platform === "win32" ? "cmd.exe" : "bash", [], {
+//       name: "xterm-256color",
+//       cols: cols || 80,
+//       rows: rows || 24,
+//       cwd: process.platform === "win32" ? undefined : env.PWD,
+//       env: env,
+//       encoding: USE_BINARY ? null : "utf8",
+//     });
+
+//   console.log("Created terminal with PID: " + term.pid);
+//   terminals[term.pid] = term;
+//   logs[term.pid] = "";
+//   term.on("data", function (data) {
+//     logs[term.pid] += data;
+//   });
+//   res.send(term.pid.toString());
+//   res.end();
+// });
+
+// app.post("/terminals/:pid/size", function (req, res) {
+//   var pid = parseInt(req.params.pid),
+//     cols = parseInt(req.query.cols),
+//     rows = parseInt(req.query.rows),
+//     term = terminals[pid];
+
+//   term.resize(cols, rows);
+//   console.log(
+//     "Resized terminal " + pid + " to " + cols + " cols and " + rows + " rows."
+//   );
+//   res.end();
+// });
+
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser());
+
+app.use(
+  "/bootstrap",
+  express.static(path.join(__dirname, "/node_modules/bootstrap/dist/"))
+);
+
+app.use(
+  "/jquery",
+  express.static(path.join(__dirname, "/node_modules/jquery/dist/"))
+);
+
+app.use(
+  session({
+    secret: "secret-key",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use("/", require("./routes/index"));
+app.use("/api/auth", require("./routes/auth.route"));
+app.use("/api/admin", require("./routes/admin.route"));
+app.use("/api/project", require("./routes/project.route"));
+app.use("/api/repo", require("./routes/repository.route"));
+app.use("/api/user", require("./routes/users.route"));
+app.use("/api/files", require("./routes/files.route"));
+
 app.post("/terminals", function (req, res) {
+  console.log("req.session", req.session);
   const env = Object.assign({}, process.env);
   env["COLORTERM"] = "truecolor";
   var cols = parseInt(req.query.cols),
@@ -119,29 +190,6 @@ app.post("/terminals/:pid/size", function (req, res) {
   );
   res.end();
 });
-
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(cookieParser());
-
-app.use(
-  "/bootstrap",
-  express.static(path.join(__dirname, "/node_modules/bootstrap/dist/"))
-);
-
-app.use(
-  "/jquery",
-  express.static(path.join(__dirname, "/node_modules/jquery/dist/"))
-);
-
-app.use("/", require("./routes/index"));
-app.use("/api/auth", require("./routes/auth.route"));
-app.use("/api/admin", require("./routes/admin.route"));
-app.use("/api/project", require("./routes/project.route"));
-app.use("/api/repo", require("./routes/repository.route"));
-app.use("/api/user", require("./routes/users.route"));
-app.use("/api/files", require("./routes/files.route"));
 
 const PORT = process.env.PORT || 5000;
 const ENVIRONMENT = process.env.NODE_ENV || "development";

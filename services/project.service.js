@@ -6,6 +6,7 @@ const {
   configurations,
   requests,
   project_history,
+  ports,
 } = require("../models");
 const sendEmail = require("../utils/email-config");
 const generatePassword = require("../utils/password-generator");
@@ -103,7 +104,11 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     db_password: randomPassword,
   };
 
+  req.session.container = `${project.id}-db`;
+
   generateEnvironmentFile(config);
+
+  const port = await getUserPortMappingService();
 
   let emailDetails = {
     email: req.user.email,
@@ -197,43 +202,16 @@ const getUserForkedProjectsService = asyncHandler(async (req, res) => {
 });
 
 const getUserPortMappingService = asyncHandler(async () => {
-  const port = await db.sequelize.query(
-    `SELECT * FROM ports WHERE status = "Idle" LIMIT 1;`
-  );
-
-  console.log("port :>> ", port);
-
-  let userPort = "";
-
-  try {
-    if (typeof port[0][0]["port_number"] == "undefined") {
-      console.log(" port[0][0].length:>> ", port[0][0].length);
-      console.log('port[0][0]["port_number"]', port[0][0]["port_number"]);
-      userPort = port[0][0].port_number;
-    }
-  } catch (error) {
-    console.log("error :>> ", error);
-    console.log("Inside Catch Block :>> ");
-  }
-
-  const arr = port[0][0];
-
-  const isFound = people.some((element) => {
-    if (element.id === 1) {
-      return true;
-    }
-
-    return false;
+  const portNumber = await ports.findOne({
+    where: {
+      status: "Idle",
+    },
+    attributes: {
+      exclude: ["id", "status"],
+    },
   });
 
-  console.log(" port[0].length:>> ", port[0].length);
-  console.log(" port[0][0].length:>> ", port[0][0].length);
-  console.log(" port[0][0].[port_number]:>> ", port[0][0]["port_number"]);
-  console.log(" port[0][0]:>> ", port[0][0]);
-
-  console.log("userPort :>> ", userPort);
-
-  return userPort;
+  return portNumber.dataValues.port_number;
 });
 
 const startProjectService = asyncHandler(async (req, res) => {
