@@ -7,6 +7,7 @@ const {
   requests,
   project_history,
   ports,
+  users,
 } = require("../models");
 const sendEmail = require("../utils/email-config");
 const generatePassword = require("../utils/password-generator");
@@ -42,7 +43,7 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
   });
 
   const updatedRequest = await projects.update(
-    { path: `/WebCloud/${req.user.id}/${project.id}` },
+    { path: `~/WebCloud/${req.user.id}/${project.id}` },
     {
       where: {
         id: project.id,
@@ -108,9 +109,11 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
 
   generateEnvironmentFile(config);
 
-  const port = await getUserPortMappingService();
+  const port = await getUserPortMappingService(req.user.id);
 
   req.user.port = port;
+  req.user.path = `~/WebCloud/${req.user.id}/${project.id}`;
+  req.session.path = `~/WebCloud/${req.user.id}/${project.id}`;
   console.log("port :>> ", req.user.port);
 
   let emailDetails = {
@@ -204,8 +207,20 @@ const getUserForkedProjectsService = asyncHandler(async (req, res) => {
   });
 });
 
-const getUserPortMappingService = asyncHandler(async () => {
+const getUserPortMappingService = asyncHandler(async (id) => {
   let port = 0;
+
+  const foundUser = await users.findOne({
+    where: {
+      id,
+    },
+    attributes: {
+      exclude: ["id", "status"],
+    },
+  });
+
+  if (foundUser.dataValues.port != null) return foundUser.dataValues.port;
+
   const portNumber = await ports.findOne({
     where: {
       status: "Idle",
@@ -243,6 +258,15 @@ const getUserPortMappingService = asyncHandler(async () => {
       }
     );
   }
+
+  await users.update(
+    { port: port },
+    {
+      where: {
+        id,
+      },
+    }
+  );
 
   return port;
 });
