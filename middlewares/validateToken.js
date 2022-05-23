@@ -14,7 +14,7 @@ const validateToken = asyncHandler(async (req, res, next) => {
 
       const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-      req.user = await users.findOne({
+      const currentUser = await users.findOne({
         where: { id: decodedToken.id },
         attributes: [
           "id",
@@ -29,6 +29,17 @@ const validateToken = asyncHandler(async (req, res, next) => {
           "container",
         ],
       });
+
+      req.user = {};
+      req.user.id = currentUser.dataValues.id;
+      req.user.first_name = currentUser.dataValues.first_name;
+      req.user.last_name = currentUser.dataValues.last_name;
+      req.user.email = currentUser.dataValues.email;
+      req.user.status = currentUser.dataValues.status;
+      req.user.has_subscription = currentUser.dataValues.has_subscription;
+      req.user.profile_picture_url = currentUser.dataValues.profile_picture_url;
+      req.user.container = currentUser.dataValues.container;
+      req.user.port = currentUser.dataValues.port;
 
       next();
     } catch (error) {

@@ -110,7 +110,8 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
 
   const port = await getUserPortMappingService();
 
-  console.log("port :>> ", port);
+  req.user.port = port;
+  console.log("port :>> ", req.user.port);
 
   let emailDetails = {
     email: req.user.email,
