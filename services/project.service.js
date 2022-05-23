@@ -110,6 +110,8 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
 
   const port = await getUserPortMappingService();
 
+  console.log("port :>> ", port);
+
   let emailDetails = {
     email: req.user.email,
     web_framework,
@@ -202,6 +204,7 @@ const getUserForkedProjectsService = asyncHandler(async (req, res) => {
 });
 
 const getUserPortMappingService = asyncHandler(async () => {
+  let port = 0;
   const portNumber = await ports.findOne({
     where: {
       status: "Idle",
@@ -211,7 +214,36 @@ const getUserPortMappingService = asyncHandler(async () => {
     },
   });
 
-  return portNumber.dataValues.port_number;
+  if (portNumber == null) {
+    const newPort = await ports.findOne({
+      where: {
+        status: "Occupied",
+      },
+      attributes: {
+        exclude: ["id", "status"],
+      },
+      order: [["id", "DESC"]],
+    });
+
+    port = newPort.dataValues.port_number + 1;
+
+    const newPortEntry = await ports.create({
+      port_number: port,
+      status: "Occupied",
+    });
+  } else {
+    port = portNumber.dataValues.port_number;
+    await ports.update(
+      { status: "Occupied" },
+      {
+        where: {
+          port_number: port,
+        },
+      }
+    );
+  }
+
+  return port;
 });
 
 const startProjectService = asyncHandler(async (req, res) => {
