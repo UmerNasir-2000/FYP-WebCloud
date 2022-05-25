@@ -19,13 +19,13 @@ BEGIN
 		usr.has_subscription,
 		cfg.`database`,
 		cfg.web_framework
-FROM projects proj
-INNER JOIN users usr  
-ON usr.id = proj.user_id 
-INNER JOIN configurations cfg 
-ON proj.id = cfg.project_id 
-INNER JOIN requests req
-ON proj.id = req.project_id 
-WHERE proj.id = id AND req.status = "Approved";
+	FROM projects proj
+	INNER JOIN users usr  
+	ON usr.id = proj.user_id 
+	INNER JOIN configurations cfg 
+	ON proj.id = cfg.project_id 
+	INNER JOIN requests req
+	ON proj.id = req.project_id 
+	WHERE proj.id = id AND req.status = "Approved";
 END$$
 DELIMITER ;
