@@ -48,7 +48,7 @@ body .myform {
   padding-top: 30px;
   perspective: 2700px;
   border-radius: 30px !important;
-  min-height: 80vh;
+  min-height: 70vh;
 }
 
 .container .cover {
@@ -199,6 +199,9 @@ input ::selection {
   border-radius: 10px !important;
   appearance: none !important;
   font-size: larger;
+}
+.select {
+  margin-bottom: 10px !important;
 }
 
 .standard-select1 option {

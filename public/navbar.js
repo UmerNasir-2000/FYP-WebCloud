@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $("#mybody").hide();
+
   var fullname = localStorage.getItem("fullname");
   var pic = localStorage.getItem("url");
   var user = localStorage.getItem("first_name");
@@ -44,8 +45,19 @@ $(document).ready(function () {
 
     //window.location.href = "index.html";
   });
-  var bars = document.querySelector(".bars");
-  bars.addEventListener("click", function () {
+
+  // bars.addEventListener("click", function () {
+  //   document.querySelector("body").classList.toggle("active");
+  // });
+  document.querySelector(".bars").addEventListener("click", function () {
+    const icon = this.querySelector("i");
     document.querySelector("body").classList.toggle("active");
+    if (icon.classList.contains("fa-bars")) {
+      icon.classList.remove("fa-bars");
+      icon.classList.add("fa-times");
+    } else if (icon.classList.contains("fa-times")) {
+      icon.classList.remove("fa-times");
+      icon.classList.add("fa-bars");
+    }
   });
 });

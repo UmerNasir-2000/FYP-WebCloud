@@ -30,7 +30,7 @@ body {
 }
 
 .container__right {
-  width: 15%;
+  width: 18%;
   display: flex;
 }
 .resizer {
@@ -76,9 +76,6 @@ body {
   border-top: 0;
   padding: 5px;
   margin-right: 5px;
-}
-.btn-section button:hover {
-  transform: scale(1.1);
 }
 
 span {
@@ -131,4 +128,17 @@ ul.fancytree-container {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: blue;
+}
+.modal-header .btn-close {
+  display: none;
+}
+.nav-tabs {
+  border-bottom: 0 !important;
+}
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:focus {
+  border: 1px solid blue !important;
 }

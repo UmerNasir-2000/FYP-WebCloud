@@ -3,7 +3,7 @@ var fileData = "";
 var editor = ace.edit("editor");
 var fontSizeValue = 16;
 var currentTheme = "ace/theme/cobalt";
-
+var extra = "";
 $("#mybody").hide();
 if (localStorage.getItem("token")) {
   $("#mybody").show();
@@ -21,9 +21,13 @@ $("#folders").click(function () {
     });
   } else {
     $(".container__right").css({
-      width: "15%",
+      width: "18%",
     });
   }
+});
+
+$("#exampleModal").on("shown.bs.modal", function () {
+  $(".dropdown").trigger("focus");
 });
 
 $(".select_button1").click(function () {
@@ -32,6 +36,16 @@ $(".select_button1").click(function () {
 $("html").click(function (event) {
   if ($(event.target).closest(".select1, .select_button1").length === 0) {
     $(".select1").hide();
+  }
+});
+$("body").on("click", ".closeTab", function () {
+  $(this).parent().parent().remove();
+  $($(this).parent().attr("href")).remove();
+  if (!$("#tabs li").length) {
+    $("#divMain").html("");
+  } else {
+    var first_menu_id = $(".nav-item").first().children().attr("id");
+    $("#${first_menu_id}").tab("show");
   }
 });
 
@@ -58,6 +72,7 @@ function renderTree() {
       else return "far fa-file-code";
     },
     activate: function (event, data) {
+      localStorage.setItem("ld", data.node);
       var node = data.node;
       console.log("This is data.node object  = " + data.node);
       fileName = node.title;
@@ -71,10 +86,68 @@ function renderTree() {
           fileName,
         },
         success: function (result, status, xhr) {
+          extra = xhr.responseJSON;
           fileData = xhr.responseJSON;
           configureAceEditor(fileData);
           console.log(xhr.responseJSON);
+          var menu = document.title;
+          if (!$("#tabs").length) {
+            $("#divMain").html(
+              `<ul  class="nav nav-tabs" id="tabs"> </ul> 
+             
+              `
+            );
+          }
+
+          if (!$(`.nav-link#${menu}`).length) {
+            $("#tabs").append(
+              ` <li class="nav-item">
+            <a
+            class="nav-link"
+            data-toggle="tab" 
+            href="#" 
+              id="${menu}"
+
+            >
+            
+              ${menu} <b class="closeTab text-danger ml-4">x</b>
+             
+            </a>
+
+           
+           
+          </li>
+          
+          `
+            );
+            $(`.nav-link#${menu}`).tab("show");
+            $(`.nav-link`).click(function (data) {
+              var ld = localStorage.getItem("ld");
+
+              console.log("This is data.node object  = " + ld);
+              fileName = this.id;
+              console.log("Name", this.id);
+
+              document.title = this.id;
+              $.ajax({
+                url: `/api/files/file`,
+                method: "POST",
+                data: {
+                  fileName,
+                },
+                success: function (result, status, xhr) {
+                  fileData = xhr.responseJSON;
+                  configureAceEditor(fileData);
+                  console.log(xhr.responseJSON);
+                },
+              });
+            });
+          } else {
+            alert("Yes");
+            $(`.nav-link#${menu}`).tab("show");
+          }
         },
+
         error: function (xhr, status, error) {
           console.log(xhr.responseText);
         },
@@ -205,6 +278,27 @@ function configureAceEditor(value) {
     val = array.join("\n");
     val = js_beautify(val);
     editor.session.setValue(val);
+  });
+  $("select").on("change", function () {
+    if ($("#myselect option:selected").val() === "0") {
+      currentTheme = "ace/theme/twilight";
+      editor.setTheme(currentTheme);
+    } else if ($("#myselect option:selected").val() === "1") {
+      currentTheme = "ace/theme/cobalt";
+      editor.setTheme(currentTheme);
+    } else if ($("#myselect option:selected").val() === "2") {
+      currentTheme = "ace/theme/twilight";
+      editor.setTheme(currentTheme);
+    } else if ($("#myselect option:selected").val() === "3") {
+      currentTheme = "ace/theme/xcode";
+      editor.setTheme(currentTheme);
+    } else if ($("#myselect option:selected").val() === "4") {
+      currentTheme = "ace/theme/monokai";
+      editor.setTheme(currentTheme);
+    } else if ($("#myselect option:selected").val() === "5") {
+      currentTheme = "ace/theme/eclipse";
+      editor.setTheme(currentTheme);
+    }
   });
 
   $("#theme").click(function () {

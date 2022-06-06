@@ -24,7 +24,19 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
+    <script>
+      window.onbeforeunload = function (e) {
+        e = e || window.event;
 
+        // For IE and Firefox prior to version 4
+        if (e) {
+          e.returnValue = "Sure?";
+        }
+
+        // For Safari
+        return "Sure?";
+      };
+    </script>
     <script src="//cdn.jsdelivr.net/npm/jquery.fancytree@2.27/dist/jquery.fancytree-all-deps.min.js"></script>
 
     <script
@@ -142,6 +154,7 @@
               color: white !important;
               background-color: #1a2238;
               box-shadow: 2px 2px 3px blue;
+              margin-left: -110px;
             "
           >
             <ul
@@ -164,53 +177,14 @@
             </ul>
           </form>
         </li>
-        <li class="nav-item dropdown">
-          <button
-            style="
-              margin-left: 15px;
-              background-color: #0e1528;
-              border-color: white;
-              border-width: 2px;
-              margin-top: 2.5px;
-            "
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Select Themes
-          </button>
-          <form
-            class="dropdown-menu"
-            style="
-              color: white !important;
-              background-color: #1a2238;
-              box-shadow: 2px 2px 3px blue;
-            "
-          >
-            <ul class="list-group text-black" style="cursor: pointer">
-              <li style="color: white" id="cascadia-code" class="dropdown-item">
-                Cobalt Blue
-              </li>
-              <li style="color: white" id="twilight" class="dropdown-item">
-                Twilight
-              </li>
-              <li style="color: white" id="xcode" class="dropdown-item">
-                XCode
-              </li>
-              <li style="color: white" id="monokai" class="dropdown-item">
-                Monokai Pro
-              </li>
-              <li style="color: white" id="eclipse" class="dropdown-item">
-                Eclipse
-              </li>
-            </ul>
-          </form>
-        </li>
       </ul>
     </nav>
 
+    <div
+      class="col-15 p-2"
+      id="divMain"
+      style="background-color: transparent"
+    ></div>
     <div
       style="display: flex !important; height: 38rem; width: 100% !important"
     >
@@ -219,11 +193,10 @@
           <i style="font-size: x-large" class="bi bi-card-list"></i>
         </button>
         <button
-          id="manage"
+          class="two basic-btn"
+          title="Manage"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
-          class="two basic-btn"
-          title="Instructions"
         >
           <i style="font-size: x-large" class="bi bi-gear"></i>
         </button>
@@ -307,7 +280,7 @@
       <div class="resizer" id="dragMe"></div>
 
       <div class="container__left" id="editor">
-        # Write Your Code To Get Started
+        #Write Your Code To Get Started
       </div>
     </div>
 
@@ -321,10 +294,17 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
+        <div
+          class="modal-content"
+          style="
+            color: white !important;
+            background-color: #1a2238;
+            box-shadow: 2px 2px 3px blue;
+          "
+        >
+          <div class="modal-header" style="border: none; color: white">
             <h5 class="modal-title" id="staticBackdropLabel">
-              IDE Information
+              Shortcuts & Themes
             </h5>
             <button
               type="button"
@@ -333,29 +313,30 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">
-            <ul>
-              <li>Press Ctrl + Q To Zoom Out</li>
-              <li>Press Ctrl + 3 To Zoom In</li>
-            </ul>
-            <!-- <select
-              class="form-select form-select mb-3"
-              aria-label=".form-select-lg example"
+          <div class="modal-body" style="border: 0 !important">
+            <div>
+              <ul>
+                <li>Ctrl + 3 To Zoom In</li>
+                <li>Ctrl + 0 To Zoom Out</li>
+              </ul>
+            </div>
+            <select
+              id="myselect"
+              class="form-control"
+              style="color: white !important; background-color: #1a2238"
             >
-              <option selected class="dropdown-item">Select Your Theme</option>
-              <option value="1" class="dropdown-item">Cobalt Blue</option>
-              <option value="twilight" id="twilight" class="dropdown-item">
-                Twilight
-              </option>
-              <option value="2" class="dropdown-item">Eclipse</option>
-              <option value="2" class="dropdown-item">XCode</option>
-              <option value="3" class="dropdown-item">Monokai Pro</option>
-            </select> -->
+              <option style="display: none">Change Theme</option>
+              <option value="1">Cobalt Blue</option>
+              <option value="2">Twilight</option>
+              <option value="3">XCode</option>
+              <option value="4">Monokai Pro</option>
+              <option value="5">Eclplse</option>
+            </select>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer" style="border: none">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-primary"
               data-bs-dismiss="modal"
             >
               Close

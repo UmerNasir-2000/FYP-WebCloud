@@ -1,8 +1,28 @@
+#logout {
+  background-color: red;
+  color: white !important;
+  border-radius: 13px;
+}
+#logout a {
+  background-color: red;
+  color: white !important;
+}
+#logout:hover {
+  background-color: red !important;
+  color: white;
+}
+#logout a:hover {
+  color: white;
+  background-color: red !important;
+}
 .avatar {
   vertical-align: middle;
   width: 100px;
   height: 100px;
   border-radius: 50%;
+}
+.fa-times {
+  color: red !important;
 }
 
 .btn-mini {
@@ -103,22 +123,3 @@ li {
   list-style-type: none !important;
   margin-bottom: 20px;
 }
-
-#logout {
-  background-color: rgba(255, 0, 0, 0.671) !important;
-  color: white !important;
-  border-radius: 8px;
-  border: 0;
-}
-/* #logout a {
-  background-color: rgba(255, 0, 0, 0.671) !important;
-  color: white !important;
-} */
-#logout:hover {
-  background-color: rgba(255, 0, 0, 0.671) !important;
-  color: white;
-}
-/* #logout a:hover {
-  color: white;
-  background-color: rgba(255, 0, 0, 0.671) !important;
-} */
