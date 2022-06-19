@@ -25,64 +25,90 @@ const httpServer = createServer(app);
 
 app.use(express.static(__dirname + "/public"));
 
-app.ws("/terminals/:pid", function (ws, req) {
+expressWs.app.ws("/terminals/:pid", function (ws, req) {
   var term = terminals[parseInt(req.params.pid)];
-  console.log("Connected to terminal " + term.pid);
-  ws.send(logs[term.pid]);
+  // Spawn the shell
+  // Compliments of http://krasimirtsonev.com/blog/article/meet-evala-your-terminal-in-the-browser-extension
+  // var term = pty.spawn('/bin/bash', [], {
+  //     name: 'xterm-color',
+  //     cwd: process.env.PWD,
+  //     env: process.env
+  // });
 
-  // string message buffering
-  function buffer(socket, timeout) {
-    let s = "";
-    let sender = null;
-    return (data) => {
-      s += data;
-      if (!sender) {
-        sender = setTimeout(() => {
-          socket.send(s);
-          s = "";
-          sender = null;
-        }, timeout);
-      }
-    };
-  }
-  // binary message buffering
-  function bufferUtf8(socket, timeout) {
-    let buffer = [];
-    let sender = null;
-    let length = 0;
-    return (data) => {
-      buffer.push(data);
-      length += data.length;
-      if (!sender) {
-        sender = setTimeout(() => {
-          socket.send(Buffer.concat(buffer, length));
-          buffer = [];
-          sender = null;
-          length = 0;
-        }, timeout);
-      }
-    };
-  }
-  const send = USE_BINARY ? bufferUtf8(ws, 5) : buffer(ws, 5);
+  // console.log('Created terminal with PID: ' + term.pid);
+  // terminals[term.pid] = term;
 
+  // res.send(term.pid.toString());
+  // res.end();
+
+  // For all shell data send it to the websocket
   term.on("data", function (data) {
-    try {
-      send(data);
-    } catch (ex) {
-      // The WebSocket is not open, ignore
-    }
+    ws.send(data);
   });
+  // For all websocket data send it to the shell
   ws.on("message", function (msg) {
     term.write(msg);
   });
-  ws.on("close", function () {
-    term.kill();
-    console.log("Closed terminal " + term.pid);
-    // Clean things up
-    delete terminals[term.pid];
-    delete logs[term.pid];
-  });
 });
+
+// app.ws("/terminals/:pid", function (ws, req) {
+//   var term = terminals[parseInt(req.params.pid)];
+//   console.log("Connected to terminal " + term.pid);
+//   ws.send(logs[term.pid]);
+
+//   // string message buffering
+//   function buffer(socket, timeout) {
+//     let s = "";
+//     let sender = null;
+//     return (data) => {
+//       s += data;
+//       if (!sender) {
+//         sender = setTimeout(() => {
+//           socket.send(s);
+//           s = "";
+//           sender = null;
+//         }, timeout);
+//       }
+//     };
+//   }
+//   // binary message buffering
+//   function bufferUtf8(socket, timeout) {
+//     let buffer = [];
+//     let sender = null;
+//     let length = 0;
+//     return (data) => {
+//       buffer.push(data);
+//       length += data.length;
+//       if (!sender) {
+//         sender = setTimeout(() => {
+//           socket.send(Buffer.concat(buffer, length));
+//           buffer = [];
+//           sender = null;
+//           length = 0;
+//         }, timeout);
+//       }
+//     };
+//   }
+//   const send = USE_BINARY ? bufferUtf8(ws, 5) : buffer(ws, 5);
+
+//   term.on("data", function (data) {
+//     try {
+//       send(data);
+//     } catch (ex) {
+//       // The WebSocket is not open, ignore
+//     }
+//   });
+//   ws.on("message", function (msg) {
+//     term.write(msg);
+//   });
+//   ws.on("close", function () {
+//     term.kill();
+//     console.log("Closed terminal " + term.pid);
+//     // Clean things up
+//     delete terminals[term.pid];
+//     delete logs[term.pid];
+//   });
+// });
 
 // app.post("/terminals", function (req, res) {
 //   console.log("req.user", req.user);
