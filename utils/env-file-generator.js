@@ -10,7 +10,7 @@ function generateEnvironmentFile(config) {
     db_password,
   } = config;
 
-  const fileText = `DATABASE_CONTAINER=${db_container}\nBACKEND_CONTAINER=${web_container}\nBACKEND_VOLUME=${web_volume}\nDATABASE_VOLUME=${db_volume}\nDATABASE_PASSWORD=${db_password}\n`;
+  const fileText = `DATABASE_CONTAINER=${db_container}\nBACKEND_CONTAINER=${web_container}\nBACKEND_VOLUME=${web_volume}\nDATABASE_VOLUME=${db_volume}\nDATABASE_PASSWORD=123456\n`;
 
   exec(`cd ${path} && echo '${fileText}' > .env`, (error, stdout, stderr) => {
     if (error) {
