@@ -128,7 +128,7 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     db_name: "LMS",
   };
 
-  //await sendEmail(emailDetails);
+  await sendEmail(emailDetails);
 
   res
     .status(StatusCodes.CREATED)
