@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "adm-zip": "^0.5.9",
     "argon2": "^0.28.5",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
