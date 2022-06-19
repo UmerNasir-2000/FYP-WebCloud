@@ -36,15 +36,13 @@ $(document).ready(function () {
     localStorage.removeItem("url");
     const wholeURL = `${window.location.protocol}//${window.location.host}/index.html`;
     window.location.replace(wholeURL);
-
-    //window.location.href = "index.html";
   });
 
   $("#register").click(function () {
     var project_name = $("#project_name").val();
-    var database = $("#db_engine").val();
     var project_description = $("#project_description").val();
     var web_framework = $("#web_framework").val();
+    const config = web_framework.split("-");
     var is_public = $("#is_public").is(":checked");
 
     $.ajax({
@@ -57,8 +55,8 @@ $(document).ready(function () {
       data: {
         project_name: project_name,
         project_description: project_description,
-        web_framework: web_framework,
-        database: database,
+        web_framework: config[0],
+        database: config[1],
         is_public: is_public,
         email: email,
         profile_pic: profile_pic,

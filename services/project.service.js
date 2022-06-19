@@ -84,8 +84,12 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     project_status: projectRequest.status,
   };
 
+  let templatePath = "PHP-MySQL";
+  if (database === "MongoDB") {
+    templatePath = "Nodejs-MongoDB";
+  }
   exec(
-    `rsync -a ~/WebCloud-Templates/PHP-MySQL ~/WebCloud/${req.user.id}/${project.id}`,
+    `rsync -a ~/WebCloud-Templates/${templatePath} ~/WebCloud/${req.user.id}/${project.id}`,
     (error, stdout, stderr) => {
       if (error) {
         console.error(`exec error: ${error}`);
@@ -97,7 +101,7 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
   );
 
   let config = {
-    path: `~/WebCloud/${req.user.id}/${project.id}/PHP-MySQL/`,
+    path: `~/WebCloud/${req.user.id}/${project.id}/${templatePath}/`,
     web_volume: "./php/src",
     db_volume: "./init",
     db_container: `${project.id}-db`,
@@ -114,7 +118,6 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
   req.user.port = port;
   req.user.path = `~/WebCloud/${req.user.id}/${project.id}`;
   req.session.path = `~/WebCloud/${req.user.id}/${project.id}`;
-  console.log("port :>> ", req.user.port);
 
   let emailDetails = {
     email: req.user.email,
@@ -125,7 +128,7 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
     db_name: "LMS",
   };
 
-  await sendEmail(emailDetails);
+  //await sendEmail(emailDetails);
 
   res
     .status(StatusCodes.CREATED)
