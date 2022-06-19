@@ -110,6 +110,10 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
   };
 
   req.session.container = `${project.id}-db`;
+  req.session.path = `~/WebCloud/${req.user.id}/${project.id}/${templatePath}/`;
+
+  console.log("INSIDE CREATE PROJECT :>> ");
+  console.log("req.session.path", req.session.path);
 
   generateEnvironmentFile(config);
 
@@ -117,7 +121,7 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
 
   req.user.port = port;
   req.user.path = `~/WebCloud/${req.user.id}/${project.id}`;
-  req.session.path = `~/WebCloud/${req.user.id}/${project.id}`;
+  //req.session.path = `~/WebCloud/${req.user.id}/${project.id}`;
 
   let emailDetails = {
     email: req.user.email,
@@ -275,8 +279,9 @@ const getUserPortMappingService = asyncHandler(async (id) => {
 });
 
 const startProjectService = asyncHandler(async (req, res) => {
+  console.log("req.session.path :>> ", req.session.path);
   exec(
-    `cd ${req.user.path} && docker-compose up -d`,
+    `cd ${req.session.path} && docker-compose up -d`,
     (error, stdout, stderr) => {
       if (error) {
         console.error(`exec error: ${error}`);

@@ -156,17 +156,21 @@ app.use("/api/files", require("./routes/files.route"));
 app.post("/terminals", function (req, res) {
   console.log("req.session", req.session);
   const env = Object.assign({}, process.env);
+  console.log("req.session.container", req.session.container);
   env["COLORTERM"] = "truecolor";
   var cols = parseInt(req.query.cols),
     rows = parseInt(req.query.rows),
-    term = pty.spawn(process.platform === "win32" ? "cmd.exe" : "bash", [], {
-      name: "xterm-256color",
-      cols: cols || 80,
-      rows: rows || 24,
-      cwd: process.platform === "win32" ? undefined : env.PWD,
-      env: env,
-      encoding: USE_BINARY ? null : "utf8",
-    });
+    term = pty.spawn(
+      "docker",
+      ["exec", "-it", req.session.container, "/bin/sh"],
+      {
+        name: "xterm-color",
+        cols: cols || 80,
+        rows: rows || 24,
+        cwd: process.env.PWD,
+        env: process.env,
+      }
+    );
 
   console.log("Created terminal with PID: " + term.pid);
   terminals[term.pid] = term;

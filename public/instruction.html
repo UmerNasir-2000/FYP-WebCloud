@@ -43,6 +43,19 @@
         $("#pj").text(user);
         $("#em").text(email);
 
+        $("#proceedBtn").click(function () {
+          //alert("On Click Handler Is Working.");
+          $.ajax({
+            url: `/api/project/start`,
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }).then((res) => {
+            console.log("res", res);
+          });
+        });
+
         $("#mybody").hide();
         if (localStorage.getItem("token")) {
           $("#mybody").show();
@@ -134,7 +147,9 @@
             Related To Your Project. Confidential Details Sent. Do Not Share It.
           </li>
         </ul>
-        <a href="editor.html"><button class="btn">Proceed</button></a>
+        <a href="editor.html"
+          ><button class="btn" id="proceedBtn">Proceed</button></a
+        >
       </div>
 
       <div class="image" style="background-color: transparent">
