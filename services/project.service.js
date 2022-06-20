@@ -110,7 +110,7 @@ const createProjectTemplate = asyncHandler(async (req, res) => {
   };
 
   req.session.container = `${project.id}-db`;
-  req.session.path = `~/WebCloud/${req.user.id}/${project.id}/${templatePath}/`;
+  req.session.path = `/home/umer/WebCloud/${req.user.id}/${project.id}/${templatePath}/`;
 
   console.log("INSIDE CREATE PROJECT :>> ");
   console.log("req.session.path", req.session.path);
