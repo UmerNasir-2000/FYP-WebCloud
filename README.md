@@ -67,6 +67,8 @@ Make the following directories in the home directory: -
 
 After that go to the project directory in which you have cloned the project and execute the following commands: -
 
+```yarn```
+
 ```docker-compose up -d```
 
 ```yarn dev```
