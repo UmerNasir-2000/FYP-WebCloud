@@ -13,7 +13,7 @@ for web development for core full stack web development. This project is officia
 
 1. Sir Asim Riaz <<a href="https://github.com/asmryz">Github Profile</a>>
 
-## PROJECT TEMPLATES
+## PROJECT TEMPLATES`
 
 1. PHP & MySQL.
 
@@ -64,3 +64,9 @@ Make the following directories in the home directory: -
 1. WebCloud // For holding user's project
 
 2. WebCloud-Templates // For holding base templates
+
+After that go to the project directory in which you have cloned the project and execute the following commands: -
+
+docker-compose up -d
+
+yarn dev
